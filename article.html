@@ -91,12 +91,21 @@
         #content {
             width: 100%;
             background-color: rgba(255, 255, 255, 0.7);
-            min-height: 100vh;
+            min-height: 50vh;
             width: 70vw;
             display: inline-block;
             margin-top: 50px;
             border-radius: 10px;
             padding: 20px;
+        }
+
+        #contents {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        code {
+            font-family: "consolas";
         }
     </style>
 </head>
@@ -107,9 +116,9 @@
         <span style="margin-left: 10px;color: black;font-weight: bold;font-size: 20px;">Rundll86 - 文章</span>
     </div>
     <div id="content">
-        <span id="title" style="font-size: 25px;font-weight: bold;"></span><br>
-        <span id="contents"></span>
-    </div>
+        <span id="title" style="font-size: 25px;font-weight: bold;"></span>
+        <div id="contents"></div>
+    </div><br>
     <hr style="margin-top: 20px;">
     <div>
         <span style="color: white;font-size: 25px;font-weight: bold;margin-top: 20px;">友情链接</span><br>
@@ -121,15 +130,28 @@
     </div>
     <div style="height: 50px;"></div>
     <script src="https://cdn.staticfile.org/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/base16/default-light.min.css">
+    <script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.staticfile.org/highlight.js/11.9.0/languages/javascript.min.js"></script>
     <script>
         const Searcher = new URLSearchParams(window.location.search);
         var ArticleName = Searcher.get("Name");
+        function LoadText(Text) {
+            return (
+                Text
+                    .replaceAll("$head;", '<div style="width:4ch;display:inline-block;"></div>')
+                    .replaceAll("$line;", "<br>")
+                    .replaceAll("$code-s;", "<br><code>")
+                    .replaceAll("$code-e;", "</code>")
+                    .replaceAll("$blank;", "&nbsp;")
+            );
+        };
         function GetArticle(Name) {
             $.ajax({
                 url: `./articleData/${Name}.title.html`,
                 type: "get",
                 success(data) {
-                    document.getElementById("title").innerHTML = data;
+                    document.getElementById("title").innerHTML = LoadText(data);
                 },
                 error: () => GetArticle("Template")
             });
@@ -137,11 +159,17 @@
                 url: `./articleData/${Name}.content.html`,
                 type: "get",
                 success(data) {
-                    document.getElementById("contents").innerHTML = data;
+                    document.getElementById("contents").innerHTML = LoadText(data);
+                    //*
+                    document.querySelectorAll("code").forEach((e)=>{
+                        hljs.highlightElement(e);
+                    });
+                    //*/
                 },
                 error: () => GetArticle("Template")
             });
         };
+        GetArticle(ArticleName);
     </script>
 </body>
 
