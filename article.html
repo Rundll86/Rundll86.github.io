@@ -90,7 +90,12 @@
 
         #content {
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.7);
+            min-height: 100vh;
+            width: 95vw;
+            display: inline-block;
+            margin-top: 2.5vw;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -98,9 +103,10 @@
 <body>
     <div id="navbar">
         <img src="https://s1.ax1x.com/2023/07/17/pCorL2n.jpg" class="FacerImage">
-        <span style="margin-left: 10px;color: black;font-weight: bold;font-size: 20px;">Rundll86 / 文章</span>
+        <span style="margin-left: 10px;color: black;font-weight: bold;font-size: 20px;">Rundll86 - 文章</span>
     </div>
-    <div id="content"></div>
+    <div id="content">
+    </div>
     <hr style="margin-top: 20px;">
     <div>
         <span style="color: white;font-size: 25px;font-weight: bold;margin-top: 20px;">友情链接</span><br>
@@ -111,6 +117,17 @@
         <a href="https://vdse.bdstatic.com/192d9a98d782d9c74c96f09db9378d93.mp4">DAIQITAO的主页</a>
     </div>
     <div style="height: 50px;"></div>
+    <script src="https://cdn.staticfile.org/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        const Searcher = new URLSearchParams(window.location.href);
+        $.ajax({
+            url: `./articleData/${Searcher.get("Name")}`,
+            type: "get",
+            success(data) {
+                document.getElementById("content").innerHTML = data;
+            }
+        });
+    </script>
 </body>
 
 </html>
