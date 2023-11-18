@@ -1,8 +1,34 @@
 $t1-s;什么是「Sword Engine」？$t1-e;$line;
 $head;“Sword Engine”是一个强大的2D桌面游戏引擎，它允许开发者使用JavaScript编写游戏，并提供了丰富的功能和工具来简化游戏开发过程。$line;
 Sword Engine具有以下特点和功能：$line;
-易用性：Sword Engine为JavaScript开发者设计，具有简单而直观的API和开发工具。它提供了一套易于理解的类和工具集，使开发者能够快速入门，并以更高效的方式构建游戏。$line;
-图形渲染：Sword Engine支持强大的游戏对象管理器，可以创建渲染的2D图形效果。它提供了高性能的渲染引擎，支持图像、角色动画、特效、光照等各种图形元素，可以使游戏呈现出令人惊叹的视觉效果。$line;
-音频支持：Sword Engine提供了音频播放和控制的功能，可以加载和播放各种音效和音乐。开发者可以通过该引擎为游戏添加背景音乐、音效以及其他声音元素，提升游戏的听觉体验。$line;
-输入和交互：Sword Engine支持用户输入和交互操作，包括键盘、鼠标和触摸屏等设备。开发者可以轻松处理玩家的输入，并实现游戏的控制和互动逻辑。$line;
-游戏部署：Sword Engine提供了游戏打包和部署的工具，可以将游戏打包为可执行文件，以供玩家下载和安装。这使得开发者可以方便地发布和分发自己的游戏，将其推广给更多的玩家。
+$head;易用性：Sword Engine为JavaScript开发者设计，具有简单而直观的API和开发工具。它提供了一套易于理解的类和工具集，使开发者能够快速入门，并以更高效的方式构建游戏。$line;
+$head;图形渲染：Sword Engine支持强大的游戏对象管理器，可以创建渲染的2D图形效果。它提供了高性能的渲染引擎，支持图像、角色动画、特效、光照等各种图形元素，可以使游戏呈现出令人惊叹的视觉效果。$line;
+$head;音频支持：Sword Engine提供了音频播放和控制的功能，可以加载和播放各种音效和音乐。开发者可以通过该引擎为游戏添加背景音乐、音效以及其他声音元素，提升游戏的听觉体验。$line;
+$head;输入和交互：Sword Engine支持用户输入和交互操作，包括键盘、鼠标和触摸屏等设备。开发者可以轻松处理玩家的输入，并实现游戏的控制和互动逻辑。$line;
+$head;游戏部署：Sword Engine提供了游戏打包和部署的工具，可以将游戏打包为可执行文件，以供玩家下载和安装。这使得开发者可以方便地发布和分发自己的游戏，将其推广给更多的玩家。
+$t1-s;安装Node环境的SwordEngine$t1-e;$line;
+$head;此引擎需要Node.js版本 >= 16.7.0且NPM版本 >= 7.20.3。$line;
+首先，使用NPM初始化项目：
+$code-s;
+npm init
+package name: my-game
+version: 1.0.0
+git repository: none
+keywords: none
+author: Rundll86
+license: MIT
+About to write to path\to\your\game\package.json:
+{
+  "name": "my-game",
+  "version": "1.0.0",
+  "description": "My first Sword Game!",
+  "main": "index.js",
+  "scripts": {
+    "test": ";"
+  },
+  "author": "Rundll86",
+  "license": "MIT",
+  "keywords": []
+}
+Is this OK? yes
+$code-e;

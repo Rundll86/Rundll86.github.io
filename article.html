@@ -118,6 +118,8 @@
         .t1 {
             font-size: 18px;
             font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -157,7 +159,7 @@
                     .replaceAll("$code-e;", "</code>")
                     .replaceAll("$blank4;", "&nbsp;&nbsp;&nbsp;&nbsp;")
                     .replaceAll("$t1-s;", '<span class="t1">')
-                    .replaceAll("$t1-e;", "</span><br>")
+                    .replaceAll("$t1-e;", "</span>")
             );
         };
         function GetArticle(Name) {
