@@ -107,6 +107,8 @@
         <span style="margin-left: 10px;color: black;font-weight: bold;font-size: 20px;">Rundll86 - 文章</span>
     </div>
     <div id="content">
+        <span id="title" style="font-size: 25px;font-weight: bold;"></span><br>
+        <span id="contents"></span>
     </div>
     <hr style="margin-top: 20px;">
     <div>
@@ -121,16 +123,25 @@
     <script src="https://cdn.staticfile.org/jquery/3.7.1/jquery.min.js"></script>
     <script>
         const Searcher = new URLSearchParams(window.location.search);
-        $.ajax({
-            url: `./articleData/${Searcher.get("Name")}.html`,
-            type: "get",
-            success(data) {
-                document.getElementById("content").innerHTML = data;
-            },
-            error() {
-                document.getElementById("content").innerHTML = "此文章不存在";
-            }
-        });
+        var ArticleName = Searcher.get("Name");
+        function GetArticle(Name) {
+            $.ajax({
+                url: `./articleData/${Name}.title.html`,
+                type: "get",
+                success(data) {
+                    document.getElementById("title").innerHTML = data;
+                },
+                error: () => GetArticle("Template")
+            });
+            $.ajax({
+                url: `./articleData/${Name}.content.html`,
+                type: "get",
+                success(data) {
+                    document.getElementById("contents").innerHTML = data;
+                },
+                error: () => GetArticle("Template")
+            });
+        };
     </script>
 </body>
 
