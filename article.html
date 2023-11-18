@@ -128,6 +128,10 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
+        .interesting-img {
+            width: 300px;
+        }
     </style>
 </head>
 
@@ -140,6 +144,7 @@
         <span id="title" style="font-size: 25px;font-weight: bold;"></span>
         <div id="contents"></div>
     </div><br>
+    <div id="ite_imgs"></div>
     <hr style="margin-top: 20px;">
     <div>
         <span style="color: white;font-size: 25px;font-weight: bold;margin-top: 20px;">友情链接</span><br>
@@ -157,6 +162,7 @@
     <script>
         const Searcher = new URLSearchParams(window.location.search);
         var ArticleName = Searcher.get("Name");
+        const imgCount = 6;
         function LoadText(Text) {
             return (
                 Text
