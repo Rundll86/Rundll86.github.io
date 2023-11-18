@@ -170,7 +170,7 @@
         };
         function GetArticle(Name) {
             $.ajax({
-                url: `./articleData/${Name}.title.html`,
+                url: `./articleData/${Name}.title`,
                 type: "get",
                 success(data) {
                     document.getElementById("title").innerHTML = LoadText(data);
@@ -178,7 +178,7 @@
                 error: () => GetArticle("Template")
             });
             $.ajax({
-                url: `./articleData/${Name}.content.html`,
+                url: `./articleData/${Name}.content`,
                 type: "get",
                 success(data) {
                     document.getElementById("contents").innerHTML = LoadText(data);
