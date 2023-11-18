@@ -36,7 +36,7 @@ $line;
 安装SwordEngine包并设置为开发依赖：
 $label-s;npm install @rundll86/sword-engine --save-dev$label-e;$line;
 创建你的$label-s;index.js$label-e;作为入口文件，试试下面的代码：
-$code-s;
+$code-js-s;
 const SwordEngine = require("@rundll86/sword-engine");
 const App = new SwordEngine.ProcessManager;
 App.ListenEvent(SwordEngine.ProcessManager.Events.READY, () => {
@@ -60,7 +60,7 @@ $line;调用游戏窗口的Update()方法，使对象中的数据更新到屏幕
 $line;最后，监听了App的WINDOW-ALL-DESTORIED事件，当应用程序的所有窗口都被关闭时，退出应用程序。
 $line;
 $line;然而，我们为Container属性写入的路径此刻并没有任何东西，现在请创建它：$label-s;GUI/index.html$label-e;，并写入以下代码：
-$code-s;
+$code-html-s;
 <html>
 <head>
     <style>
@@ -86,6 +86,5 @@ $code-s;
     <canvas id="Stage"></canvas>
     <script src="./scriptOutput/script.min.js"></script>
 </body>
-
 </html>
 $code-e;

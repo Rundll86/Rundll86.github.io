@@ -44,6 +44,7 @@
 
         span {
             display: inline-block;
+            font-family: Consolas;
         }
 
         hr {
@@ -104,8 +105,13 @@
             margin-top: 10px;
         }
 
+        @font-face {
+            font-family: "Consolas";
+            src: url(./fonts/Consolas.ttf);
+        }
+
         code {
-            font-family: "consolas";
+            font-family: Consolas !important;
             border-radius: 10px;
             padding: 20px !important;
             background-color: rgb(30, 30, 30) !important;
@@ -159,6 +165,8 @@
                     .replaceAll("$head;", '<div style="width:4ch;display:inline-block;"></div>')
                     .replaceAll("$line;", "<br>")
                     .replaceAll("$code-text-s;", '<br><code class="language-plaintext">')
+                    .replaceAll("$code-js-s;", '<br><code class="language-javascript">')
+                    .replaceAll("$code-html-s;", '<br><code class="language-xml">')
                     .replaceAll("$code-s;", "<br><code>")
                     .replaceAll("$code-e;", "</code>")
                     .replaceAll("$blank4;", "&nbsp;&nbsp;&nbsp;&nbsp;")
@@ -186,6 +194,13 @@
                     document.querySelectorAll("code").forEach((e) => {
                         hljs.highlightElement(e);
                         e.innerHTML = e.innerHTML.slice(1);
+                        /*
+                        document.querySelectorAll("span").forEach((f) => {
+                            if (f.className.includes("language-")) {
+                                f.style.display = "contents";
+                            };
+                        });
+                        //*/
                     });
                     //*/
                 },
