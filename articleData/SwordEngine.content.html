@@ -19,16 +19,16 @@ author: Rundll86
 license: MIT
 About to write to path\to\your\game\package.json:
 {
-  "name": "my-game",
-  "version": "1.0.0",
-  "description": "My first Sword Game!",
-  "main": "index.js",
-  "scripts": {
-    "test": ";"
-  },
-  "author": "Rundll86",
-  "license": "MIT",
-  "keywords": []
+"name": "my-game",
+"version": "1.0.0",
+"description": "My first Sword Game!",
+"main": "index.js",
+"scripts": {
+"test": ";"
+},
+"author": "Rundll86",
+"license": "MIT",
+"keywords": []
 }
 Is this OK? yes
 $code-e;
@@ -40,12 +40,56 @@ $code-s;
 const SwordEngine = require("@rundll86/sword-engine");
 const App = new SwordEngine.ProcessManager;
 App.ListenEvent(SwordEngine.ProcessManager.Events.READY, () => {
-    const MainWindow = new SwordEngine.GameWindow;
-    MainWindow.Title = "My Game!";
-    MainWindow.Size = new SwordEngine.DataStruct.Rect(1280, 720);
-    MainWindow.Container = "./GUI/index.html";
-    MainWindow.DevTool = true;
-    MainWindow.Update();
+const MainWindow = new SwordEngine.GameWindow;
+MainWindow.Title = "My Game!";
+MainWindow.Size = new SwordEngine.DataStruct.Rect(1280, 720);
+MainWindow.Container = "./GUI/index.html";
+MainWindow.DevTool = true;
+MainWindow.Update();
 });
 App.ListenEvent(SwordEngine.ProcessManager.Events.WINDOW_ALL_DESTORIED, () => App.Quit());
+$code-e;
+$line;
+在这段代码中，我们首先使用$label-s;require$label-e;导入了SwordEngine支持库，然后创建了$label-s;ProcessManager$label-e;类的实例，添加App的READY事件监听器，其在应用程序初始化完成后会回调。
+$line;创建游戏窗口对象。
+$line;设置其$label-s;Title$label-e;属性，设置游戏窗口的标题为“My Game!”。
+$line;设置其$label-s;Size$label-e;属性，内容为一个矩形尺寸（1280x720）。
+$line;设置其$label-s;Container$label-e;属性，设置游戏窗口中加载的HTML页面为“./GUI/index.html”。
+$line;设置其$label-s;Devtool$label-e;属性为true，使游戏窗口中打开了开发人员工具。
+$line;调用游戏窗口的Update()方法，使对象中的数据更新到屏幕。
+$line;最后，监听了App的WINDOW-ALL-DESTORIED事件，当应用程序的所有窗口都被关闭时，退出应用程序。
+$line;
+$line;然而，我们为Container属性写入的路径此刻并没有任何东西，现在请创建它：$label-s;GUI/index.html$label-e;，并写入以下代码：
+$code-s;
+<html>
+
+<head>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            border: none;
+            outline: none;
+            position: absolute;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="Stage"></canvas>
+    <script src="./scriptOutput/script.min.js"></script>
+</body>
+
+</html>
 $code-e;

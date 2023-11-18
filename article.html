@@ -112,6 +112,7 @@
             display: inline-block;
             white-space: pre-wrap;
             margin-top: 10px;
+            margin-bottom: 10px;
             margin-left: 30px;
         }
 
@@ -153,6 +154,8 @@
         function LoadText(Text) {
             return (
                 Text
+                    .replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;")
                     .replaceAll("$head;", '<div style="width:4ch;display:inline-block;"></div>')
                     .replaceAll("$line;", "<br>")
                     .replaceAll("$code-text-s;", '<br><code class="language-plaintext">')
