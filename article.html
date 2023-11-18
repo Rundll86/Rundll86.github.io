@@ -114,6 +114,11 @@
             margin-top: 10px;
             margin-left: 30px;
         }
+
+        .t1 {
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -151,6 +156,8 @@
                     .replaceAll("$code-s;", "<br><code>")
                     .replaceAll("$code-e;", "</code>")
                     .replaceAll("$blank4;", "&nbsp;&nbsp;&nbsp;&nbsp;")
+                    .replaceAll("$t1-s;", '<span class="t1">')
+                    .replaceAll("$t1-e;", "</span><br>")
             );
         };
         function GetArticle(Name) {
