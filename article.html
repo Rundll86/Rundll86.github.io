@@ -96,7 +96,7 @@
             display: inline-block;
             margin-top: 50px;
             border-radius: 10px;
-            padding: 20px;
+            padding: 30px;
         }
 
         #contents {
@@ -106,6 +106,12 @@
 
         code {
             font-family: "consolas";
+            background-color: white !important;
+            border-radius: 10px;
+            padding: 10px !important;
+            display: inline-block;
+            white-space: pre-wrap;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -143,7 +149,7 @@
                     .replaceAll("$line;", "<br>")
                     .replaceAll("$code-s;", "<br><code>")
                     .replaceAll("$code-e;", "</code>")
-                    .replaceAll("$blank;", "&nbsp;")
+                    .replaceAll("$blank4;", "&nbsp;&nbsp;&nbsp;&nbsp;")
             );
         };
         function GetArticle(Name) {
@@ -161,8 +167,9 @@
                 success(data) {
                     document.getElementById("contents").innerHTML = LoadText(data);
                     //*
-                    document.querySelectorAll("code").forEach((e)=>{
+                    document.querySelectorAll("code").forEach((e) => {
                         hljs.highlightElement(e);
+                        e.innerHTML = e.innerHTML.slice(1);
                     });
                     //*/
                 },
