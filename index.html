@@ -59,6 +59,13 @@
             margin-left: 20px;
             margin-top: 20px;
             border-radius: 15px;
+            transition: all .3s ease-out;
+        }
+
+        .projectbox.container:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transform: scale(102%);
+            cursor: pointer;
         }
 
         .projectbox.facer {
@@ -176,7 +183,7 @@
                 <span class="label">游戏</span>
             </div>
         </div>
-        <div class="projectbox container">
+        <div class="projectbox container" onclick="window.open('./article.html?Name=SwordEngine','_blank')">
             <img class="projectbox facer" src="https://s1.ax1x.com/2023/07/17/pCorq8s.png"><br>
             <div class="projectbox content">
                 <span class="projectbox content-title">Sword Engine</span><br>
