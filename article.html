@@ -119,7 +119,7 @@
     <div style="height: 50px;"></div>
     <script src="https://cdn.staticfile.org/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        const Searcher = new URLSearchParams(window.location.href);
+        const Searcher = new URLSearchParams(window.location.search);
         $.ajax({
             url: `./articleData/${Searcher.get("Name")}`,
             type: "get",
