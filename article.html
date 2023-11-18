@@ -106,7 +106,6 @@
 
         code {
             font-family: "consolas";
-            background-color: white !important;
             border-radius: 10px;
             padding: 20px !important;
             display: inline-block;
@@ -144,7 +143,7 @@
     </div>
     <div style="height: 50px;"></div>
     <script src="https://cdn.staticfile.org/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/base16/default-light.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/tomorrow.min.css">
     <script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdn.staticfile.org/highlight.js/11.9.0/languages/javascript.min.js"></script>
     <script>
@@ -155,11 +154,14 @@
                 Text
                     .replaceAll("$head;", '<div style="width:4ch;display:inline-block;"></div>')
                     .replaceAll("$line;", "<br>")
+                    .replaceAll("$code-text-s;", '<br><code class="language-plaintext">')
                     .replaceAll("$code-s;", "<br><code>")
                     .replaceAll("$code-e;", "</code>")
                     .replaceAll("$blank4;", "&nbsp;&nbsp;&nbsp;&nbsp;")
                     .replaceAll("$t1-s;", '<span class="t1">')
                     .replaceAll("$t1-e;", "</span>")
+                    .replaceAll("$label-s;", '<span class="label">')
+                    .replaceAll("$label-e;", "</span>")
             );
         };
         function GetArticle(Name) {
