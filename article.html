@@ -130,7 +130,17 @@
         }
 
         .interesting-img {
-            width: 300px;
+            width: 200px;
+            margin-left: 10px;
+            margin-right: 10px;
+            border-radius: 10px;
+        }
+
+        #ite_imgs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -161,8 +171,15 @@
     <script src="https://cdn.staticfile.org/highlight.js/11.9.0/languages/javascript.min.js"></script>
     <script>
         const Searcher = new URLSearchParams(window.location.search);
+        const Group = document.getElementById("ite_imgs");
         var ArticleName = Searcher.get("Name");
         const imgCount = 6;
+        for (let i = 0; i < imgCount; i++) {
+            let ele = document.createElement("img");
+            ele.src = `./img/ite/${i + 1}.jpg`;
+            ele.className = "interesting-img";
+            Group.appendChild(ele);
+        };
         function LoadText(Text) {
             return (
                 Text
