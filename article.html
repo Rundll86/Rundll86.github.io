@@ -94,8 +94,9 @@
             min-height: 100vh;
             width: 70vw;
             display: inline-block;
-            margin-top: 15vw;
+            margin-top: 50px;
             border-radius: 10px;
+            padding: 20px;
         }
     </style>
 </head>
@@ -121,10 +122,13 @@
     <script>
         const Searcher = new URLSearchParams(window.location.search);
         $.ajax({
-            url: `./articleData/${Searcher.get("Name")}`,
+            url: `./articleData/${Searcher.get("Name")}.html`,
             type: "get",
             success(data) {
                 document.getElementById("content").innerHTML = data;
+            },
+            error() {
+                document.getElementById("content").innerHTML = "此文章不存在";
             }
         });
     </script>
