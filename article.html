@@ -40,6 +40,8 @@
             padding: 2px 5px;
             border-radius: 5px;
             margin-top: 5px;
+            margin-left: 5px;
+            margin-right: 5px;
         }
 
         span {
@@ -119,7 +121,7 @@
             white-space: pre-wrap;
             margin-top: 10px;
             margin-bottom: 10px;
-            margin-left: 30px;
+            width: fit-content;
         }
 
         .t1 {
@@ -136,6 +138,10 @@
             border-radius: 10px;
             display: inline-block;
             margin-top: 20px;
+        }
+
+        .interesting-img.type2 {
+            height: 500px;
         }
 
         #ite_imgs {
@@ -199,6 +205,8 @@
                     .replaceAll("$t1-e;", "</span>")
                     .replaceAll("$label-s;", '<span class="label">')
                     .replaceAll("$label-e;", "</span>")
+                    .replaceAll("$img-s;", '<img class="interesting-img type2" src="./img/article/')
+                    .replaceAll("$img-e;", '">')
             );
         };
         function GetArticle(Name) {
