@@ -1,4 +1,4 @@
-import os, sys
+import os
 
 os.system("git add .")
 os.system('git commit -m "Update"')
