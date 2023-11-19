@@ -150,6 +150,14 @@
             justify-content: center;
             flex-wrap: wrap;
         }
+
+        .a-ball {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: black;
+            margin-right: 5px;
+        }
     </style>
 </head>
 
@@ -207,6 +215,7 @@
                     .replaceAll("$label-e;", "</span>")
                     .replaceAll("$img-s;", '<img class="interesting-img type2" src="./img/article/')
                     .replaceAll("$img-e;", '">')
+                    .replaceAll("$ball;", '<span class="a-ball"></span>')
             );
         };
         function GetArticle(Name) {
