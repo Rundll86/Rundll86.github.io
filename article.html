@@ -149,6 +149,8 @@
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
+            transform: scale(1, 0);
+            opacity: 0;
         }
 
         .a-ball {
@@ -178,7 +180,8 @@
         <a href="https://undefined-kun.github.io">Undefined-Kun的个人博客</a><br>
         <a href="https://www.scratch-cn.cn/user/project?comid=62dbc729eb4cb7198428378b">Z3n1Th的主页</a><br>
         <a href="http://yanngrou.w3.luyouxia.net">yangrou的主页</a><br>
-        <a href="https://vdse.bdstatic.com/192d9a98d782d9c74c96f09db9378d93.mp4">DAIQITAO的主页</a>
+        <a href="https://vdse.bdstatic.com/192d9a98d782d9c74c96f09db9378d93.mp4">DAIQITAO的主页</a><br>
+        <a href="javascript:void(0);" onclick="ShowEgg()">DAIQITAO的主页</a>
     </div>
     <div style="height: 50px;"></div>
     <script src="https://cdn.staticfile.org/jquery/3.7.1/jquery.min.js"></script>
@@ -248,6 +251,16 @@
                 },
                 error: () => GetArticle("Template")
             });
+        };
+        function ShowEgg() {
+            document.getElementById("ite_imgs").animate({
+                transform: "scale(1,1)",
+                opacity: 1
+            }, {
+                duration: 1000,
+                easing: "ease-in-out",
+                fill: "forwards"
+            })
         };
         GetArticle(ArticleName);
     </script>
