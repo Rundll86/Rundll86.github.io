@@ -68,7 +68,8 @@ $line;最后，监听了App的WINDOW-ALL-DESTORIED事件，当应用程序的所
 $line;
 现在，游戏的框架准备完成，接下来我们将要把游戏部署为Windows桌面应用程序。$line;
 $t1-s;部署到桌面程序$t1-e;$line;
-安装SwordEngine ERL（Environment Runtime Loader）来运行你的游戏。
+安装SwordEngine ERL（Environment Runtime Loader）来运行你的游戏。$line;
+使用NPM install：$label-s;npm install sword-engine-erl$label-e;，其不需要保存为开发依赖。安装过程中你需要在另一个命令行中操作。$line;
 如果没有问题，安装完成后在命令行中运行$label-s;sword-run --path ./$label-e;应该会出现一个尺寸为1280x720且被填满了黑色的窗口。$line;
 为了便于调试，请添加一个NPM Script：
 $code-text-s;
