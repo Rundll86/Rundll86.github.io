@@ -20,8 +20,9 @@ $t1-s;安装SwordEngine$t1-e;$line;
 $head;此引擎需要$label-s;Node.js版本 >= 16.7.0$label-e;且$label-s;NPM版本 >= 7.20.3$label-e;。$line;
 首先，使用NPM初始化项目：
 $code-text-s;
-npm init
-package name: my-first-sword-game
+> npm init
+
+package name: my-game
 version: 1.0.0
 git repository: none
 keywords: none
@@ -43,11 +44,11 @@ Is this OK? yes
 $code-e;
 $line;
 安装SwordEngine包并设置为开发依赖：
-$label-s;npm install @rundll86/sword-engine --save-dev$label-e;$line;
+$label-s;npm install sword-engine-full --save-dev$label-e;$line;
 $t1-s;编写第一个游戏！$t1-e;$line;
 创建你的$label-s;index.js$label-e;作为入口文件，输入下面的代码：
 $code-js-s;
-const SwordEngine = require("@rundll86/sword-engine");
+const SwordEngine = require("sword-engine-full");
 const App = new SwordEngine.ProcessManager;
 App.ListenEvent(SwordEngine.ProcessManager.Events.READY, () => {
     const MainWindow = new SwordEngine.GameWindow;
