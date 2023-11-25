@@ -65,54 +65,7 @@ $line;设置其$label-s;Size$label-e;属性，内容为一个矩形尺寸（1280
 $line;调用游戏窗口的$label-s;Update()$label-e;方法，使对象中的数据更新到屏幕。
 $line;最后，监听了App的WINDOW-ALL-DESTORIED事件，当应用程序的所有窗口都被关闭时，退出应用程序。
 $line;
-$label-s;script.js$label-e;是游戏脚本的入口文件，这个脚本中将会处理游戏的所有逻辑，请创建它。
-$code-s;
-const SwordEngine = require("@rundll86/sword-engine/game");
-const Stage = new SwordEngine.Stage;
-Stage.Mount("canvas#Stage");
-Stage.ReloadSize();
-Stage.Clear();
-$code-e;
-$line;
-SwordEngine支持库中的子包$label-s;game$label-e;用于初始化游戏脚本，是SwordEngine的核心包之一。我们从中抽离了$label-s;Stage$label-e;类并实例化，用于管理游戏舞台。
-使用其$label-s;Mount()$label-e;方法将DOM中的元素绑定到舞台控制器。请注意，此处参数应输入一个QuerySelector，而不是元素对象。
-其$label-s;ReloadSize()$label-e;方法将会自动调整挂载的Canvas元素的width与height，使其能适配自身的ClientWidth与ClientHeight，此时将不会出现画面拉伸或模糊。
-最后，其$label-s;Clear()$label-e;方法清空Canvas元素中的内容，使其呈现黑色，然而，游戏开发中并不需要此方法来清空，仅作为游戏初始化时的动作。$line;
-$line;
-然而，$label-s;require$label-e;是Node专有的导入方法，最终我们需要使用Webpack将你的游戏脚本编译为浏览器环境的可执行脚本。$line;
-$t1-s;编译游戏脚本$t1-e;$line;
-安装Webpack与其CLI并设置为开发依赖：
-$label-s;npm install webpack webpack-cli --save-dev$label-e;$line;
-添加一个NPM Script：
-$code-text-s;
-"scripts": {
-    "test": ";",
-    "build": "webpack"
-}
-$code-e;$line;
-创建Webpack配置文件：$label-s;webpack.config.js$label-e;写下配置：
-$code-js-s;
-const { join } = require("path");
-
-module.exports = {
-    entry: "./GUI/script.js",
-    output: {
-        filename: "script.min.js",
-        path: join(__dirname, "GUI/scriptOutput"),
-        clean: true
-    },
-    mode: "production"
-};
-$code-e;$line;
-注意，我们要编译的入口文件是游戏脚本的入口，而不是$label-s;index.js$label-e;。Webpack将会把编译后的文件输出到$label-s;GUI/scriptOutput/script.min.js$label-e;，
-所以请改变index.html中引用的脚本文件：
-$code-html-s;
-<body>
-    <canvas id="Stage"></canvas>
-    <script src="./scriptOutput/script.min.js"></script>
-</body>
-$code-e;$line;
-现在，游戏的框架准备完成，在命令行中运行$label-s;npm run build$label-e;后可直接使用浏览器加载index.html查看屏幕，此时视口中应已被黑色的Canvas填满。接下来我们将要把游戏部署为Windows桌面应用程序。$line;
+现在，游戏的框架准备完成，接下来我们将要把游戏部署为Windows桌面应用程序。$line;
 $t1-s;部署到桌面程序$t1-e;$line;
 安装SwordEngine ERL（Environment Runtime Loader）来运行你的游戏：
 $label-s;npm install sword-engine-erl --save-dev$label-e;$line;
@@ -120,7 +73,6 @@ $label-s;npm install sword-engine-erl --save-dev$label-e;$line;
 $code-text-s;
 "scripts": {
     "test": ";",
-    "build": "webpack",
     "start": "sword -t ."
 }
 $code-e;$line;
