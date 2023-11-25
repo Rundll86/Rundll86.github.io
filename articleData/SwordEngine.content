@@ -53,8 +53,6 @@ App.ListenEvent(SwordEngine.ProcessManager.Events.READY, () => {
     const MainWindow = new SwordEngine.GameWindow;
     MainWindow.Title = "My Game!";
     MainWindow.Size = new SwordEngine.DataStruct.Rect(1280, 720);
-    MainWindow.Container = "./GUI/index.html";
-    MainWindow.DevTool = true;
     MainWindow.Update();
 });
 App.ListenEvent(SwordEngine.ProcessManager.Events.WINDOW_ALL_DESTORIED, () => App.Quit());
@@ -64,43 +62,10 @@ $line;
 $line;实例化$label-s;GameWindow$label-e;类来创建游戏窗口对象。
 $line;设置其$label-s;Title$label-e;属性，设置游戏窗口的标题为“My Game!”。
 $line;设置其$label-s;Size$label-e;属性，内容为一个矩形尺寸（1280x720）。
-$line;设置其$label-s;Container$label-e;属性，设置游戏窗口中加载的HTML页面为“./GUI/index.html”。
-$line;设置其$label-s;Devtool$label-e;属性为true，使游戏窗口中打开了开发人员工具。
 $line;调用游戏窗口的$label-s;Update()$label-e;方法，使对象中的数据更新到屏幕。
 $line;最后，监听了App的WINDOW-ALL-DESTORIED事件，当应用程序的所有窗口都被关闭时，退出应用程序。
 $line;
-$line;然而，我们为Container属性写入的路径此刻并没有任何东西，现在请创建它：$label-s;GUI/index.html$label-e;，并写入以下代码：
-$code-html-s;
-<html>
-<head>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            border: none;
-            outline: none;
-            position: absolute;
-        }
-        body {
-            width: 100vw;
-            height: 100vh;
-        }
-        canvas {
-            width: 100%;
-            height: 100%;
-            background-color: red;
-        }
-    </style>
-</head>
-<body>
-    <canvas id="Stage"></canvas>
-    <script src="./script.js"></script>
-</body>
-</html>
-$code-e;
-$line;
-这个HTML文件决定了你的游戏该如何绘制图形。其中，$label-s;canvas#Stage$label-e;元素铺满了视口，SwordEngine将会使用此元素作为舞台来绘制游戏画面。$line;
-$label-s;script.js$label-e;是游戏脚本的入口文件，这个脚本中将会处理游戏的所有逻辑。现在，请创建它。
+$label-s;script.js$label-e;是游戏脚本的入口文件，这个脚本中将会处理游戏的所有逻辑，请创建它。
 $code-s;
 const SwordEngine = require("@rundll86/sword-engine/game");
 const Stage = new SwordEngine.Stage;
@@ -160,5 +125,4 @@ $code-text-s;
 }
 $code-e;$line;
 如果没有问题，此时在命令行中运行$label-s;npm run start$label-e;应该会出现一个尺寸为1280x720且被黑色填满的窗口。$line;
-$img-s;1.png$img-e;
 $line;$t1-s;文章尚未编写完成...$t1-e;
