@@ -149,14 +149,14 @@ $code-html-s;
 $code-e;$line;
 现在，游戏的框架准备完成，在命令行中运行$label-s;npm run build$label-e;后可直接使用浏览器加载index.html查看屏幕，此时视口中应已被黑色的Canvas填满。接下来我们将要把游戏部署为Windows桌面应用程序。$line;
 $t1-s;部署到桌面程序$t1-e;$line;
-SwordEngine内部使用Electron显示桌面窗口，所以请安装Electron并设置为开发依赖：
-$label-s;npm install electron --save-dev$label-e;$line;
+安装SwordEngine ERL（Environment Runtime Loader）来运行你的游戏：
+$label-s;npm install sword-engine-erl --save-dev$label-e;$line;
 再添加一个NPM Script：
 $code-text-s;
 "scripts": {
     "test": ";",
     "build": "webpack",
-    "start": "electron ."
+    "start": "sword -t ."
 }
 $code-e;$line;
 如果没有问题，此时在命令行中运行$label-s;npm run start$label-e;应该会出现一个尺寸为1280x720且被黑色填满的窗口。$line;
