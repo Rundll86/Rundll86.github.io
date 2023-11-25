@@ -76,5 +76,6 @@ $code-text-s;
     "test": ";",
     "start": "sword-run --path ./"
 }
-$code-e;
+$code-e;$line;
+此时便可以直接运行$label-s;npm run start$label-e;来测试你的游戏了。
 $line;$t1-s;文章尚未编写完成...$t1-e;
