@@ -89,6 +89,7 @@
             background-color: rgba(255, 255, 255, 0.5);
             display: flex;
             align-items: center;
+            position: fixed;
         }
 
         #content {
@@ -97,7 +98,7 @@
             min-height: 50vh;
             width: 70vw;
             display: inline-block;
-            margin-top: 50px;
+            margin-top: 100px;
             border-radius: 10px;
             padding: 40px;
         }
@@ -219,6 +220,8 @@
                     .replaceAll("$img-s;", '<img class="interesting-img type2" src="./img/article/')
                     .replaceAll("$img-e;", '">')
                     .replaceAll("$ball;", '<span class="a-ball"></span>')
+                    .replaceAll("$link-s;", '<a style="color: black;" href="')
+                    .replaceAll("$link-e;", '">&nbsp;[ 网页链接 ]&nbsp;</a>')
             );
         };
         function GetArticle(Name) {
