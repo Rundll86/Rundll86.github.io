@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Rundll86 | 以科技改变世界</title>
+    <link href="./favicon.ico" rel="shortcut icon">
+    <style>
+        * {
+            font-family: "思源黑体", "Nfonts";
+            font-size: 14px;
+        }
+
+        .FacerImage {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 2px 2px 2px gray;
+            margin-top: 40px;
+        }
+
+        body {
+            background-image: url(https://i.imgtg.com/2023/07/20/OFccsc.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+        }
+
+        @font-face {
+            font-family: "Nfonts";
+            src: url(./fonts/思源黑体.otf);
+        }
+
+        .label {
+            background-color: white;
+            color: black;
+            padding: 2px 5px;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        span {
+            display: inline-block;
+        }
+
+        hr {
+            border: none;
+            background: none;
+            background-color: white;
+            height: 3px;
+            width: 40%;
+        }
+
+        .projectbox.container {
+            width: 250px;
+            display: inline-block;
+            margin-left: 20px;
+            margin-top: 20px;
+            border-radius: 15px;
+            transition: all .3s ease-out;
+        }
+
+        .projectbox.container:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transform: scale(102%);
+            cursor: pointer;
+        }
+
+        .projectbox.facer {
+            width: 100%;
+            height: 140.58px;
+            border-radius: 15px 15px 0px 0px;
+        }
+
+        .projectbox.content {
+            margin-top: -5px;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 12px;
+            border-radius: 0px 0px 15px 15px;
+        }
+
+        .projectbox.content-title {
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .projectbox.content-text {
+            font-size: 14px;
+            font-weight: normal;
+            height: 60px;
+        }
+
+        a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: gray;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: white;
+            text-decoration: none;
+        }
+
+        a {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./img/1.jpg" class="FacerImage"><br>
+    <span style="font-size: 40px;font-weight: bold;color: white;margin-top: 10px;">Rundll86</span><br>
+    <div style="margin-top: 5px;">
+        <span class="label">Web全栈开发者</span>
+        <span class="label">福瑞控</span>
+        <span class="label">NPM与Pypi包贡献者</span>
+    </div>
+    <span style="margin-top: 10px;color: white;font-size: 15px;">「好看的皮囊千篇一律，有趣的灵魂万里挑一」</span><br>
+    <span style="margin-top: 10px;color: white;font-size: 20px;">那么，欢迎来到我的主页！</span><br>
+    <hr>
+    <div>
+        <span style="color: white;font-size: 25px;font-weight: bold;margin-top: 20px;">关于我</span>
+        <div style="color: white;margin-top: 5px;">
+            我是Rundll86。<br>
+            Infinity Space Coding Community 创始人，前端开发爱好者。福瑞控，不会画画。<br>
+            我擅长
+            <span class="label">Python</span>
+            <span class="label">HTML</span>
+            <span class="label">CSS</span>
+            <span class="label">JavaScript</span>
+            <br>
+            伟大的CSharp.UnityEngine崇尚者。
+        </div>
+    </div>
+    <hr style="margin-top: 20px;">
+    <div>
+        <span style="color: white;font-size: 25px;font-weight: bold;margin-top: 20px;">我的项目</span><br>
+        <div class="projectbox container">
+            <img class="projectbox facer" src="./img/3.png"><br>
+            <div class="projectbox content">
+                <span class="projectbox content-title">IS Coding Community</span><br>
+                <span class="projectbox content-text">创意交互界面设计。以科幻故事中常有的「终端系统」为基础，创造了一个无限宽广的未来宇宙。</span><br>
+                <span class="label">Web</span>
+                <span class="label">线上网站</span>
+            </div>
+        </div>
+        <div class="projectbox container" onclick="window.open('./article.html?Name=SwordEngine', '_blank')">
+            <img class="projectbox facer" src="./img/4.png"><br>
+            <div class="projectbox content">
+                <span class="projectbox content-title">Sword Engine</span><br>
+                <span class="projectbox content-text">2D桌面游戏框架，可使用JavaScript开发，对于Electron的二次封装与游戏对象管理框架。</span><br>
+                <span class="label">Node.js</span>
+                <span class="label">游戏应用支持库</span>
+            </div>
+        </div>
+        <div class="projectbox container">
+            <img class="projectbox facer" src="./img/no-image.png"><br>
+            <div class="projectbox content">
+                <span class="projectbox content-title">The Adventure Of Andrus</span><br>
+                <span class="projectbox content-text">神明藏匿在高天之上的最终「天道」将会遭到深掘，你能引导远古的强大力量找到其中的秘密吗？</span><br>
+                <span class="label">SwordEngine</span>
+                <span class="label">游戏</span>
+            </div>
+        </div>
+    </div>
+    <hr style="margin-top: 20px;">
+    <div>
+        <span style="color: white;font-size: 25px;font-weight: bold;margin-top: 20px;">友情链接</span><br>
+        <a href="#" style="margin-top: 5px;">IS Coding Community</a><br>
+        <a href="https://undefined-kun.github.io">Undefined-Kun的个人博客</a><br>
+        <a href="https://www.scratch-cn.cn/user/project?comid=62dbc729eb4cb7198428378b">Z3n1Th的主页</a><br>
+        <a href="http://yanngrou.w3.luyouxia.net">yangrou的主页</a><br>
+        <a href="https://vdse.bdstatic.com/192d9a98d782d9c74c96f09db9378d93.mp4">DAIQITAO的主页</a>
+    </div>
+    <div style="height: 50px;"></div>
+</body>
+
+</html>
