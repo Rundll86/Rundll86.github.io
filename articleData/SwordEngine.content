@@ -15,15 +15,11 @@ $t1-s;硬件需求（非必须）$t1-e;$line;
 $head;$ball;处理器：AMD-速龙-240 x2$line;
 $head;$ball;显卡：NVIDIA GeForce GT 240$line;
 $head;$ball;储存：需求500MB储存空间$line;
-$head;$ball;内存：需求2GB内存$line;
+$head;$ball;内存：需求1GB内存$line;
 $t1-s;安装SwordEngine$t1-e;$line;
 $head;此引擎需要$label-s;Node.js版本 >= 16.7.0$label-e;且$label-s;NPM版本 >= 7.20.3$label-e;。$line;
-安装SwordEngine Runtime：$link-s;https://www.123pan.com/s/gD1Qjv-p7Erv.html$link-e;$line;
-使用其提供的SwordPROJ工具来初始化项目：
-$label-s;swordproj Create --Name TheFirstGame --MainClass TheFirstGame$label-e;$line;
+使用NPM安装支持库$label-s;npm install sword-engine-core$label-e;
 $t1-s;编写第一个游戏！$t1-e;$line;
-Sword-PROJ工具已经初始化了工作区，其中$label-s;source/index.js$label-e;作为项目的入口文件，其中已经包含了游戏的主类$label-e;TheFirstGame$label-e;及其声明。
-$line;
 在这段代码中，首先使用$label-s;require$label-e;导入SwordEngine支持库，然后定义了继承于$label-s;GameApplication$label-e;类的实例$label-s;TheFirstGame$label-e;，
 并重写了其的$label-s;Start$label-e;方法，当应用程序初始化完成后将调用此方法进入入口。
 $line;实例化$label-s;GameWindow$label-e;类来创建游戏窗口对象。
