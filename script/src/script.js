@@ -109,3 +109,9 @@ $.ajax({
         });
     }
 });
+document.getElementById("mouse-holder").addEventListener("mouseover", () => {
+    document.body.classList.add("blur");
+});
+document.getElementById("mouse-holder").addEventListener("mouseleave", () => {
+    document.body.classList.remove("blur");
+});

@@ -4,7 +4,7 @@
 }
 
 :root {
-    --background: url(../img/background.jpg);
+    --background: url(../img/bgimg.png);
     --background-color: black;
 }
 
@@ -28,10 +28,21 @@ body {
     text-align: center;
     min-height: 100vh;
     overflow: scroll;
+    text-align: center;
+}
+
+body.blur {
+    backdrop-filter: blur(5px);
 }
 
 body::-webkit-scrollbar {
     display: none;
+}
+
+#mouse-holder {
+    width: fit-content;
+    min-height: 100vh;
+    display: inline-block;
 }
 
 span {
@@ -124,7 +135,7 @@ hr {
 }
 
 #passages {
-    width: 30%;
+    width: 100%;
     display: inline-block;
     overflow: hidden;
     border-radius: 5px;
@@ -157,7 +168,7 @@ hr {
 
 #renderer {
     height: 0px;
-    width: 30%;
+    width: 100%;
 }
 
 iframe {
