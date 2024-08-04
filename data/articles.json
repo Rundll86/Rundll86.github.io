@@ -1,0 +1,29 @@
+[
+    {
+        "title": "Electron-OFP",
+        "face": "eop",
+        "labels": [
+            "JS/TS",
+            "开发工具"
+        ],
+        "info": "可将复杂的Electron项目通过此工具打包为一个可执行文件。仅单文件。"
+    },
+    {
+        "title": "P.M.L.",
+        "face": "pml",
+        "labels": [
+            "Electron",
+            "游戏启动器"
+        ],
+        "info": "用于米哈游的各项游戏（《崩坏3》除外）的启动器。可自定义游戏内容。"
+    },
+    {
+        "title": "ModLoaderNew",
+        "face": "mln",
+        "labels": [
+            "Python",
+            "游戏"
+        ],
+        "info": "将自定义模型注入原神客户端。基于GIMI。封装更多工具，违法。"
+    }
+]

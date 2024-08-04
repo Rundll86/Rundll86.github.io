@@ -1,78 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 
 <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>FallingShrimp | 以科技改变世界</title>
-    <link href="./favicon.ico" rel="shortcut icon">
-    <link rel="stylesheet" href="./style/main.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F·S | 科技改变世界</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="shortcut icon" href="./favicon.ico">
 </head>
 
 <body>
-    <img src="./img/1.jpg" class="FacerImage"><br>
-    <span style="font-size: 40px;font-weight: bold;color: white;margin-top: 10px;">FallingShrimp</span><br>
-    <div style="margin-top: 5px;">
-        <span class="label nomargin">Web全栈开发者</span>
-        <span class="label nomargin">福瑞控</span>
-        <span class="label nomargin">NPM包贡献者</span>
+    <img src="./img/avatar.jpg" id="avatar"><br>
+    <span id="name">FallingShrimp</span><br>
+    <span class="label">Web开发爱好者</span>
+    <span class="label">古希腊掌管GC的神</span>
+    <span class="label">Furry</span><br>
+    <span id="catch">好看的皮囊千篇一律，有趣的灵魂万一挑一</span><br>
+    <div id="info">
+    </div><br>
+    <hr><br>
+    <div id="proj-boxes">
+        正在加载项目数据
     </div>
-    <span style="margin-top: 10px;color: white;font-size: 15px;">「好看的皮囊千篇一律，有趣的灵魂万里挑一」</span><br>
-    <span style="margin-top: 10px;color: white;font-size: 20px;">那么，欢迎来到我的主页！</span><br>
-    <hr>
-    <div>
-        <span style="color: white;font-size: 25px;font-weight: bold;margin-top: 20px;">关于我</span>
-        <div style="color: white;margin-top: 5px;">
-            我是FallingShrimp。<br>
-            前端开发爱好者。福瑞控，莱卡恩厨，不会画画。<br>
-            我擅长
-            <span class="label nomargin">CS</span>
-            <span class="label nomargin">HTML</span>
-            <span class="label nomargin">CSS</span>
-            <span class="label nomargin">J/TS</span>
-            <br>
-            伟大的UnityEngine崇尚者。
-        </div>
-    </div>
-    <hr style="margin-top: 20px;">
-    <div>
-        <span style="color: white;font-size: 25px;font-weight: bold;margin-top: 20px;">我的项目</span><br>
-        <div class="projectbox container">
-            <img class="projectbox facer" src="./img/1.png"><br>
-            <div class="projectbox content">
-                <span class="projectbox content-title">Electron-OFP</span><br>
-                <span class="projectbox content-text">生成一个Electron项目的可执行文件，仅单文件。用于防止因用户误操作造成的文件丢失。</span><br>
-                <span class="label nomargin">Web</span>
-                <span class="label nomargin">开发工具</span>
-            </div>
-        </div>
-        <div class="projectbox container">
-            <img class="projectbox facer" src="./img/4.png"><br>
-            <div class="projectbox content">
-                <span class="projectbox content-title">Sword Engine</span><br>
-                <span class="projectbox content-text">2D桌面游戏框架，可使用J/TS开发，对于Electron的二次封装与游戏对象管理框架。</span><br>
-                <span class="label nomargin">Node.js</span>
-                <span class="label nomargin">游戏应用支持库</span>
-            </div>
-        </div>
-        <div class="projectbox container">
-            <img class="projectbox facer" src="./img/no-image.png"><br>
-            <div class="projectbox content">
-                <span class="projectbox content-title">泰坦站</span><br>
-                <span class="projectbox content-text">非个人项目，最终管理权属于SolariIX。</span><br>
-                <span class="label nomargin">Unity</span>
-                <span class="label nomargin">游戏</span>
-            </div>
-        </div><br>
-    </div>
-    <hr style="margin-top: 20px;">
-    <div>
-        <span style="color: white;font-size: 25px;font-weight: bold;margin-top: 20px;">友情链接</span><br>
-        <a href="https://undefined-kun.github.io">Undefined-Kun的个人博客</a><br>
-        <a href="https://www.scratch-cn.cn/user/project?comid=62dbc729eb4cb7198428378b">Z3n1Th的主页</a><br>
-        <a href="http://yanngrou.w3.luyouxia.net">yangrou的主页</a><br>
-        <a href="https://daiqitao.github.io">DAIQITAO的主页</a>
-    </div>
-    <div style="height: 50px;"></div>
+    <div id="passages">
+        正在加载文章列表
+    </div><br>
+    <iframe id="renderer" src="./passage.html"></iframe>
+    <script src="./script/dist/script.dist.js"></script>
 </body>
 
 </html>
