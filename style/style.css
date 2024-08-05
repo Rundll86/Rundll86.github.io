@@ -78,7 +78,8 @@ span {
 }
 
 #catch {
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 #catch::before {
@@ -90,7 +91,7 @@ span {
 }
 
 #info {
-    width: 50%;
+    width: 80%;
     display: inline-block;
 }
 
@@ -110,6 +111,11 @@ hr {
     overflow: hidden;
     margin: 10px;
     border: transparent 2px solid;
+}
+
+.proj-box:hover {
+    transform: scale(101%);
+    border-color: white;
 }
 
 .proj-box .content {
@@ -174,4 +180,34 @@ hr {
 iframe {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 5px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+a:active {
+    color: gray;
+    text-decoration: underline;
+}
+
+.placeholding {
+    height: 70px;
 }
