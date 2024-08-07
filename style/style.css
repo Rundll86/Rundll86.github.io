@@ -25,6 +25,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    background-position: 50% 0%;
     text-align: center;
     min-height: 100vh;
     overflow: scroll;
