@@ -115,12 +115,24 @@ document.getElementById("mouse-holder").addEventListener("mouseover", () => {
 document.getElementById("mouse-holder").addEventListener("mouseleave", () => {
     document.body.classList.remove("blur");
 });
-function temp(){
-    var top = document.getElementById("passages").getBoundingClientRect().top;
-    if(top<window.innerHeight){
-        document.getElementById("passages").classList.remove("hiding");
-    }else{
-        document.getElementById("passages").classList.add("hiding");
+function temp() {
+    var top = document.getElementById("a").getBoundingClientRect().top;
+    if (top < window.innerHeight) {
+        document.getElementById("a").classList.remove("hiding");
+    } else {
+        document.getElementById("a").classList.add("hiding");
+    }
+    var top = document.getElementById("b").getBoundingClientRect().top;
+    if (top < window.innerHeight) {
+        document.getElementById("b").classList.remove("hiding");
+    } else {
+        document.getElementById("b").classList.add("hiding");
+    }
+    var top = document.getElementById("c").getBoundingClientRect().top;
+    if (top < window.innerHeight) {
+        document.getElementById("c").classList.remove("hiding");
+    } else {
+        document.getElementById("c").classList.add("hiding");
     }
     requestAnimationFrame(temp);
 }
