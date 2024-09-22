@@ -9,7 +9,7 @@ module.exports = {
         path: path.join(__dirname, "script/dist"),
         clean: true
     },
-    mode: "development",
+    mode: "production",
     module: {
         rules: [
             {
