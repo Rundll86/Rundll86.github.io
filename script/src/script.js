@@ -1,8 +1,11 @@
-fetch("https://f-shrimp.solariix.com").then((e) => {
-    if (e.status === 200) {
-        window.location = "https://f-shrimp.solariix.com"//若国内服务器可用就跳转
-    }
-});
+// fetch("https://f-shrimp.solariix.com").then((e) => {
+//     if (e.status === 200) {
+//         window.location = "https://f-shrimp.solariix.com"//若国内服务器可用就跳转
+//     }
+// });
+
+//这个CORS有问题👁👄👁臭贝贝们别看了
+
 const $ = require("jquery");
 const projBoxes = document.getElementById("proj-boxes");
 const passages = document.getElementById("passages");
