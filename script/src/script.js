@@ -1,9 +1,11 @@
+fetch("https://f-shrimp.solariix.com").then((e) => {
+    if (e.status === 200) {
+        window.location = "https://f-shrimp.solariix.com"//若国内服务器可用就跳转
+    }
+});
 const $ = require("jquery");
 const projBoxes = document.getElementById("proj-boxes");
 const passages = document.getElementById("passages");
-/**
- * @type {HTMLIFrameElement}
- */
 const passageRenderer = document.getElementById("renderer");
 function eleTree(name, child = []) {
     let res = document.createElement(name);
