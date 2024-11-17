@@ -83,7 +83,7 @@ $.ajax({
             };
             projBoxes.appendChild(
                 eleTree("div", [
-                    eleTree("img").cls("face").attr("src", `/img/project/${currentArticle.face}.png`),
+                    eleTree("img").cls("face").attr("src", `/img/project/${currentArticle.face}.jpg`),
                     eleTree("div", [
                         eleTree("span").cls("title").innerText(currentArticle.title),
                         br(),
