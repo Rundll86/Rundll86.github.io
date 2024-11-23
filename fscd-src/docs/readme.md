@@ -16,26 +16,31 @@
 
 ```plaintext
 root
+- .fs-context/
+| - config.ts
+| - src/
+||| - ...
 - node_modules/
 | - ...
 - src/
 | - extension.ts
-| - fs-context/
 ||| - ...
 - package.json
 - tsconfig.json
+- index.html
+- webpack.config.js
 ```
 ### 文件/夹 解释
 - `extension.ts`：拓展入口文件，定义了l10n、积木、菜单等内容
-- `fs-context`：项目核心
-- `package.json`：项目配置文件
+- `.fs-context`：框架的配置文件与核心代码
+- `package.json`：拓展项目的配置文件
 - `tsconfig.json`：TypeScript配置文件
+- `webpack.config.js`：Webpack配置文件
+- `index.html`：WaterBox界面的HTML模板
 
 ## 快速上手
 
 ::: details 只需三步
-
-**以下教程均使用yarn作为包管理器**
 1. 安装依赖
 ```bash
 yarn install
@@ -51,6 +56,7 @@ yarn dev
 yarn dist
 ```
 :::
+
 对于新的拓展API文档，访问[概念和API](./guide)
 
 ## 欢迎贡献
@@ -63,7 +69,7 @@ yarn dist
 <Collaborator
 name="FallingShrimp"
 avatar="https://avatars.githubusercontent.com/u/108387605"
-url="https://github.com/Rundll86"></Collaborator>
+url="https://github.com/Rundll86" />
 <Collaborator
 name="FurryR/熊谷 凌"
 avatar="https://avatars.githubusercontent.com/u/55276797"

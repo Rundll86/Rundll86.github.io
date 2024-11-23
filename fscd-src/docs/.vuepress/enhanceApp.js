@@ -1,4 +1,4 @@
-import Collaborator from '../componets/Collaborator.vue'
+import Collaborator from '../componets/Collaborator.vue';
 export default ({
     Vue,
     options,

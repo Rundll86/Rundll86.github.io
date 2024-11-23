@@ -7,5 +7,6 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "dist": "vuepress build docs"
-  }
+  },
+  "dependencies": {}
 }
