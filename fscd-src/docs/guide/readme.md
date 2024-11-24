@@ -1,6 +1,7 @@
 # 快速开始
 
-在开始开发前，需要先进行一些准备。
+在开始开发前，需要先进行一些准备。  
+接下来所有教程的工作目录均位于`./src`目录内。要访问该目录给的内容，可使用`@src`别名来代替相对导入。
 
 ## 还原依赖
 
@@ -10,11 +11,51 @@ yarn install
 
 ## 启动开发服务器
 
+框架提供了两种调试拓展的方法。
+
+### 使用界面调试
+
+对于积木作用域和整体vm需求较小的拓展，可在WaterBox界面中调试。
+
 ```bash
-yarn dev
+yarn dev:ui
 ```
 
-完成！接下来所有教程的工作目录均位于`./src`目录内。
+### 使用编辑器调试
+
+对于功能较复杂的拓展，可载入编辑器进行调试。
+
+```bash
+yarn dev:ext
+```
+
+## 配置加载目标和平台
+
+你可以选择让框架加载一个`范例拓展`，也可以使框架加载你的`自定义拓展`。修改`config/loader.ts`中的配置项即可实现。
+
+### 使用范例拓展
+
+```ts
+type LoaderConfig = import("@framework/internal").LoaderConfig;
+const config: LoaderConfig = {
+    target: import("@samples/fs-iframe/extension"), //从@samples别名中加载模块
+    errorCatches: [], //不捕获任何运行时错误
+    platform: ["TurboWarp"] //加载到TW
+}
+export default { ...config };
+```
+
+### 使用自定义拓展
+
+```ts
+type LoaderConfig = import("@framework/internal").LoaderConfig;
+const config: LoaderConfig = {
+    target: "@src/extension", //从当前源代码目录加载模块，即别名@src
+    errorCatches: ["ExtensionLoadError"], //捕获拓展加载时发生的错误
+    platform: ["GandiIDE", "TurboWarp"] //加载到Gandi和TW
+}
+export default { ...config };
+```
 
 # 基本代码结构
 

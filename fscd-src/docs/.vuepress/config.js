@@ -4,7 +4,6 @@ module.exports = {
         sidebar: {
             "/": "auto"
         },
-        smoothScroll: true,
         sidebarDepth: 6
     },
     base: "/fs-context/",

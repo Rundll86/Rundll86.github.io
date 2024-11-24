@@ -48,12 +48,12 @@ yarn install
 
 2. 启动开发服务器
 ```bash
-yarn dev
+yarn dev:ui
 ```
 
 3. 编译生产环境代码
 ```bash
-yarn dist
+yarn dist:ext
 ```
 :::
 
@@ -69,12 +69,24 @@ yarn dist
 <Collaborator
 name="FallingShrimp"
 avatar="https://avatars.githubusercontent.com/u/108387605"
-url="https://github.com/Rundll86" />
+url="https://github.com/Rundll86"
+label="开发,文档"
+/>
 <Collaborator
 name="FurryR/熊谷 凌"
 avatar="https://avatars.githubusercontent.com/u/55276797"
-url="https://github.com/FurryR"></Collaborator>
+url="https://github.com/FurryR"
+label="优化"
+/>
 <Collaborator
 name="Cyberexplorer"
 avatar="https://avatars.githubusercontent.com/u/177754635"
-url="https://github.com/LanwyWriteXU"></Collaborator>
+url="https://github.com/LanwyWriteXU"
+label="新定义,测试"
+/>
+<Collaborator
+name="MoreBugOfDog"
+avatar="https://avatars.githubusercontent.com/u/121487216"
+url="https://github.com/MoreBugOfDog"
+label="精神支持"
+/>

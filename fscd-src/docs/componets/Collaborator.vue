@@ -2,9 +2,15 @@
     <div class="container" @click="jump" ref="root">
         <img class="avatar" :src="avatar" :alt="name + '的头像'" />
         <span class="name">{{ name }}</span>
-        <OutboundLink v-if="hovering" />
+        <span class="hover-bar">
+            <Label v-for="label in labels">{{ label }}</Label>
+            <OutboundLink />
+        </span>
     </div>
 </template>
+<script setup>
+import Label from './Label.vue';
+</script>
 <script>
 import { defineComponent } from 'vue'
 export default defineComponent({
@@ -21,6 +27,10 @@ export default defineComponent({
         url: {
             type: String,
             default: ''
+        },
+        label: {
+            type: String,
+            default: ''
         }
     },
     methods: {
@@ -30,7 +40,8 @@ export default defineComponent({
     },
     data() {
         return {
-            hovering: false
+            hovering: false,
+            labels: this.label.split(',').filter(Boolean)
         }
     },
     mounted() {
@@ -44,10 +55,21 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+.hover-bar {
+    transform: translate(-50%);
+    opacity: 0;
+    transition: all 0.2s ease-out;
+}
+
+.container:hover .hover-bar {
+    opacity: 1;
+    transform: translate(0);
+}
+
 .container {
     display: flex;
     align-items: center;
-    margin: 20px 5px;
+    padding: 10px 5px;
 }
 
 .container:hover {
