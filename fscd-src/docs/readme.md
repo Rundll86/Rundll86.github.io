@@ -16,13 +16,15 @@
 
 ```plaintext
 root
-- .fs-context/
-| - config.ts
-| - src/
+- config/
+| - loader.ts
+| - server.js
 ||| - ...
 - node_modules/
 | - ...
 - src/
+| - fs-context/
+||| - ...
 | - extension.ts
 ||| - ...
 - package.json
@@ -32,8 +34,10 @@ root
 ```
 ### 文件/夹 解释
 - `extension.ts`：拓展入口文件，定义了l10n、积木、菜单等内容
-- `.fs-context`：框架的配置文件与核心代码
-- `package.json`：拓展项目的配置文件
+- `fs-context`：框架核心代码
+- `config/loader.ts`：拓展加载器的配置文件
+- `config/server.js`：调试服务器的配置文件
+- `package.json`：包配置文件
 - `tsconfig.json`：TypeScript配置文件
 - `webpack.config.js`：Webpack配置文件
 - `index.html`：WaterBox界面的HTML模板

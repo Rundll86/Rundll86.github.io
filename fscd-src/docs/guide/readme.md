@@ -140,60 +140,13 @@ export default class MyExtension extends Extension {
     ];
 }
 ```
-
-### 定义积木和菜单
-
-#### 积木
+### 定义积木
 
 使用`Block`类的静态方法`create`创建积木，参数依次为**积木名称**、**积木参数**、**积木执行函数**。  
 只有在`积木参数`中**已定义的字段**才会被解析为参数框，否则多余的方括号和美元符号等<i>**将会被转义**</i>。
 ```ts
-let translator = Translator.create("zh-cn", {
-    name: "我的拓展",
-    des: "这是我的第一个拓展",
-    alert: "弹窗 $sth 到窗口中，使用后缀[_suffix]"
-});
-export default class MyExtension extends Extension {
-    blocks = [
-        Block.create(
-            translator.load("alert"),
-            {
-                arguments: [
-                    {
-                        name: "$sth",
-                        value: "Hello World",
-                        inputType: "string"
-                    },
-                    {
-                        name: "_suffix",
-                        value: "已弹窗",
-                        inputType: "string"
-                    }
-                ],
-            },
-            function alertSth(args) {
-                alert(args.$sth + " " + args._suffix);
-            }
-        ),
-    ]
-}
-```
-积木参数的定义基于`ArgumentDefine`接口，其中`name`字段为**参数框名称**，`value`字段为**参数框默认值**。  
-以下是对应字段的需求和默认值：
-|字段|是否必填|默认值|
-|-|-|-|
-|name|是|无|
-|value|否|空字符串|
-|inputType|否|`string`|
-
-积木参数框的名称需要有`$`、`_`这两个字符的*任意一种*作为前缀。在定义`积木文字`时可以直接使用字段名来声明参数框，**无需**方括号。
-
-#### 菜单
-
-可以直接将积木的`inputType`改为`menu`，然后在`value`字段传入一个`Menu`类的实例，框架能够自动识别。
-```ts
 Block.create(
-    translator.load("alert"),
+    "弹窗 $sth ，使用后缀 _suffix",
     {
         arguments: [
             {
@@ -203,12 +156,8 @@ Block.create(
             },
             {
                 name: "_suffix",
-                value: new Menu("suffixes", [
-                    { name: "已打印", value: "printed" },
-                    { name: "已输出", value: "output" },
-                    { name: "已显示", value: "displayed" }
-                ]),
-                inputType: "menu"
+                value: "已弹窗",
+                inputType: "string"
             }
         ],
     },
@@ -216,6 +165,39 @@ Block.create(
         alert(args.$sth + " " + args._suffix);
     }
 )
+```
+积木参数的定义基于`ArgumentDefine`接口，其中`name`字段为**参数框名称**，`value`字段为**参数框默认值**。  
+以下是对应字段的需求和默认值：
+|字段|是否必填|默认值|类型|
+|-|-|-|-|
+|name|是|无|字符串|
+|value|否|空字符串|任意|
+|inputType|否|`string`|`keyof InputTypeCast`|
+
+积木参数框的名称需要有`$`、`_`这两个字符的*任意一种*作为前缀。在定义`积木文字`时可以直接使用字段名来声明参数框，**无需**方括号。
+
+### 定义菜单
+
+可以直接将积木的`inputType`改为`menu`，然后在`value`字段传入一个`Menu`类的实例，框架能够自动识别。
+```ts
+{
+    arguments: [
+        {
+            name: "$sth",
+            value: "Hello World",
+            inputType: "string"
+        },
+        {
+            name: "_suffix",
+            value: new Menu("suffixes", [
+                { name: "已打印", value: "printed" },
+                { name: "已输出", value: "output" },
+                { name: "已显示", value: "displayed" }
+            ]),
+            inputType: "menu"
+        }
+    ]
+}
 ```
 也可以在拓展数据中覆写`Extension`基类的`menus`字段，作为一个`Menu[]`。
 ```ts
@@ -230,6 +212,100 @@ export default class MyExtension extends Extension {
 }
 ```
 菜单的定义基于`Menu`类，其中`name`字段为**菜单名称**，`items`字段为**菜单项**。菜单默认允许了`acceptReporters`，不需要手动声明。
+
+### 更灵活的菜单项写法
+
+框架提供了一种更灵活的写法来定义菜单项，可以防止出现轮子屎山。
+
+方式A（如下文`vegetables`菜单）：将项目列表放入一个数组，数组中项可以直接用字符串写**菜单名称**，也可使用等于号`=`连接**菜单项名称**和**对应值**，框架会自动将**菜单项名称**作为菜单项的`name`字段，**对应值**作为菜单项的`value`字段。若没有使用等于号，框架会自动将**菜单项名称**同时作为菜单项的`name`字段和`value`字段。
+
+方式B（如下文`sauces`菜单）：将项目列表放入一个字符串，使用英文逗号`,`分隔，项类型同上，不过在这种写法下无法使用声明对象的方式来指定`name`字段和`value`字段。
+```ts
+new Menu("vegetables", [
+    "土豆=potato",
+    "胡萝卜=carrot",
+    "Unnamed vegitable",
+    {
+        name: "Named vegitable of Onion",
+        value: "onion"
+    },
+    "Cabbage白菜"
+])
+new Menu("sauces", "番茄酱=ketchup,蛋黄酱=mayonnaise,mushroom,辣椒酱=hot sauce")
+```
+这两段代码等价于：
+```ts
+new Menu("vegetables", [
+    { name: "土豆", value: "potato" },
+    { name: "胡萝卜", value: "carrot" },
+    { name: "Unnamed vegitable", value: "Unnamed vegitable" },
+    {
+        name: "Named vegitable of Onion",
+        value: "onion"
+    }
+    { name: "Cabbage白菜", value: "Cabbage白菜" }
+])
+new Menu("sauces", [
+    { name: "番茄酱", value: "ketchup" },
+    { name: "蛋黄酱", value: "mayonnaise" },
+    { name: "mushroom", value: "mushroom" },
+    { name: "辣椒酱", value: "hot sauce" }
+])
+```
+不过这种写法需要堆砌很多`{ name: "xxx", value: "xxx" }`，因此框架省去了此轮子写法。
+
+关于菜单`sauces`，将会被框架生成为TW格式：
+```json
+{
+    "acceptReporters": true,
+    "items": [
+        {
+            "text": "番茄酱",
+            "value": "ketchup"
+        },
+        {
+            "text": "蛋黄酱",
+            "value": "mayonnaise"
+        },
+        {
+            "text": "mushroom",
+            "value": "mushroom"
+        },
+        {
+            "text": "辣椒酱",
+            "value": "hot sauce"
+        }
+    ]
+}
+```
+菜单`vegetables`同理：
+```json
+{
+    "acceptReporters": true,
+    "items": [
+        {
+            "text": "土豆",
+            "value": "potato"
+        },
+        {
+            "text": "胡萝卜",
+            "value": "carrot"
+        },
+        {
+            "text": "Unnamed vegitable",
+            "value": "Unnamed vegitable"
+        },
+        {
+            "text": "Named vegitable of Onion",
+            "value": "onion"
+        },
+        {
+            "text": "Cabbage白菜",
+            "value": "Cabbage白菜"
+        }
+    ]
+}
+```
 
 接下来在积木中引用**菜单名称**也可实现菜单类型的参数框。
 ```ts

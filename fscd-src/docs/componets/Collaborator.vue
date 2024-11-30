@@ -1,10 +1,10 @@
 <template>
     <div class="container" @click="jump" ref="root">
+        <OutboundLink class="icon" />
         <img class="avatar" :src="avatar" :alt="name + '的头像'" />
         <span class="name">{{ name }}</span>
         <span class="hover-bar">
             <Label v-for="label in labels">{{ label }}</Label>
-            <OutboundLink />
         </span>
     </div>
 </template>
@@ -55,10 +55,13 @@ export default defineComponent({
 });
 </script>
 <style scoped>
+* {
+    transition: all 0.2s ease-out;
+}
+
 .hover-bar {
     transform: translate(-50%);
     opacity: 0;
-    transition: all 0.2s ease-out;
 }
 
 .container:hover .hover-bar {
@@ -66,10 +69,22 @@ export default defineComponent({
     transform: translate(0);
 }
 
+.container:hover .icon {
+    opacity: 1;
+    margin-left: 15px;
+}
+
+.icon {
+    opacity: 0;
+    margin-left: 0;
+    margin-right: 5px;
+}
+
 .container {
     display: flex;
     align-items: center;
-    padding: 10px 5px;
+    padding: 0 5px;
+    padding-top: 20px
 }
 
 .container:hover {
