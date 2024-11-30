@@ -73,20 +73,20 @@ yarn dist:ext
 <Collaborator
 name="FallingShrimp"
 avatar="https://avatars.githubusercontent.com/u/108387605"
-url="https://github.com/Rundll86"
+url="https://rundll86.github.io"
 label="开发,文档"
 />
 <Collaborator
 name="FurryR/熊谷 凌"
 avatar="https://avatars.githubusercontent.com/u/55276797"
 url="https://github.com/FurryR"
-label="优化"
+label="代码优化"
 />
 <Collaborator
 name="Cyberexplorer"
 avatar="https://avatars.githubusercontent.com/u/177754635"
-url="https://github.com/LanwyWriteXU"
-label="新定义,测试"
+url="https://lanwywritexu.github.io"
+label="示例拓展,测试"
 />
 <Collaborator
 name="MoreBugOfDog"

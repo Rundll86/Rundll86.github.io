@@ -94,7 +94,7 @@ export default class MyExtension extends Extension { }
 
 ### ID、Name、Version、Description
 
-覆盖`Extension`基类的id和displayName字段即可。  
+覆盖`Extension`基类的字段即可。  
 拓展的元数据本质上是字符串，因此可以使用`translator.load`方法进行翻译。
 ```ts
 export default class MyExtension extends Extension {
