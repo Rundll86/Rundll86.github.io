@@ -36,12 +36,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./index.html",
             filename: "index.html",
-            chunks: ["script"]
+            chunks: ["script"],
+            inject: "body"
         }),
         new HtmlWebpackPlugin({
             template: "./passage.html",
             filename: "passage.html",
-            chunks: ["passage"]
+            chunks: ["passage"],
+            inject: "body"
         })
     ]
 };
