@@ -1,0 +1,215 @@
+:root {
+    --background: url(../img/bg.jpg);
+    --background-color: black;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 16px;
+    color: white;
+    transition: all .2s ease-out;
+}
+
+body {
+    background-image: var(--background);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: 50% 0%;
+    text-align: center;
+    min-height: 100vh;
+    overflow: scroll;
+    text-align: center;
+}
+
+body.blur {
+    backdrop-filter: blur(5px);
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#mouse-holder {
+    width: fit-content;
+    min-height: 100vh;
+    display: inline-block;
+}
+
+span {
+    display: inline-block;
+}
+
+#avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: white 2px solid;
+    margin-top: 100px;
+}
+
+#name {
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.label {
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+    padding: 2px 5px;
+    font-size: 14px;
+    vertical-align: super;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.label.no-offset {
+    vertical-align: unset;
+}
+
+#catch {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#catch::before {
+    content: "「";
+}
+
+#catch::after {
+    content: "」";
+}
+
+#info {
+    width: 80%;
+    display: inline-block;
+}
+
+hr {
+    width: 50%;
+    height: 2px;
+    background-color: white;
+    display: inline-block;
+    margin: 10px;
+}
+
+.proj-box {
+    width: 200px;
+    display: inline-block;
+    background-color: rgb(255, 255, 255, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px;
+    border: transparent 2px solid;
+}
+
+.proj-box:hover {
+    transform: scale(101%);
+    border-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.proj-box .content {
+    text-align: left;
+    padding: 10px;
+}
+
+.proj-box .content .infos {
+    height: 70px;
+    overflow: hidden;
+    color: black;
+}
+
+.proj-box .content .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+}
+
+.proj-box .face {
+    width: 100%;
+    height: 112.5px;
+}
+
+#passages {
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.passage {
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: left;
+    padding: 5px;
+    padding-left: 20px;
+    border: transparent 2px solid;
+}
+
+.passage .title {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.passage .time {
+    color: rgb(50, 50, 50);
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.passage:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+#renderer {
+    height: 0px;
+    width: 100%;
+}
+
+iframe {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+a:active {
+    color: gray;
+    text-decoration: underline;
+}
+
+.placeholding {
+    height: 70px;
+}
+
+#passages.hiding {
+    opacity: 0;
+    transform: translate(0px, 50px);
+}
