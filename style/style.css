@@ -111,6 +111,7 @@ hr {
 .proj-box:hover {
     transform: scale(101%);
     border-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .proj-box .content {
@@ -140,6 +141,7 @@ hr {
     display: inline-block;
     overflow: hidden;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 .passage {

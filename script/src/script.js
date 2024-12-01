@@ -1,11 +1,3 @@
-// fetch("https://f-shrimp.solariix.com").then((e) => {
-//     if (e.status === 200) {
-//         window.location = "https://f-shrimp.solariix.com"//若国内服务器可用就跳转
-//     }
-// });
-
-//这个CORS有问题👁👄👁臭贝贝们别看了
-
 const $ = require("jquery");
 const projBoxes = document.getElementById("proj-boxes");
 const passages = document.getElementById("passages");
@@ -107,8 +99,9 @@ $.ajax({
                     eleTree("span").cls("title").innerText(data.title),
                     eleTree("span").cls("time").innerText(data.time)
                 ]).cls("passage").listener("click", () => {
-                    passageRenderer.contentWindow.show(data.content);
-                    passageRenderer.style.height = passageRenderer.contentWindow.document.body.offsetHeight + "px";
+                    passageRenderer.contentWindow.show(data.content).then(() => {
+                        passageRenderer.style.height = passageRenderer.contentWindow.document.body.offsetHeight + "px";
+                    });
                 }).result
             );
         });
@@ -120,3 +113,6 @@ document.getElementById("mouse-holder").addEventListener("mouseover", () => {
 document.getElementById("mouse-holder").addEventListener("mouseleave", () => {
     document.body.classList.remove("blur");
 });
+window.hideRenderer=()=>{
+    passageRenderer.style.height = "0px";
+};

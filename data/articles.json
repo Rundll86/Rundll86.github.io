@@ -4,18 +4,18 @@
         "face": "eop",
         "labels": [
             "JS/TS",
-            "开发工具"
+            "工具"
         ],
         "info": "可将复杂的Electron项目通过此工具打包为一个可执行文件。仅单文件。"
     },
     {
-        "title": "P.M.L.",
-        "face": "pml",
+        "title": "FS-Context",
+        "face": "fsc",
         "labels": [
-            "Electron",
-            "游戏启动器"
+            "TS+Vue",
+            "开发框架"
         ],
-        "info": "用于米哈游的各项游戏（《崩坏3》除外）的启动器。可自定义游戏内容。"
+        "info": "易用的TS上下文，使用ts的类型提示和新脚手架开发TW/Gandi通用拓展。"
     },
     {
         "title": "ModLoaderNew",

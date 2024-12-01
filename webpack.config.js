@@ -1,4 +1,6 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const Webpackbar = require("webpackbar");
 module.exports = {
     entry: {
         script: "./script/src/script.js",
@@ -6,10 +8,9 @@ module.exports = {
     },
     output: {
         filename: "[name].dist.js",
-        path: path.join(__dirname, "script/dist"),
+        path: path.resolve(__dirname, "script/dist"),
         clean: true
     },
-    mode: "production",
     module: {
         rules: [
             {
@@ -17,5 +18,30 @@ module.exports = {
                 use: ["style-loader", "css-loader"]
             }
         ]
-    }
+    },
+    devServer: {
+        static: "./",
+        port: 22102,
+        hot: true,
+        liveReload: true,
+        client: {
+            overlay: true
+        }
+    },
+    plugins: [
+        new Webpackbar({
+            name: "Live",
+            color: "green"
+        }),
+        new HtmlWebpackPlugin({
+            template: "./index.html",
+            filename: "index.html",
+            chunks: ["script"]
+        }),
+        new HtmlWebpackPlugin({
+            template: "./passage.html",
+            filename: "passage.html",
+            chunks: ["passage"]
+        })
+    ]
 };
