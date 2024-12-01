@@ -24,6 +24,16 @@ jobs:
       run: |
         npm install
         npm run dist
+        cd ./fscd-src
+        npm install
+        npm run dist
+
+    - name: Copy resources
+      run: |
+        cp -r data script/dist
+        cp -r fs-context script/dist
+        cp -r img script/dist
+        cp -r style script/dist
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.7
