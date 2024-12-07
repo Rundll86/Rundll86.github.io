@@ -55,13 +55,23 @@ yarn install
 yarn dev:ui
 ```
 
-3. 编译生产环境代码
+3. 进行ESLint检查
+```bash
+yarn lint
+```
+
+4. 自动修复ESLint错误
+```bash
+yarn lint:fix
+```
+
+5. 编译生产环境代码
 ```bash
 yarn dist:ext
 ```
 :::
 
-对于新的拓展API文档，访问[概念和API](./guide)
+对于新的拓展API文档，访问[概念和API](./guide.html)
 
 ## 欢迎贡献
 

@@ -83,8 +83,10 @@ $.ajax({
                         br(),
                         eleTree("span", labels).cls("labels"),
                     ]).cls("content")
-                ]).cls("proj-box").result
-            )
+                ]).cls("proj-box").listener("click", () => {
+                    currentArticle.link && window.open(currentArticle.link, "_blank");
+                }).result
+            );
         };
     }
 });
@@ -113,6 +115,6 @@ document.getElementById("mouse-holder").addEventListener("mouseover", () => {
 document.getElementById("mouse-holder").addEventListener("mouseleave", () => {
     document.body.classList.remove("blur");
 });
-window.hideRenderer=()=>{
+window.hideRenderer = () => {
     passageRenderer.style.height = "0px";
 };
