@@ -1,6 +1,4 @@
 {
-  "name": "rundll86-github-io",
-  "main": "script.js",
   "scripts": {
     "dev": "webpack serve --mode development",
     "dist": "webpack --mode production"

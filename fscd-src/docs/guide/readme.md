@@ -307,28 +307,27 @@ new Menu("sauces", [
 }
 ```
 
-接下来在积木中引用**菜单名称**也可实现菜单类型的参数框。
+### 实验中⚠
+
+#### 使用TS装饰器特性定义积木
+
+`BlockTypes`命名空间中的所有方法（`BlockTypes.Plain`除外）都是装饰器工厂都可用于定义积木，其中`Command`装饰器可用于定义**无返回值**的`方形`积木，`Reporter`装饰器可用于定义`有返回值`的`圆形`积木，其他类型如`帽子`积木和`布尔`积木等同理。
+
+`Plain`装饰器需要两个参数，第一个参数为积木类型，积木类型为`command`或`reporter`等，后一个参数传入积木上要显示的文字，其中，积木文字上可以使用一种实验性的字符串定义结构，框架能自动解析出参数名称、类型、默认值等。
+
+所有可用的装饰器接受的积木文字均可以使用美元符号`$`和分号`;`配对或一对方括号`[]`来定义参数框，填入参数名称，后接冒号`:`为参数的类型，可选择与上文`Block.create`方法中等价的类型，再后接等于号`=`为默认值，默认值必须为字符串，框架会自动将其转换为对应的类型。
 ```ts
-Block.create(
-    translator.load("alert"),
-    {
-        arguments: [
-            {
-                name: "$sth",
-                value: "Hello World",
-                inputType: "string"
-            },
-            {
-                name: "_suffix",
-                value: "suffixes",
-                inputType: "menu",
-            }
-        ],
-    },
-    function alertSth(args) {
-        alert(args.$sth + " " + args._suffix);
-    }
-)
+@BlockTypes.Command("alert [sth:string=hello] with suffix $suffix:menu=suffixes;")
+alertTest(args: AnyArg) {
+    alert(args.sth + " " + args.suffix);
+    dataStore.write("alertedSth", args.sth.toString());
+    dataStore.write("lastSuffix", args.suffix.toString());
+}
+@BlockTypes.Plain("reporter", "get alerted sth")
+getAlertedSth() {
+    return dataStore.read("alertedSth");
+}
 ```
+不过，这种写法目前处于实验阶段，无法使用智能提示，且依赖TS的独有特性，未来可能会出现无法解决的bug或被弃用，因此不推荐使用。
 
 接下来，请查看[拓展开发时的常用工具集](./api/unnecessary)或[已释放的通用API](./api/general)

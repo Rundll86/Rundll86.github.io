@@ -159,7 +159,7 @@ let hex = Unnecessary.lighten("#FF00FF", 0.5);
 console.log(hex); //输出"#FF80FF"
 ```
 
-#### 定义的积木参数输入类型投射到TW类型
+### 定义的积木参数输入类型投射到TW类型
 
 使用`Unnecessary.castInputType`方法，将传入的积木参数类型投射到TW类型。
 ```ts
@@ -171,3 +171,242 @@ console.log(type); //输出"Boolean"
 let type = Unnecessary.castInputType("hat-parameter");
 console.log(type); //输出"ccw_hat_parameter"
 ```
+
+### 一些新写法的解析器
+
+#### 菜单解析器
+
+`MenuParser`命名空间提供了一个用来解析新写法菜单的工具集。新菜单的写法请前往[快速开始](../#更灵活的菜单项写法)查看。
+
+解析器的核心方法为`normalize`，可将新写法自动解析为完全机器可读的对象。只需传入按照新写法编写的菜单项列表即可。
+
+```ts
+import { MenuParser } from "@framework/tools";
+MenuParser.normalize("苹果=apple,梨子=pear,香蕉=banana");
+//返回↓
+/*
+[
+    {
+        name: "苹果",
+        value: "apple"
+    },
+    {
+        name: "梨子",
+        value: "pear"
+    },
+    {
+        name: "香蕉",
+        value: "banana"
+    }
+]
+*/
+MenuParser.normalize("苹果,梨子,香蕉");
+//返回↓
+/*
+[
+    {
+        name: "苹果",
+        value: "苹果"
+    },
+    {
+        name: "梨子",
+        value: "梨子"
+    },
+    {
+        name: "香蕉",
+        value: "香蕉"
+    }
+]
+*/
+MenuParser.normalize([
+    "苹果",
+    "梨子=pear",
+    {
+        name: "香蕉",
+        value: "banana"
+    }
+]);
+//返回↓
+/*
+[
+    {
+        name: "苹果",
+        value: "苹果"
+    },
+    {
+        name: "梨子",
+        value: "pear"
+    },
+    {
+        name: "香蕉",
+        value: "banana"
+    }
+]
+*/
+```
+使用`trimSpace`可去除内容两边空格，会自动判断是否传入了字符串，若不是字符串则无需去除，直接返回自身。
+```ts
+import { MenuParser } from "@framework/tools";
+MenuParser.trimSpace("  苹果  "); //"苹果"
+MenuParser.trimSpace("  梨子 = pear  "); //"梨子 = pear"
+MenuParser.trimSpace({
+    name: "香蕉",
+    value: "banana"
+});
+/*
+{
+    name: "香蕉",
+    value: "banana"
+}
+*/
+```
+使用`trimSpaceMenuItem`可去除可读对象两边的空格，只会返回`name`和`value`两个字段。
+```ts
+import { MenuParser } from "@framework/tools";
+MenuParser.trimSpaceMenuItem({
+    name: "  香蕉  ",
+    value: " banana "
+});
+/*
+{
+    name: "香蕉",
+    value: "banana"
+}
+*/
+```
+使用`parseKeyValue`来解析一个使用等于号连接的键值对字符串。会自动去除两头空格。
+```ts
+import { MenuParser } from "@framework/tools";
+MenuParser.parseKeyValue("苹果=apple");
+/*
+{
+    name: "苹果",
+    value: "apple"
+}
+*/
+MenuParser.parseKeyValue("梨子 = pear");
+/*
+{
+    name: "梨子",
+    value: "pear"
+}
+*/
+```
+使用`splitStringArray`来切割字符串数组，会自动去除两头空格。
+```ts
+import { MenuParser } from "@framework/tools";
+MenuParser.splitStringArray("苹果,梨子,香蕉");
+/*
+[
+    "苹果",
+    "梨子",
+    "香蕉"
+]
+*/
+```
+使用`isStringArray`和`isKeyValueString`来分别判断传入的参数是否为字符串数组或键值对字符串。
+```ts
+import { MenuParser } from "@framework/tools";
+MenuParser.isStringArray("苹果,梨子,香蕉"); //true
+MenuParser.isStringArray("苹果梨子香蕉"); //false
+MenuParser.isKeyValueString("苹果=apple,梨子=pear,香蕉=banana"); //false，已经是字符串数组了
+MenuParser.isKeyValueString("苹果=apple"); //true
+```
+
+#### 积木文字解析器
+
+`TextParser`命名空间提供了一个用来解析新写法（实验性）积木文字的工具集。新积木文字的写法请前往[快速开始](../#使用TS装饰器特性定义积木)查看。
+
+解析器的核心方法为`parsePart`，可将新写法自动解析为完全机器可读的对象。只需传入按照新写法编写的积木文字的字符串即可。
+```ts
+import { TextParser } from "@framework/tools";
+TextParser.parsePart("text1 [argA] text2");
+//返回↓
+/*
+[
+    ArgumentPart("text1", "text"),
+    ArgumentPart("argA", "input", "", "string"),
+    ArgumentPart("text2", "text")
+]
+*/
+TextParser.parsePart("text1 [argA:bool] text2");
+//返回↓
+/*
+[
+    ArgumentPart("text1", "text"),
+    ArgumentPart("argA", "input", false, "bool"),
+    ArgumentPart("text2", "text")
+]
+*/
+TextParser.parsePart("text1 [argA=福瑞占领世界] text2");
+//返回↓
+/*
+[
+    ArgumentPart("text1", "text"),
+    ArgumentPart("argA", "input", "福瑞占领世界", "string"),
+    ArgumentPart("text2", "text")
+]
+*/
+TextParser.parsePart("text1 [argA:number=114514] text2");
+//返回↓
+/*
+[
+    ArgumentPart("text1", "text"),
+    ArgumentPart("argA", "input", 114514, "number"),
+    ArgumentPart("text2", "text")
+]
+*/
+```
+使用`split`方法来切割文字和参数框部分，会保留空字符串，用于分别处理后合并。不会自动解析对应的参数框部分，需要手动调用解析方法或进行一些其他处理。
+
+返回值有两个字段：`text`和`arg`，分别为文字部分和参数框部分。
+```ts
+import { TextParser } from "@framework/tools";
+TextParser.split("text1 [argA] text2 [argB:bool=true]");
+//返回↓
+/*
+{
+    text: ["text1 ", " text2"],
+    arg: ["argA", "argB:bool=true"]
+}
+*/
+```
+以`parse`为名称前缀的方法均为解析参数属性的函数。
+|名称|参数|返回值|说明|
+|-|-|-|-|
+|parseName|字符串|字符串|名称|
+|parseType|字符串|字符串|输入类型|
+|parseDefaultValue|字符串|字符串|默认值|
+```ts
+import { TextParser } from "@framework/tools";
+const arg = "argA:bool=true";
+TextParser.parseName(arg); //"argA"
+TextParser.parseType(arg); //"bool"
+TextParser.parseDefaultValue(arg); //Boolean(true)
+```
+以`has`为名称前缀的方法同理，不过参数必须有名称，所以也就不存在`hasName`这一说了。
+|名称|参数|返回值|说明|
+|-|-|-|-|
+|hasType|字符串|布尔值|是否有类型|
+|hasDefaultValue|字符串|布尔值|是否有默认值|
+```ts
+import { TextParser } from "@framework/tools";
+const arg = "argA:bool=true";
+TextParser.hasType(arg); //true
+TextParser.hasDefaultValue(arg); //true
+const arg2 = "argB";
+TextParser.hasType(arg2); //false
+TextParser.hasDefaultValue(arg2); //false
+const arg3 = "argC:bool";
+TextParser.hasType(arg3); //true
+TextParser.hasDefaultValue(arg3); //false
+```
+若需要动态调用判断方法，为了防止出现报错，尝试调用`TextParser.hasName`时不会出现报错，但不管传入什么参数，都会永远返回`true`。
+```ts
+import { TextParser } from "@framework/tools";
+TextParser.hasName("argA:bool=true"); //true
+TextParser.hasName("argB"); //true
+TextParser.hasName("argC:bool"); //true
+```
+
+[已释放的通用API](./general)
