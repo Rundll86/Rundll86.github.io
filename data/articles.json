@@ -15,7 +15,8 @@
             "TS+Vue",
             "开发框架"
         ],
-        "info": "易用的TS上下文，使用ts的类型提示和新脚手架开发TW/Gandi通用拓展。"
+        "info": "易用的TS上下文，使用ts的类型提示和新脚手架开发TW/Gandi通用拓展。",
+        "link": "/fs-context"
     },
     {
         "title": "ModLoaderNew",
