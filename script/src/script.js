@@ -90,22 +90,30 @@ $.ajax({
         };
     }
 });
+let searcher = new URLSearchParams(window.location.search);
 $.ajax({
     url: "/data/passages.json",
     type: "get",
     success(data) {
         passages.innerHTML = "";
         loadPassageList(data, data => {
-            passages.appendChild(
-                eleTree("div", [
-                    eleTree("span").cls("title").innerText(data.title),
-                    eleTree("span").cls("time").innerText(data.time)
-                ]).cls("passage").listener("click", () => {
-                    passageRenderer.contentWindow.show(data.content).then(() => {
-                        passageRenderer.style.height = passageRenderer.contentWindow.document.body.offsetHeight + "px";
+            let tree = eleTree("div", [
+                eleTree("span").cls("title").innerText(data.title),
+                eleTree("span").cls("time").innerText(data.time)
+            ]).cls("passage").listener("click", () => {
+                passageRenderer.contentWindow.show(data.content).then(() => {
+                    passageRenderer.style.height = passageRenderer.contentWindow.document.body.offsetHeight + "px";
+                    window.scrollTo({
+                        left: 0,
+                        top: passageRenderer.offsetTop,
+                        behavior: "smooth"
                     });
-                }).result
-            );
+                });
+            }).result;
+            passages.appendChild(tree);
+            if (searcher.get("read").toLowerCase() === data.title.toLowerCase()) {
+                tree.click();
+            };
         });
     }
 });
