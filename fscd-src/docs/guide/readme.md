@@ -330,4 +330,4 @@ getAlertedSth() {
 ```
 不过，这种写法目前处于实验阶段，无法使用智能提示，且依赖TS的独有特性，未来可能会出现无法解决的bug或被弃用，因此不推荐使用。
 
-接下来，请查看[拓展开发时的常用工具集](./api/unnecessary.html)或[已释放的通用API](./api/general.html)
+接下来，请查看[拓展开发时的常用工具集](./api/unnecessary)或[已释放的通用API](./api/general)

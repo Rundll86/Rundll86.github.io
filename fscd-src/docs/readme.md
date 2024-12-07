@@ -71,7 +71,7 @@ yarn dist:ext
 ```
 :::
 
-对于新的拓展API文档，访问[概念和API](./guide.html)
+对于新的拓展API文档，访问[概念和API](./guide)
 
 ## 欢迎贡献
 
