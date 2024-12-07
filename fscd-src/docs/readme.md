@@ -78,29 +78,14 @@ yarn dist:ext
 [Github](https://github.com/Rundll86/fs-context)  
 欢迎提交`Issue`或`Pull Request`，欢迎`Star`。
 
+::: details 已储存的提议和建议
+[block-decorator](./suggestion/block-decorator)  
+[text-parser](./suggestion/text-parser)
+:::
+
 ### 项目贡献者
 
-<Collaborator
-name="FallingShrimp"
-avatar="https://avatars.githubusercontent.com/u/108387605"
-url="https://rundll86.github.io"
-label="开发,文档"
-/>
-<Collaborator
-name="FurryR/熊谷 凌"
-avatar="https://avatars.githubusercontent.com/u/55276797"
-url="https://github.com/FurryR"
-label="代码优化"
-/>
-<Collaborator
-name="Cyberexplorer"
-avatar="https://avatars.githubusercontent.com/u/177754635"
-url="https://lanwywritexu.github.io"
-label="示例拓展,测试"
-/>
-<Collaborator
-name="MoreBugOfDog"
-avatar="https://avatars.githubusercontent.com/u/121487216"
-url="https://github.com/MoreBugOfDog"
-label="精神支持"
-/>
+<Collaborator user="fs" />
+<Collaborator user="fr" />
+<Collaborator user="ce" />
+<Collaborator user="mbd" />

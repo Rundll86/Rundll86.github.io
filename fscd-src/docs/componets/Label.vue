@@ -9,6 +9,7 @@ span {
     border-radius: 5px;
     padding: 2px 5px;
     font-size: 0.9em;
-    margin: 0 2px;
+    margin: 2px;
+    display: inline-block;
 }
 </style>

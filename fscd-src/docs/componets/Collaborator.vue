@@ -4,33 +4,21 @@
         <img class="avatar" :src="avatar" :alt="name + '的头像'" />
         <span class="name">{{ name }}</span>
         <span class="hover-bar">
-            <Label v-for="label in labels">{{ label }}</Label>
+            <Label v-for="i in label">{{ i }}</Label>
         </span>
     </div>
 </template>
 <script setup>
 import Label from './Label.vue';
+import infos from "../assets/collaboratorInfo";
 </script>
 <script>
-import { defineComponent } from 'vue'
-export default defineComponent({
+export default {
     name: 'Collaborator',
     props: {
-        avatar: {
+        user: {
             type: String,
-            default: ''
-        },
-        name: {
-            type: String,
-            default: ''
-        },
-        url: {
-            type: String,
-            default: ''
-        },
-        label: {
-            type: String,
-            default: ''
+            default: "fs"
         }
     },
     methods: {
@@ -41,7 +29,10 @@ export default defineComponent({
     data() {
         return {
             hovering: false,
-            labels: this.label.split(',').filter(Boolean)
+            avatar: infos[this.user].avatar || infos.fs.avatar,
+            name: infos[this.user].name || infos.fs.name,
+            label: infos[this.user].label || infos.fs.label,
+            url: infos[this.user].url || infos.fs.url
         }
     },
     mounted() {
@@ -52,7 +43,7 @@ export default defineComponent({
             this.hovering = false;
         });
     }
-});
+};
 </script>
 <style scoped>
 * {
@@ -83,8 +74,7 @@ export default defineComponent({
 .container {
     display: flex;
     align-items: center;
-    padding: 0 5px;
-    padding-top: 20px
+    padding: 10px 5px;
 }
 
 .container:hover {
