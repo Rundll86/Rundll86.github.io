@@ -1,7 +1,7 @@
 export default {
     fr: {
         avatar: "https://avatars.githubusercontent.com/u/55276797",
-        name: "FurryR/熊谷 凌",
+        name: "FurryR",
         url: "https://github.com/FurryR",
         label: ["代码优化"]
     },
@@ -19,7 +19,7 @@ export default {
     },
     mbd: {
         avatar: "https://avatars.githubusercontent.com/u/121487216",
-        name: "MoreBugOfDog/多BUG的哮天犬",
+        name: "MoreBugOfDog",
         url: "https://github.com/MoreBugOfDog",
         label: ["精神支持"]
     }
