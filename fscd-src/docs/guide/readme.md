@@ -50,7 +50,7 @@ export default { ...config };
 ```ts
 type LoaderConfig = import("@framework/internal").LoaderConfig;
 const config: LoaderConfig = {
-    target: "@src/extension", //从当前源代码目录加载模块，即别名@src
+    target: import("@src/extension"), //从当前源代码目录加载模块，即别名@src
     errorCatches: ["ExtensionLoadError"], //捕获拓展加载时发生的错误
     platform: ["GandiIDE", "TurboWarp"] //加载到Gandi和TW
 }
