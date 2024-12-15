@@ -79,9 +79,15 @@ yarn dist:ext
 欢迎提交`Issue`或`Pull Request`，欢迎`Star`。
 
 ::: details 已储存的提议和建议
-<SuggestionView sender="fs" topic="使用TS的装饰器特性定义拓展积木" target="block-decorator" />
-<SuggestionView sender="fr" topic="新写法的积木文本解析器" target="text-parser" />
-<SuggestionView sender="mbd" topic="添加eslint支持" target="eslint-support" />
+<SuggestionView
+sender="fs"
+topic="使用TS的装饰器特性定义拓展积木" target="block-decorator" />
+<SuggestionView
+sender="fr"
+topic="新写法的积木文本解析器" target="text-parser" />
+<SuggestionView
+sender="mbd"
+topic="添加eslint支持" target="eslint-support" />
 :::
 
 ### 项目贡献者

@@ -110,9 +110,11 @@ let uuid = machine.next();
 console.log(uuid); //输出类似"XXXX-XXXX-XXXX-XXXX"的字符串
 ```
 
-### 处理积木文字
+### \[⚠过时] 处理积木文字
 
-#### 切割得到参数框
+#### \[⚠] 切割得到参数框
+
+**此用法已过时，请改用下文[TextParser](#积木文字解析器)**
 
 使用`Unnecessary.splitArgBoxPart`方法，切割传入积木文字，得到每个参数框按照对应位置排序的名称数组。
 ```ts
@@ -121,7 +123,9 @@ let args = Unnecessary.splitArgBoxPart("alert $sth $sth $sth to window with _suf
 console.log(args); //输出["$sth", "$sth", "$sth", "_suffix"]
 ```
 
-#### 切割得到参数框外的文字
+#### \[⚠] 切割得到参数框外的文字
+
+**此用法已过时，请改用下文[TextParser](#积木文字解析器)**
 
 使用`Unnecessary.splitTextPart`方法，切割传入积木文字，得到参数框外的文字数组。
 ```ts
