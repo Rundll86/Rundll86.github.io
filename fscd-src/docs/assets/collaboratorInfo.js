@@ -8,19 +8,19 @@ export default {
     fs: {
         avatar: "https://avatars.githubusercontent.com/u/108387605",
         name: "FallingShrimp",
-        url: "https://github.com/Rundll86",
+        url: "https://rundll86.github.io",
         label: ["开发", "文档"]
     },
     ce: {
         avatar: "https://avatars.githubusercontent.com/u/177754635",
         name: "Cyberexplorer",
-        url: "https://github.com/lanwywritexu",
+        url: "https://lanwywritexu.github.io",
         label: ["示例拓展", "测试"]
     },
     mbd: {
         avatar: "https://avatars.githubusercontent.com/u/121487216",
         name: "MoreBugOfDog",
         url: "https://github.com/MoreBugOfDog",
-        label: ["精神支持"]
+        label: ["代码优化", "功能建议"]
     }
 };

@@ -307,9 +307,9 @@ new Menu("sauces", [
 }
 ```
 
-### 实验中⚠
+## 实验中⚠
 
-#### 使用TS装饰器特性定义积木
+### 使用TS装饰器特性定义积木
 
 `BlockTypes`命名空间中的所有方法（`BlockTypes.Plain`除外）都是装饰器工厂都可用于定义积木，其中`Command`装饰器可用于定义**无返回值**的`方形`积木，`Reporter`装饰器可用于定义`有返回值`的`圆形`积木，其他类型如`帽子`积木和`布尔`积木等同理。
 
@@ -329,5 +329,62 @@ getAlertedSth() {
 }
 ```
 不过，这种写法目前处于实验阶段，无法使用智能提示，且依赖TS的独有特性，未来可能会出现无法解决的bug或被弃用，因此不推荐使用。
+
+### 自定义参数处理器
+
+框架有一个新的loader系统，类似WebpackLoader。  
+在拓展的`loaders`字段中添加一个键，类型为`InputLoader`。对应值中`load`方法为转换器的实现，`format`字段传入一个正则表达式，用于检查输入的参数是否符合格式。框架会将使用此loader的参数生成的TW格式拓展的输入类型永远设为`string`，积木的实现中收到的参数结果将会是对应loader的返回值。
+
+下面是一个例子，自动加载json字符串：
+```ts
+loaders: Record<string, InputLoader> = {
+    json: {
+        load(src) {
+            return JSON.parse(src);
+        },
+        format: /\[(.*)\]|\{(.*)\}|"(.*)"/ //允许json对象、数组或字符串类型
+    }
+};
+blocks: Block<MyExtension>[] = [
+    Block.create("TestBlock $sth", {
+        arguments: [
+            {
+                name: "$sth",
+                inputType: "json", //输入类型填loader的字段名
+                value: `{"apple": "苹果"}`
+            },
+        ]
+    }, function (args) {
+        console.log(args); //输出{ $sth: { apple: "苹果" } }
+    })
+];
+```
+你也可以从`@framework`别名中导入一些已预定义的loader，如`json`、`html`、`vector2`、`vector3`等。只需按照简写写法同上文的格式添加到`loaders`字段中。
+```ts
+import { html, json, vector2, vector3 } from "@framework/built-ins/loaders";
+```
+```ts
+loaders: Record<string, InputLoader> = {
+    html,
+    json,
+    vector2,
+    vector3
+};
+```
+用法同上，无需多言。
+
+## 关于配置文件
+
+### loader.ts
+
+用于配置拓展加载时的行为，`target`字段设置目标加载的拓展，`errorCatches`设置在WaterBox中运行时将会尝试捕获哪些错误，`platform`指定目标加载的平台，`GandiIDE`或`TurboWarp`。
+
+### server.js
+
+用于配置开发服务器的输出和端口等通用信息。`port`指定开发服务器的端口，`output`指定生产模式输出的文件名前缀。
+
+### webpack.js
+
+通用于开发环境和生产环境的webpack配置，包含通用loader（ts-loader等）、导入别名、开发服务器配置等。你可以添加需要的loader来自定义导入内容。
 
 接下来，请查看[拓展开发时的常用工具集](./api/unnecessary)或[已释放的通用API](./api/general)

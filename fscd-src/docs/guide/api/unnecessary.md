@@ -413,4 +413,4 @@ TextParser.hasName("argB"); //true
 TextParser.hasName("argC:bool"); //true
 ```
 
-[已释放的通用API](./general.html)
+[已释放的通用API](./general)
