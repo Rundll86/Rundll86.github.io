@@ -45,6 +45,9 @@ root
 ## 快速上手
 
 ::: details 只需三步
+
+**注意：不要使用npm来管理包！它会生成错误的依赖树！**
+
 1. 安装依赖
 ```bash
 yarn install

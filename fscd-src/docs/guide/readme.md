@@ -335,6 +335,8 @@ getAlertedSth() {
 框架有一个新的loader系统，类似WebpackLoader。  
 在拓展的`loaders`字段中添加一个键，类型为`InputLoader`。对应值中`load`方法为转换器的实现，`format`字段传入一个正则表达式，用于检查输入的参数是否符合格式。框架会将使用此loader的参数生成的TW格式拓展的输入类型永远设为`string`，积木的实现中收到的参数结果将会是对应loader的返回值。
 
+如果输入的内容不符合设定的格式，或loader运行过程中报错，那么参数的对应字段将会得到`null`，你可以通过设置loader的可选字段`defaultValue`属性来设置默认值。
+
 下面是一个例子，自动加载json字符串：
 ```ts
 loaders: Record<string, InputLoader> = {
@@ -342,7 +344,8 @@ loaders: Record<string, InputLoader> = {
         load(src) {
             return JSON.parse(src);
         },
-        format: /\[(.*)\]|\{(.*)\}|"(.*)"/ //允许json对象、数组或字符串类型
+        format: /\[(.*)\]|\{(.*)\}|"(.*)"/, //允许json对象、数组或字符串类型
+        defaultValue: {}
     }
 };
 blocks: Block<MyExtension>[] = [
@@ -372,6 +375,14 @@ loaders: Record<string, InputLoader> = {
 };
 ```
 用法同上，无需多言。
+
+### 动态调用Loader和积木方法
+
+在积木的实现中，可以使用this.call为前缀的方法来动态调用参数loader和已实现的积木方法（出于安全性考虑，只能调用本拓展的内容），不过这个方法下请小心会发生为预料的递归爆栈导致的问题。用法无需多言。
+```ts
+this.callLoader("json" /* 加载器的字段名 */, `{"apple":"苹果"}`) //{ apple: "苹果" }
+this.callBlock("add" /* 积木的opcode */, { a: 114, b: 514 }) //628
+```
 
 ## 关于配置文件
 
