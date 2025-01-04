@@ -94,6 +94,9 @@ topic="添加eslint支持" target="eslint-support" />
 <SuggestionView
 sender="fs"
 topic="自定义积木参数类型和对应加载器" target="arg-loader" />
+<SuggestionView
+sender="mbd"
+topic="实现动态参数，类似Rest" target="rest-args" />
 :::
 
 ### 项目贡献者
