@@ -386,7 +386,7 @@ this.callBlock("add" /* 积木的opcode */, { a: 114, b: 514 }) //628
 
 ### 使用类似Rest的积木动态参数
 
-在积木参数的配置对象中添加一个名为`rest`的字段，其内容实现`DynamicArgConfigDefine`接口，即可将这个参数转换为动态参数。每个积木只能使用一个动态参数，且因为实现原因，只能使用`string`、`number`、`bool`类型或者任意的loader，其他类型不行。
+在积木参数的配置对象中添加一个名为`rest`的字段，其内容实现`DynamicArgConfigDefine`接口，即可将这个参数转换为动态参数。每个积木只能使用一个动态参数，且因为实现原因，只能使用`string`、`number`、`bool`类型或者任意的loader，其他类型不行。当使用了loader时将会收到每个动态参数经过loader转换的结果。在积木的实现方法中收到的对应的参数字段将直接得到处理过的数组。
 
 使用装饰器来定义积木时暂时不能用这种方法。
 
@@ -446,6 +446,11 @@ arguments: [
     }
 ]
 // 生成积木 => [arg1=Hello] [arg2=World] [arg3=World1] [arg4=World2] [arg5=World3] [,argX...=World(X-2)]
+
+// 积木实现中得到的参数对象：
+arg = {
+    $array: ["Hello", "World", "World1", ...]
+}
 ```
 
 动态框模块出处与致谢：
