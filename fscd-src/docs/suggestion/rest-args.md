@@ -9,4 +9,4 @@
 
 使用+-的按钮来向积木添加可变的参数框数量，如lpp。
 
-<SuggestionResult />
+<SuggestionResult completed />

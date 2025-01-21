@@ -18,7 +18,7 @@ yarn install
 对于积木作用域和整体vm需求较小的拓展，可在WaterBox界面中调试。
 
 ```bash
-yarn dev:ui
+yarn project dev ui
 ```
 
 ### 使用编辑器调试
@@ -26,12 +26,12 @@ yarn dev:ui
 对于功能较复杂的拓展，可载入编辑器进行调试。
 
 ```bash
-yarn dev:ext
+yarn project dev extension
 ```
 
 ## 配置加载目标和平台
 
-你可以选择让框架加载一个`范例拓展`，也可以使框架加载你的`自定义拓展`。修改`config/loader.ts`中的配置项即可实现。
+你可以选择让框架加载一个**范例拓展**，也可以使框架加载你的**自定义拓展**。修改`config/loader.ts`中的配置项即可实现。
 
 ### 使用范例拓展
 
@@ -53,7 +53,7 @@ const config: LoaderConfig = {
     target: import("@src/extension"), //从当前源代码目录加载模块，即别名@src
     errorCatches: [ExtensionLoadError], //捕获拓展加载时发生的错误，需要传入错误类的原型，不是实例
     platform: ["GandiIDE", "TurboWarp"] //加载到Gandi和TW
-}
+};
 export default { ...config };
 ```
 

@@ -11,11 +11,11 @@
 
 检查
 ```bash
-yarn lint
+yarn project lint
 ```
 自动修复
 ```bash
-yarn lint:fix
+yarn project lint +f
 ```
 <SuggestionResult completed />
 无

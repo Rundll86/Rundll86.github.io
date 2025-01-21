@@ -14,63 +14,55 @@
 
 ## 项目结构
 
-```plaintext
+```python
 root
-- config/
-| - loader.ts
-| - server.js
-||| - ...
-- node_modules/
+- config/ #配置文件
+| - loader.ts #拓展加载器配置
+| - server.js #开发服务器配置
+||| - webpack/ #Webpack相关
+||||| - common.ts #通用loader和alias
+||||| - extension.ts #直接编译拓展
+||||| - waterbox.ts #使用UI调试
+- node_modules/ #依赖
 | - ...
-- src/
-| - fs-context/
+- src/ #源代码
+| - fs-context/ #框架代码，勿动
 ||| - ...
-| - extension.ts
+| - extension.ts #拓展源代码
 ||| - ...
-- package.json
-- tsconfig.json
-- index.html
-- webpack.config.js
+- package.json #NPM包
+- tsconfig.json #TypeScript配置
+- tsconfig.webpackConfig.json #编译使用TS写的Webpack配置时的TS配置
+- index.html #WaterBox界面的模板
+- eslint.config.mjs #ESLint配置
+- cli.cjs #项目管理器的CLI工具
 ```
-### 文件/夹 解释
-- `extension.ts`：拓展入口文件，定义了l10n、积木、菜单等内容
-- `fs-context`：框架核心代码
-- `config/loader.ts`：拓展加载器的配置文件
-- `config/server.js`：调试服务器的配置文件
-- `package.json`：包配置文件
-- `tsconfig.json`：TypeScript配置文件
-- `webpack.config.js`：Webpack配置文件
-- `index.html`：WaterBox界面的HTML模板
 
 ## 快速上手
 
 ::: details 只需三步
 
-**注意：不要使用npm来管理包！它会生成错误的依赖树！**
+**注意：不要使用npm作为包管理器，它会生成错误的依赖树且无法正确调用项目管理器！**
 
-1. 安装依赖
+1. 安装依赖并部署配置
 ```bash
 yarn install
+yarn project init
 ```
 
 2. 启动开发服务器
 ```bash
-yarn dev:ui
+yarn project dev ui
 ```
 
-3. 进行ESLint检查
+3. 进行ESLint检查并自动修复
 ```bash
-yarn lint
+yarn project lint +f
 ```
 
-4. 自动修复ESLint错误
+4. 编译生产环境代码
 ```bash
-yarn lint:fix
-```
-
-5. 编译生产环境代码
-```bash
-yarn dist:ext
+yarn project build extension
 ```
 :::
 
@@ -84,19 +76,24 @@ yarn dist:ext
 ::: details 已储存的提议和建议
 <SuggestionView
 sender="fr"
-topic="使用TS的装饰器特性定义拓展积木" target="block-decorator" />
+topic="使用TS的装饰器特性定义拓展积木"
+target="block-decorator" />
 <SuggestionView
 sender="fs"
-topic="新写法的积木文本解析器" target="text-parser" />
+topic="新写法的积木文本解析器"
+target="text-parser" />
 <SuggestionView
 sender="mbd"
-topic="添加eslint支持" target="eslint-support" />
+topic="添加eslint支持"
+target="eslint-support" />
 <SuggestionView
 sender="fs"
-topic="自定义积木参数类型和对应加载器" target="arg-loader" />
+topic="自定义积木参数类型和对应加载器"
+target="arg-loader" />
 <SuggestionView
 sender="mbd"
-topic="实现动态参数，类似Rest" target="rest-args" />
+topic="实现动态参数，类似Rest"
+target="rest-args" />
 :::
 
 ### 项目贡献者
