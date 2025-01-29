@@ -34,6 +34,7 @@ jobs:
         cp -r fs-context script/dist
         cp -r img script/dist
         cp -r style script/dist
+        cp -r script-editor script/dist
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.7
