@@ -1,6 +1,9 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const Webpackbar = require("webpackbar");
+/**
+ * @type {import("webpack").Configuration}
+ */
 module.exports = {
     entry: {
         script: "./script/src/script.js",
@@ -19,14 +22,16 @@ module.exports = {
             }
         ]
     },
+    /**
+     * @type {import("webpack-dev-server").Configuration}
+     */
     devServer: {
         static: "./",
         port: 22102,
-        hot: true,
-        liveReload: true,
         client: {
-            overlay: true
-        }
+            logging: "none"
+        },
+        setupExitSignals: false
     },
     plugins: [
         new Webpackbar({
@@ -45,5 +50,6 @@ module.exports = {
             chunks: ["passage"],
             inject: "body"
         })
-    ]
+    ],
+    stats: "errors-warnings",
 };

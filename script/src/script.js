@@ -111,7 +111,7 @@ $.ajax({
                 });
             }).result;
             passages.appendChild(tree);
-            if (searcher.get("read").toLowerCase() === data.title.toLowerCase()) {
+            if (searcher.get("read")?.toLowerCase() === data.title.toLowerCase()) {
                 tree.click();
             };
         });
