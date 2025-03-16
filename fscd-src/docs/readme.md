@@ -78,30 +78,12 @@ yarn project build extension
 欢迎提交`Issue`或`Pull Request`，欢迎`Star`。
 
 ::: details 已储存的提议和建议
-<SuggestionView
-sender="fr"
-topic="使用TS的装饰器特性定义拓展积木"
-target="block-decorator" />
-<SuggestionView
-sender="fs"
-topic="新写法的积木文本解析器"
-target="text-parser" />
-<SuggestionView
-sender="mbd"
-topic="添加eslint支持"
-target="eslint-support" />
-<SuggestionView
-sender="fs"
-topic="自定义积木参数类型和对应加载器"
-target="arg-loader" />
-<SuggestionView
-sender="mbd"
-topic="实现动态参数，类似Rest"
-target="rest-args" />
-<SuggestionView
-sender="fs"
-topic="添加一个切换按钮，使积木支持类似函数重载的切换"
-target="overload-by-rest" />
+<SuggestionView sender="fr" target="block-decorator" />
+<SuggestionView sender="fs"target="text-parser" />
+<SuggestionView sender="mbd" target="eslint-support" />
+<SuggestionView sender="fs" target="arg-loader" />
+<SuggestionView sender="mbd" target="rest-args" />
+<SuggestionView sender="fs" target="overload-by-rest" />
 :::
 
 ### 项目贡献者

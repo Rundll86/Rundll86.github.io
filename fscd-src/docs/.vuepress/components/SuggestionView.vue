@@ -1,9 +1,8 @@
 <template>
     <div class="container">
         <OutboundLink class="icon" />
-        <a :href="$withBase(`/suggestion/${target}`)" target="_blank">{{ topic }}</a>
+        <a :href="$withBase(`/suggestion/${target}`)" target="_blank">{{ target }}.md</a>
         <span class="hover-bar">
-            <Label>转到：{{ target }}.md</Label>
             <Label>提出者：{{ infos[sender].name }}</Label>
         </span>
     </div>
@@ -19,10 +18,6 @@ export default {
         sender: {
             type: String,
             default: "fs"
-        },
-        topic: {
-            type: String,
-            default: "UnknownTopic"
         },
         target: {
             type: String,

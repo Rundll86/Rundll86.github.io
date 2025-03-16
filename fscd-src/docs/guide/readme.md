@@ -505,4 +505,4 @@ arg = {
 
 通用于开发环境和生产环境的webpack配置，包含通用loader（ts-loader等）、导入别名、开发服务器配置等。你可以添加需要的loader来自定义导入内容。
 
-接下来，请查看[拓展开发时的常用工具集](./api/unnecessary)或[已释放的通用API](./api/general)
+接下来，请查看[拓展开发时的常用工具集](./api/unnecessary)、[编写无入口的独立模块](./standalone)或[已释放的通用API](./api/general)。

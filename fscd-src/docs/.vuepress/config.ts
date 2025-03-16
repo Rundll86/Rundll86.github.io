@@ -1,10 +1,8 @@
-module.exports = {
+import { defineConfig } from "vuepress/config";
+export default defineConfig({
     themeConfig: {
-        displayAllHeaders: true,
-        sidebar: {
-            "/": "auto"
-        },
-        sidebarDepth: 6
+        sidebar: "auto",
+        sidebarDepth: 5
     },
     base: "/fs-context/",
     dest: "../fs-context",
@@ -17,8 +15,5 @@ module.exports = {
     },
     markdown: {
         lineNumbers: true
-    },
-    head: [
-        ["link", { rel: "stylesheet", href: "https://cdn.staticfile.net/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" }]
-    ]
-}
+    }
+})

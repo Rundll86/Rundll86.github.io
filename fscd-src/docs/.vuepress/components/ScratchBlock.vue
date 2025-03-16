@@ -111,9 +111,6 @@ export default {
     },
     data() {
         return {
-            /**
-             * @type {ArgumentPart[]}
-             */
             parsed: []
         }
     },
