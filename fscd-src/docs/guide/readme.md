@@ -36,25 +36,31 @@ yarn project dev extension
 ### 使用范例拓展
 
 ```ts
-type LoaderConfig = import("@framework/internal").LoaderConfig;
+import { ExtensionLoadError } from "@framework/exceptions";
+import type { LoaderConfig } from "@framework/internal";
+import Extension from "@samples/read-file/extension"; //从范例加载拓展
 const config: LoaderConfig = {
-    target: import("@samples/fs-iframe/extension"), //从@samples别名中加载模块
-    errorCatches: [], //不捕获任何运行时错误
-    platform: ["TurboWarp"] //加载到TW
-}
-export default { ...config };
+    target: Extension,
+    errorCatches: [ExtensionLoadError], //编译拓展加载流程中发生的错误
+    platform: ["TurboWarp"], //加载到TurboWarp平台
+    mode: "debug" //调试模式，会自动输出一些信息
+};
+export default config;
 ```
 
 ### 使用自定义拓展
 
 ```ts
-type LoaderConfig = import("@framework/internal").LoaderConfig;
+import { ExtensionLoadError } from "@framework/exceptions";
+import type { LoaderConfig } from "@framework/internal";
+import Extension from "@src/extension"; //从源代码目录加载拓展
 const config: LoaderConfig = {
-    target: import("@src/extension"), //从当前源代码目录加载模块，即别名@src
-    errorCatches: [ExtensionLoadError], //捕获拓展加载时发生的错误，需要传入错误类的原型，不是实例
-    platform: ["GandiIDE", "TurboWarp"] //加载到Gandi和TW
+    target: Extension,
+    errorCatches: [ExtensionLoadError],
+    platform: ["GandiIDE"], //加载到GandiIDE平台
+    mode: "release" //生产模式，不会输出其他信息
 };
-export default { ...config };
+export default config;
 ```
 
 # 基本代码结构
@@ -63,8 +69,7 @@ export default { ...config };
 
 ## 部署翻译器
 
-在Gandi中使用`translate.setup`有一个致命问题，*后加载的拓展*将会**全量覆盖***先加载的拓展*的翻译库，因此我们使用一个新定义的翻译器来解决这个问题。  
-对于将会使用`Transifex`平台且部署于`TurboWarp拓展库`的拓展，**可跳过此章节**。
+在Gandi中使用`translate.setup`有一个致命问题，后加载的拓展将会**全量覆盖**先加载的拓展的翻译库，因此可以使用一个重新制作的翻译器来解决这个问题。对于将会使用`Transifex`平台且部署于`TurboWarp拓展库`的拓展，**这个东西是没必要的**。
 
 ### 创建翻译器
 
@@ -131,7 +136,7 @@ export default class MyExtension extends Extension {
 
 ### 拓展贡献者列表
 
-此功能可能不太必要，若有想要匿名发布拓展**可跳过此章节**。  
+此功能可能不太必要，若想要匿名发布拓展**可跳过此章节**。  
 反之可以覆盖`Extension`基类的`collaborators`字段，类型为`Collaborator[]`。
 ```ts
 export default class MyExtension extends Extension {
@@ -142,8 +147,7 @@ export default class MyExtension extends Extension {
 ```
 ### 定义积木
 
-使用`Block`类的静态方法`create`创建积木，参数依次为**积木名称**、**积木参数**、**积木执行函数**。  
-只有在`积木参数`中**已定义的字段**才会被解析为参数框，否则多余的方括号和美元符号等<i>**将会被转义**</i>。
+使用`Block`类的静态方法`create`创建积木，参数依次为积木**名称**、**参数**、**执行的方法**。  
 ```ts
 Block.create(
     "弹窗 $sth ，使用后缀 _suffix",
@@ -175,6 +179,10 @@ Block.create(
 |inputType|否|`string`|`keyof InputTypeCast`|
 
 积木参数框的名称需要有`$`、`_`这两个字符的*任意一种*作为前缀。在定义`积木文字`时可以直接使用字段名来声明参数框，**无需**方括号。
+
+#### 重载
+
+`Block.create`方法的第一个参数可以传入一个字符串数组，框架会自动将积木转换为可重载的积木按钮。
 
 ### 定义菜单
 
@@ -220,6 +228,7 @@ export default class MyExtension extends Extension {
 方式A（如下文`vegetables`菜单）：将项目列表放入一个数组，数组中项可以直接用字符串写**菜单名称**，也可使用等于号`=`连接**菜单项名称**和**对应值**，框架会自动将**菜单项名称**作为菜单项的`name`字段，**对应值**作为菜单项的`value`字段。若没有使用等于号，框架会自动将**菜单项名称**同时作为菜单项的`name`字段和`value`字段。
 
 方式B（如下文`sauces`菜单）：将项目列表放入一个字符串，使用英文逗号`,`分隔，项类型同上，不过在这种写法下无法使用声明对象的方式来指定`name`字段和`value`字段。
+::: details TS
 ```ts
 new Menu("vegetables", [
     "土豆=potato",
@@ -233,7 +242,10 @@ new Menu("vegetables", [
 ])
 new Menu("sauces", "番茄酱=ketchup,蛋黄酱=mayonnaise,mushroom,辣椒酱=hot sauce")
 ```
+:::
+
 这两段代码等价于：
+::: details TS
 ```ts
 new Menu("vegetables", [
     { name: "土豆", value: "potato" },
@@ -252,9 +264,12 @@ new Menu("sauces", [
     { name: "辣椒酱", value: "hot sauce" }
 ])
 ```
+:::
+
 不过这种写法需要堆砌很多`{ name: "xxx", value: "xxx" }`，因此框架省去了此轮子写法。
 
 关于菜单`sauces`，将会被框架生成为TW格式：
+::: details JSON
 ```json
 {
     "acceptReporters": true,
@@ -278,7 +293,10 @@ new Menu("sauces", [
     ]
 }
 ```
+:::
+
 菜单`vegetables`同理：
+::: details JSON
 ```json
 {
     "acceptReporters": true,
@@ -306,29 +324,37 @@ new Menu("sauces", [
     ]
 }
 ```
+:::
 
 ## 实验中⚠
 
 ### 使用TS装饰器特性定义积木
 
-`BlockTypes`命名空间中的所有方法（`BlockTypes.Plain`除外）都是装饰器工厂都可用于定义积木，其中`Command`装饰器可用于定义**无返回值**的`方形`积木，`Reporter`装饰器可用于定义`有返回值`的`圆形`积木，其他类型如`帽子`积木和`布尔`积木等同理。
+`BlockType`命名空间中的所有方法（`BlockType.Plain`除外）都是装饰器工厂都可用于定义积木，例如其中`Command`装饰器可用于定义**无返回值**的`方形`积木，`Reporter`装饰器可用于定义`有返回值`的`圆形`积木，其他类型如`帽子`积木和`布尔`积木等同理。
 
 `Plain`装饰器需要两个参数，第一个参数为积木类型，积木类型为`command`或`reporter`等，后一个参数传入积木上要显示的文字，其中，积木文字上可以使用一种实验性的字符串定义结构，框架能自动解析出参数名称、类型、默认值等。
 
 所有可用的装饰器接受的积木文字均可以使用美元符号`$`和分号`;`配对或一对方括号`[]`来定义参数框，填入参数名称，后接冒号`:`为参数的类型，可选择与上文`Block.create`方法中等价的类型，再后接等于号`=`为默认值，默认值必须为字符串，框架会自动将其转换为对应的类型。
 ```ts
-@BlockTypes.Command("alert [sth:string=hello] with suffix $suffix:menu=suffixes;")
+@BlockType.Command("alert [sth:string=hello] with suffix $suffix:menu=suffixes;")
 alertTest(args: AnyArg) {
     alert(args.sth + " " + args.suffix);
     dataStore.write("alertedSth", args.sth.toString());
     dataStore.write("lastSuffix", args.suffix.toString());
 }
-@BlockTypes.Plain("reporter", "get alerted sth")
+@BlockType.Plain("reporter", "get alerted sth")
 getAlertedSth() {
     return dataStore.read("alertedSth");
 }
 ```
-不过，这种写法目前处于实验阶段，无法使用智能提示，且依赖TS的独有特性，未来可能会出现无法解决的bug或被弃用，因此不推荐使用。
+不过，这种写法目前处于实验阶段，无法使用智能提示，且依赖TS的独有特性，未来可能会出现无法解决的bug或被弃用，慎用。
+
+另外，在积木类型的装饰器上方使用`BlockType.hidden`装饰器可将积木从Scratch界面的工具箱中隐藏，但仅仅只是隐藏，功能不会变。
+```ts
+@BlockType.hidden
+@BlockType.Command("This is a hidden block")
+hiddenBlock(){ /* No implements */ }
+```
 
 ### 自定义参数处理器
 
@@ -432,7 +458,7 @@ this.callBlock("add" /* 积木的opcode */, { a: 114, b: 514 }) //628
 
 ```ts
 /**
- * 一个支持动态框的字符串参数，前两个框默认值分别是是Hello和World，之后就是World1、World2、World3...
+ * 一个支持动态框的字符串参数，前两个框默认值分别是Hello World，之后就是World1、World2、World3...
  * 每个框之间用逗号隔开。
  */
 arguments: [

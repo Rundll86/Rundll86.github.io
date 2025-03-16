@@ -1,19 +1,16 @@
 # 拓展开发中的工具集
 
-框架中提供了一些工具集，随意用。
+框架中提供了一些工具。
 
-## 可能必要的...
+## 调试器...（感觉好鸡肋）
 
-1. 开发拓展总是需要调试的，每次都进入编辑器重载未免显得麻烦。
-2. 框架提供了一个独立调试器，名为`WaterBox`。
-3. `WaterBox`是一个基于浏览器的调试器，因此需要浏览器支持。
-4. 在`WaterBox`中，你可以尽情重载拓展的代码，调试积木逻辑，并且可以查看拓展的输出。
+开发拓展总是需要调试的，每次都进入编辑器重载未免显得麻烦。因此框架提供了一个独立调试器，名为`WaterBox`。这是一个基于浏览器的调试器，因此需要浏览器支持。在`WaterBox`中，你可以尽情重载拓展的代码，调试积木逻辑，并且可以查看拓展的输出和积木返回值。
 
 ### WaterBox
 
 #### 启动
 
-安装依赖库，在[快速开始](..)处以有，此处不再赘述。
+重建依赖库，在[快速开始](..)处以有，此处不再赘述。
 
 在项目根目录下运行`yarn project dev ui`，即可启动WaterBox。  
 WaterBox会自动打开浏览器，并跳转到`http://localhost:25565`，如果浏览器没有自动打开，请手动打开。  
@@ -27,10 +24,14 @@ WaterBox会自动打开浏览器，并跳转到`http://localhost:25565`，如果
 
 ## 可能不太必要的...
 
-### 全局上下文
+接下来提到的的所有**命名空间**均在`@framework/tools`可以找到。
+
+### ⚠️️过时-全局上下文
+
+**此用法已过时，但暂时没有找到更合适的替代。**
 
 使用`GlobalContext`命名空间的`createDataStore`方法可以创建一个基于全局变量的数据库，将拓展的数据导出便于调试，也可以便于联动其他拓展。  
-方法的第一个参数传入拓展派生于`Extension`的类的原型，第二个参数传入一个对象，对象中的字段将会被导出到全局。
+方法的第一个参数传入一个字符串或拓展派生于`Extension`的类的原型，第二个参数传入一个对象，对象中的字段将会被导出到全局上下文。
 ```ts
 let dataStore = GlobalContext.createDataStore(MyExtension, {
     alertedSth: [] as string[], //类型断言，转换成string[]，否则会被自动推断为never[]
@@ -65,21 +66,21 @@ function alertSth(args) {
 
 ### 链式生成组件树
 
-使用`Unnecessary`命名空间的`elementTree`方法可链式生成组件树，该方法返回一个`ElementContext`接口的实现，该对象具有`child`方法用于添加子组件，`class`方法用于添加类名，`attribute`方法用于添加属性，`style`方法用于添加样式。
+使用`DOM`命名空间的`elementTree`方法可链式生成组件树，该方法返回一个`ElementContext`接口的实现，该对象具有`child`方法用于添加子组件，`class`方法用于添加类名，`attribute`方法用于添加属性，`style`方法用于添加样式。
 ```ts
-import { Unnecessary } from "@framework/tools";
-var tree = Unnecessary.elementTree("div",[
+import { DOM } from "@framework/tools";
+let tree = DOM.elementTree("div", [
     //子元素
-    Unnecessary.elementTree("span")
+    DOM.elementTree("span")
         .attribute("innerText", "hello")
         .style("color", "orange"),
-    Unnecessary.elementTree("span")
+    DOM.elementTree("span")
         .attribute("innerText", "test")
         .style("color", "green")
 ])
-.class("my-class", "another-class", "anymore---")
-.attribute("data-attr", "value")
-.style("color", "red");
+    .class("my-class", "another-class", "anymore---")
+    .attribute("data-attr", "value")
+    .style("color", "red");
 ```
 这棵树最终会被渲染成：
 ```html
@@ -89,48 +90,47 @@ var tree = Unnecessary.elementTree("div",[
 </div>
 ```
 
+### 舞台叠加层
+
+在舞台上创建一个叠加层元素，用于放置一些界面。使用`DOM.createStageOverlay`方法并传入一个拓展的实例即可。会返回创建好的叠加层元素，可在第二个参数指定一个具体HTML元素的节点名称。
+```ts
+import { DOM } from "@framework/tools";
+const span = DOM.createStageOverlay(extension, "span"); //HTMLSpanElement
+span.innerText = "福瑞占领世界！";
+```
+
 ### 生成随机数、颜色、字符串等
 
-使用`Unnecessary`命名空间的以`random`作前缀的方法可生成随机内容。此处不过多赘述
+使用`Random`命名空间的方法生成随机内容，用法无需多言。
 ```ts
-import { Unnecessary } from "@framework/tools";
-let randomInt = Unnecessary.randomInt(0, 100);
-let randomFloat = Unnecessary.randomFloat(0, 10.0);
-let randomColor = Unnecessary.randomColor();
-let randomString = Unnecessary.randomString(10, "abcdefABCDEF123456");
+import { Random } from "@framework/tools";
+let randomInt = Random.integer(0, 100);
+let randomFloat = Random.float(0, 10.0);
+let randomColor = Random.color();
+let randomString = Random.string(10, "abcdefABCDEF123456");
 ```
 
-### UUID自增器
+### ⚠️过时-处理积木文字
 
-使用`Unnecessary`命名空间的`UUIDAutoscalator`类可生成自增的UUID，每次调用都会返回一个不同的UUID。
-```ts
-import { Unnecessary } from "@framework/tools";
-let machine = new Unnecessary.UUIDAutoscalator();
-let uuid = machine.next();
-console.log(uuid); //输出类似"XXXX-XXXX-XXXX-XXXX"的字符串
-```
-
-### \[⚠过时] 处理积木文字
-
-#### \[⚠] 切割得到参数框
+#### ⚠️-切割得到参数框
 
 **此用法已过时，请改用下文[TextParser](#积木文字解析器)**
 
-使用`Unnecessary.splitArgBoxPart`方法，切割传入积木文字，得到每个参数框按照对应位置排序的名称数组。
+使用`LegacyParser.splitArgBoxPart`方法，切割传入积木文字，得到每个参数框按照对应位置排序的名称数组。
 ```ts
-import { Unnecessary } from "@framework/tools";
-let args = Unnecessary.splitArgBoxPart("alert $sth $sth $sth to window with _suffix", ["$sth", "_suffix"]);
+import { LegacyParser } from "@framework/tools";
+let args = LegacyParser.splitArgBoxPart("alert $sth $sth $sth to window with _suffix", ["$sth", "_suffix"]);
 console.log(args); //输出["$sth", "$sth", "$sth", "_suffix"]
 ```
 
-#### \[⚠] 切割得到参数框外的文字
+#### ⚠️-切割得到参数框外的文字
 
 **此用法已过时，请改用下文[TextParser](#积木文字解析器)**
 
-使用`Unnecessary.splitTextPart`方法，切割传入积木文字，得到参数框外的文字数组。
+使用`LegacyParser.splitTextPart`方法，切割传入积木文字，得到参数框外的文字数组。
 ```ts
-import { Unnecessary } from "@framework/tools";
-let args = Unnecessary.splitTextPart("alert $sth $sth $sth to window with _suffix", ["$sth", "_suffix"]);
+import { LegacyParser } from "@framework/tools";
+let args = LegacyParser.splitTextPart("alert $sth $sth $sth to window with _suffix", ["$sth", "_suffix"]);
 console.log(args); //输出["alert ", " to window with ", ""]
 ```
 
@@ -138,41 +138,41 @@ console.log(args); //输出["alert ", " to window with ", ""]
 
 #### HEX转RGB数组
 
-使用`Unnecessary.hexToRgb`方法，将传入的HEX颜色值转换成RGB数组。无需多言。
+使用`Color.hexToRgb`方法，将传入的HEX颜色值转换成RGB数组。无需多言。
 ```ts
-import { Unnecessary } from "@framework/tools";
-let rgb = Unnecessary.hexToRGB("#FF00FF");
+import { Color } from "@framework/tools";
+let rgb = Color.hexToRGB("#FF00FF");
 console.log(rgb); //输出[255, 0, 255]
 ```
 
 #### 使颜色加深（混入黑色）
 
-使用`Unnecessary.darken`方法来加深颜色，即降低HSL亮度。首先传入一个HEX颜色，再传入加深的比例。
+使用`Color.darken`方法来加深颜色，即降低HSL亮度。首先传入一个HEX颜色，再传入加深的比例。
 ```ts
-import { Unnecessary } from "@framework/tools";
-let hex = Unnecessary.darken("#FF00FF", 0.5);
+import { Color } from "@framework/tools";
+let hex = Color.darken("#FF00FF", 0.5);
 console.log(hex); //输出"#800080"
 ```
 
 #### 使颜色变浅（混入白色）
 
-使用`Unnecessary.lighten`方法来变浅颜色，即提高HSL亮度。首先传入一个HEX颜色，再传入变浅的比例。
+使用`Color.lighten`方法来变浅颜色，即提高HSL亮度。首先传入一个HEX颜色，再传入变浅的比例。
 ```ts
-import { Unnecessary } from "@framework/tools";
-let hex = Unnecessary.lighten("#FF00FF", 0.5);
+import { Color } from "@framework/tools";
+let hex = Color.lighten("#FF00FF", 0.5);
 console.log(hex); //输出"#FF80FF"
 ```
 
 ### 定义的积木参数输入类型投射到TW类型
 
-使用`Unnecessary.castInputType`方法，将传入的积木参数类型投射到TW类型。
+使用`Cast.castInputType`方法，将传入的积木参数类型投射到TW类型。
 ```ts
-import { Unnecessary } from "@framework/tools";
-let type = Unnecessary.castInputType("string");
+import { Cast } from "@framework/tools";
+let type = Cast.castInputType("string");
 console.log(type); //输出"string"
-let type = Unnecessary.castInputType("bool");
+let type = Cast.castInputType("bool");
 console.log(type); //输出"Boolean"
-let type = Unnecessary.castInputType("hat-parameter");
+let type = Cast.castInputType("hat-parameter");
 console.log(type); //输出"ccw_hat_parameter"
 ```
 
@@ -183,7 +183,7 @@ console.log(type); //输出"ccw_hat_parameter"
 `MenuParser`命名空间提供了一个用来解析新写法菜单的工具集。新菜单的写法请前往[快速开始](../#更灵活的菜单项写法)查看。
 
 解析器的核心方法为`normalize`，可将新写法自动解析为完全机器可读的对象。只需传入按照新写法编写的菜单项列表即可。
-
+::: details TS
 ```ts
 import { MenuParser } from "@framework/tools";
 MenuParser.normalize("苹果=apple,梨子=pear,香蕉=banana");
@@ -248,7 +248,10 @@ MenuParser.normalize([
 ]
 */
 ```
+:::
+
 使用`trimSpace`可去除内容两边空格，会自动判断是否传入了字符串，若不是字符串则无需去除，直接返回自身。
+::: details TS
 ```ts
 import { MenuParser } from "@framework/tools";
 MenuParser.trimSpace("  苹果  "); //"苹果"
@@ -264,7 +267,10 @@ MenuParser.trimSpace({
 }
 */
 ```
+:::
+
 使用`trimSpaceMenuItem`可去除可读对象两边的空格，只会返回`name`和`value`两个字段。
+::: details TS
 ```ts
 import { MenuParser } from "@framework/tools";
 MenuParser.trimSpaceMenuItem({
@@ -278,7 +284,10 @@ MenuParser.trimSpaceMenuItem({
 }
 */
 ```
+:::
+
 使用`parseKeyValue`来解析一个使用等于号连接的键值对字符串。会自动去除两头空格。
+::: details TS
 ```ts
 import { MenuParser } from "@framework/tools";
 MenuParser.parseKeyValue("苹果=apple");
@@ -296,7 +305,10 @@ MenuParser.parseKeyValue("梨子 = pear");
 }
 */
 ```
+:::
+
 使用`splitStringArray`来切割字符串数组，会自动去除两头空格。
+::: details TS
 ```ts
 import { MenuParser } from "@framework/tools";
 MenuParser.splitStringArray("苹果,梨子,香蕉");
@@ -308,7 +320,10 @@ MenuParser.splitStringArray("苹果,梨子,香蕉");
 ]
 */
 ```
+:::
+
 使用`isStringArray`和`isKeyValueString`来分别判断传入的参数是否为字符串数组或键值对字符串。
+::: details TS
 ```ts
 import { MenuParser } from "@framework/tools";
 MenuParser.isStringArray("苹果,梨子,香蕉"); //true
@@ -316,12 +331,14 @@ MenuParser.isStringArray("苹果梨子香蕉"); //false
 MenuParser.isKeyValueString("苹果=apple,梨子=pear,香蕉=banana"); //false，已经是字符串数组了
 MenuParser.isKeyValueString("苹果=apple"); //true
 ```
+:::
 
 #### 积木文字解析器
 
 `TextParser`命名空间提供了一个用来解析新写法（实验性）积木文字的工具集。新积木文字的写法请前往[快速开始](../#使用TS装饰器特性定义积木)查看。
 
 解析器的核心方法为`parsePart`，可将新写法自动解析为完全机器可读的对象。只需传入按照新写法编写的积木文字的字符串即可。
+::: details TS
 ```ts
 import { TextParser } from "@framework/tools";
 TextParser.parsePart("text1 [argA] text2");
@@ -361,9 +378,12 @@ TextParser.parsePart("text1 [argA:number=114514] text2");
 ]
 */
 ```
+:::
+
 使用`split`方法来切割文字和参数框部分，会保留空字符串，用于分别处理后合并。不会自动解析对应的参数框部分，需要手动调用解析方法或进行一些其他处理。
 
 返回值有两个字段：`text`和`arg`，分别为文字部分和参数框部分。
+::: details TS
 ```ts
 import { TextParser } from "@framework/tools";
 TextParser.split("text1 [argA] text2 [argB:bool=true]");
@@ -375,12 +395,15 @@ TextParser.split("text1 [argA] text2 [argB:bool=true]");
 }
 */
 ```
+:::
+
 以`parse`为名称前缀的方法均为解析参数属性的函数。
 |名称|参数|返回值|说明|
 |-|-|-|-|
 |parseName|字符串|字符串|名称|
 |parseType|字符串|字符串|输入类型|
 |parseDefaultValue|字符串|字符串|默认值|
+::: details TS
 ```ts
 import { TextParser } from "@framework/tools";
 const arg = "argA:bool=true";
@@ -388,11 +411,14 @@ TextParser.parseName(arg); //"argA"
 TextParser.parseType(arg); //"bool"
 TextParser.parseDefaultValue(arg); //Boolean(true)
 ```
+:::
+
 以`has`为名称前缀的方法同理，不过参数必须有名称，所以也就不存在`hasName`这一说了。
 |名称|参数|返回值|说明|
 |-|-|-|-|
 |hasType|字符串|布尔值|是否有类型|
 |hasDefaultValue|字符串|布尔值|是否有默认值|
+::: details TS
 ```ts
 import { TextParser } from "@framework/tools";
 const arg = "argA:bool=true";
@@ -405,12 +431,16 @@ const arg3 = "argC:bool";
 TextParser.hasType(arg3); //true
 TextParser.hasDefaultValue(arg3); //false
 ```
+:::
+
 若需要动态调用判断方法，为了防止出现报错，尝试调用`TextParser.hasName`时不会出现报错，但不管传入什么参数，都会永远返回`true`。
+::: details TS
 ```ts
 import { TextParser } from "@framework/tools";
 TextParser.hasName("argA:bool=true"); //true
 TextParser.hasName("argB"); //true
 TextParser.hasName("argC:bool"); //true
 ```
+:::
 
 [已释放的通用API](./general)

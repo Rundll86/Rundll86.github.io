@@ -16,13 +16,14 @@
 
 ```python
 root
-- config/ #配置文件
+- config/ #配置
 | - loader.ts #拓展加载器配置
 | - server.js #开发服务器配置
 ||| - webpack/ #Webpack相关
-||||| - common.ts #通用loader和alias
-||||| - extension.ts #直接编译拓展
-||||| - waterbox.ts #使用UI调试
+||||| - common.ts #通用配置
+||||| - extension.ts #直接编译拓展时
+||||| - waterbox.ts #使用UI调试时
+||||| - standalone.ts #编译一些无功能的独立模块
 - node_modules/ #依赖
 | - ...
 - src/ #源代码
@@ -30,10 +31,11 @@ root
 ||| - ...
 | - extension.ts #拓展源代码
 ||| - ...
-- package.json #NPM包
-- tsconfig.json #TypeScript配置
-- tsconfig.webpackConfig.json #编译使用TS写的Webpack配置时的TS配置
-- index.html #WaterBox界面的模板
+- package.json #包
+- tsconfig.json #TS配置
+- tsconfig.node.json #编译Node.js库时的TS配置
+- tsconfig.webpackConfig.json #编译Webpack配置时的TS配置
+- index.html #调试器界面的模板
 - eslint.config.mjs #ESLint配置
 - cli.cjs #项目管理器的CLI工具
 ```
@@ -42,7 +44,8 @@ root
 
 ::: details 只需三步
 
-**注意：不要使用npm作为包管理器，它会生成错误的依赖树且无法正确调用项目管理器！**
+**注意：不要使用npm作为包管理器！它会生成错误的依赖树且无法正确调用项目管理器。**
+推荐使用yarn：`npm install -g yarn`
 
 1. 安装依赖并部署配置
 ```bash
@@ -57,13 +60,14 @@ yarn project dev ui
 
 3. 进行ESLint检查并自动修复
 ```bash
-yarn project lint +f
+yarn project lint -f
 ```
 
 4. 编译生产环境代码
 ```bash
 yarn project build extension
 ```
+
 :::
 
 对于新的拓展API文档，访问[概念和API](./guide)
@@ -94,6 +98,10 @@ target="arg-loader" />
 sender="mbd"
 topic="实现动态参数，类似Rest"
 target="rest-args" />
+<SuggestionView
+sender="fs"
+topic="添加一个切换按钮，使积木支持类似函数重载的切换"
+target="overload-by-rest" />
 :::
 
 ### 项目贡献者
