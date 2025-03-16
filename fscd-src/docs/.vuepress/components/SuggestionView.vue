@@ -3,7 +3,7 @@
         <OutboundLink class="icon" />
         <a :href="$withBase(`/suggestion/${target}`)" target="_blank">{{ target }}.md</a>
         <span class="hover-bar">
-            <Label>提出者：{{ infos[sender].name }}</Label>
+            <Label>{{ infos[sender].name }}</Label>
         </span>
     </div>
 </template>
