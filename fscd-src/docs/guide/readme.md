@@ -145,7 +145,48 @@ export default class MyExtension extends Extension {
     ];
 }
 ```
-### 定义积木
+### 定义积木【A计划】
+
+`BlockType`命名空间中的所有方法（`BlockType.Plain`除外）都是装饰器工厂都可用于定义积木，例如其中`Command`装饰器可用于定义**无返回值**的`方形`积木，`Reporter`装饰器可用于定义`有返回值`的`圆形`积木，其他类型如`帽子`积木和`布尔`积木等同理。
+
+`Plain`装饰器需要两个参数，第一个参数为积木类型，积木类型为`command`或`reporter`等，后一个参数传入积木上要显示的文字，其中，积木文字上可以使用一种实验性的字符串定义结构，框架能自动解析出参数名称、类型、默认值等。
+
+所有可用的装饰器接受的积木文字均可以使用美元符号`$`和分号`;`配对或一对方括号`[]`来定义参数框，填入参数名称，后接冒号`:`为参数的类型，可选择与上文`Block.create`方法中等价的类型，再后接等于号`=`为默认值，默认值必须为字符串，框架会自动将其转换为对应的类型。
+```ts
+@BlockType.Command("alert [sth:string=hello] with suffix $suffix:menu=suffixes;")
+alertTest(args: { sth: string, suffix: string }) {
+    alert(args.sth + " " + args.suffix);
+}
+```
+这种方式下的写法和下文的「重载」功能相同，在本应传入文字的地方传入一个字符串数据即可。
+
+`BlockMode`命名空间下的方法可以用于声明积木的一些非必要的配置。但是用于声明积木类型（也就是`BlockType`命名空间）的装饰器必须紧挨积木的实现，也就是非必要配置项的装饰器必须在积木类型配置之上。
+- **UseMonitor** 对能返回的积木使用监视器，只能用在`Reporter`或`Boolean`上。
+- **ThreadRestartable** 设置事件积木的回调如果有正在运行的实例，那么允许打断它重启新的实例，只能用在`Hat`或`Event`上。
+- **ActiveEdge** 强制每一帧舞台更新时都会自动执行这个事件积木的实现，如果返回了**真**则开始执行其下回调，请注意性能问题。如果不使用这个功能则需要手动写一个原生事件侦听器并在积木可执行的时机使用`runtime.startHats`来启动。只能用在`Hat`上。
+- **Filt** 指定积木是用在角色上还是舞台上。
+```ts
+@BlockMode.Filt("sprite")
+@BlockMode.UseMonitor
+@BlockMode.ThreadRestartable
+@BlockMode.ActiveEdge
+@BlockType.Reporter([
+    "计算[num1:number=114]+[num2:number=514]",
+    "计算[num1:number=114]-[num2:number=514]",
+    "计算[num1:number=114]*[num2:number=514]",
+    "计算[num1:number=114]/[num2:number=514]"
+]) calc({ num1, num2 }: { num1: number; num2: number }, overloadIndex: number) {
+    const overloadMap = [
+        (a: number, b: number) => a + b,
+        (a: number, b: number) => a - b,
+        (a: number, b: number) => a * b,
+        (a: number, b: number) => a / b
+    ];
+    return overloadMap[overloadIndex](num1, num2);
+}
+```
+
+### 定义积木【B计划】
 
 使用`Block`类的静态方法`create`创建积木，参数依次为积木**名称**、**参数**、**执行的方法**。  
 ```ts
@@ -177,8 +218,6 @@ Block.create(
 |name|是|无|字符串|
 |value|否|空字符串|任意|
 |inputType|否|`string`|`keyof InputTypeCast`|
-
-积木参数框的名称需要有`$`、`_`这两个字符的*任意一种*作为前缀。在定义`积木文字`时可以直接使用字段名来声明参数框，**无需**方括号。
 
 #### 重载
 
@@ -327,34 +366,6 @@ new Menu("sauces", [
 :::
 
 ## 实验中⚠
-
-### 使用TS装饰器特性定义积木
-
-`BlockType`命名空间中的所有方法（`BlockType.Plain`除外）都是装饰器工厂都可用于定义积木，例如其中`Command`装饰器可用于定义**无返回值**的`方形`积木，`Reporter`装饰器可用于定义`有返回值`的`圆形`积木，其他类型如`帽子`积木和`布尔`积木等同理。
-
-`Plain`装饰器需要两个参数，第一个参数为积木类型，积木类型为`command`或`reporter`等，后一个参数传入积木上要显示的文字，其中，积木文字上可以使用一种实验性的字符串定义结构，框架能自动解析出参数名称、类型、默认值等。
-
-所有可用的装饰器接受的积木文字均可以使用美元符号`$`和分号`;`配对或一对方括号`[]`来定义参数框，填入参数名称，后接冒号`:`为参数的类型，可选择与上文`Block.create`方法中等价的类型，再后接等于号`=`为默认值，默认值必须为字符串，框架会自动将其转换为对应的类型。
-```ts
-@BlockType.Command("alert [sth:string=hello] with suffix $suffix:menu=suffixes;")
-alertTest(args: AnyArg) {
-    alert(args.sth + " " + args.suffix);
-    dataStore.write("alertedSth", args.sth.toString());
-    dataStore.write("lastSuffix", args.suffix.toString());
-}
-@BlockType.Plain("reporter", "get alerted sth")
-getAlertedSth() {
-    return dataStore.read("alertedSth");
-}
-```
-不过，这种写法目前处于实验阶段，无法使用智能提示，且依赖TS的独有特性，未来可能会出现无法解决的bug或被弃用，慎用。
-
-另外，在积木类型的装饰器上方使用`BlockType.hidden`装饰器可将积木从Scratch界面的工具箱中隐藏，但仅仅只是隐藏，功能不会变。
-```ts
-@BlockType.hidden
-@BlockType.Command("This is a hidden block")
-hiddenBlock(){ /* No implements */ }
-```
 
 ### 自定义参数处理器
 
