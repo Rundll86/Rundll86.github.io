@@ -1,18 +1,18 @@
 [
     {
-        "title": "Electron-OFP",
-        "face": "eop",
+        "title": "剧本编辑器 vX",
+        "face": "se2",
         "labels": [
-            "JS/TS",
+            "Vue",
             "工具"
         ],
-        "info": "可将复杂的Electron项目通过此工具打包为一个可执行文件。仅单文件。"
+        "info": "基于界面的AVG游戏剧本设计器，让不会写代码的文案师也能组织剧本。"
     },
     {
         "title": "FS-Context",
         "face": "fsc",
         "labels": [
-            "TS+Vue",
+            "Vue",
             "开发框架"
         ],
         "info": "易用的TS上下文，使用ts的类型提示和新脚手架开发TW/Gandi通用拓展。",
