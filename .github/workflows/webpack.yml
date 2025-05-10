@@ -1,0 +1,42 @@
+name: Build scripts
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [21.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Build
+      run: |
+        npm i yarn -g
+        yarn install
+        yarn build
+        cd ./fscd-src
+        yarn install
+        yarn dist
+
+    - name: Copy resources
+      run: |
+        cp -r fs-context dist
+        cp -r scripteditor-2 dist
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.7
+      with:
+        branch: gh-pages
+        folder: dist
+        target-folder: .

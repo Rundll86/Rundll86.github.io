@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    transition: .3s all ease-out;
+    color: white;
+}
+
+body {
+    overflow: auto;
+}
