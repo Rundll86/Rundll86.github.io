@@ -1,8 +1,11 @@
 <template>
-    <a>
+    <a target="_blank" :href="href">
         <slot></slot>
     </a>
 </template>
+<script setup lang="ts">
+defineProps({ href: String });
+</script>
 <style scoped>
 a {
     transition: none;

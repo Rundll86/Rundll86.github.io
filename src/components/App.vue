@@ -31,13 +31,16 @@
             </Description>
             <HorizontalLine />
             <BigTitle>development</BigTitle><br>
-            <ProjectCard image="se2.jpg" title="ScriptEditor" tech-stack="Vue" category="工具">
+            <ProjectCard website="https://github.com/Rundll86/script-editor-2" image="se2.jpg" title="ScriptEditor"
+                tech-stack="Vue" category="工具">
                 基于界面的AVG游戏剧本设计器，让不会写代码的文案师也能组织剧本。
             </ProjectCard>
-            <ProjectCard image="fsc.jpg" title="FS-Context" tech-stack="TS" category="开发框架">
-                易用的TS上下文，使用ts的类型提示和新脚手架开发TW/Gandi通用拓展。
+            <ProjectCard website="https://github.com/Rundll86//fs-context" image="fsc.jpg" title="FS-Context"
+                tech-stack="TS" category="开发框架">
+                易用的开发上下文，使用TS的类型提示和全新的脚手架开发Scratch拓展。
             </ProjectCard>
-            <ProjectCard image="mln.jpg" title="ModLoaderNew" tech-stack="Python" category="游戏">
+            <ProjectCard website="https://github.com/Rundll86/ModLoaderNew" image="mln.jpg" title="ModLoaderNew"
+                tech-stack="Python" category="游戏">
                 将自定义模型注入原神客户端，基于GIMI。封装更多工具，可能违法。
             </ProjectCard>
             <HorizontalLine />
@@ -47,7 +50,7 @@
             <LinkA href="https://lanwywritexu.github.io/">Cyberexplorer</LinkA><br>
             <LinkA href="https://furryaria.top/">Aria</LinkA><br>
             <LinkA href="https://daiqitao.github.io/">DAIQITAO</LinkA><br>
-            <LinkA href="https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/">TangDo158/Tin-Dunwi</LinkA>
+            <LinkA href="https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/">TangDo158</LinkA>
         </div>
     </FullscreenSize>
 </template>

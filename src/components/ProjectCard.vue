@@ -1,5 +1,5 @@
 <template>
-    <div class="project">
+    <div class="project" @click="website ? window.open(website, '_blank') : null">
         <img class="avatar" :src="image">
         <div class="description">
             <span class="title">{{ title }}</span><br>
@@ -21,7 +21,8 @@ defineProps({
     title: String,
     image: String,
     techStack: String,
-    category: String
+    category: String,
+    website: String
 });
 </script>
 <style scoped>
