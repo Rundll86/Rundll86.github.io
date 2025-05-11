@@ -17,6 +17,7 @@
                 <b>Godot</b>和
                 <b>Unity</b>
                 做过一些游戏，但仍不太精通。<br>
+                福瑞控，但是LGBT，不玩圈子。<br>
                 目前能熟练使用的一些前沿 <b>语言/技术栈</b>：<br>
                 <BlockLabel>Python/GDScript</BlockLabel>
                 <BlockLabel>Type/JavaScript</BlockLabel>
