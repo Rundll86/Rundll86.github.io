@@ -11,8 +11,12 @@
             <Catcher>好看的皮囊千篇一律，有趣的灵魂万里挑一</Catcher>
             <Description>
                 你好！<br>
-                我是FallingShrimp，来自SolariiX的全栈/桌面应用开发爱好者。<br>
+                我是<b>FallingShrimp</b>，来自SolariiX的 <i>全栈/桌面应用开发</i> 爱好者。<br>
                 有梦想，但仍在学习的路上，尚无法实现。<br>
+                用
+                <b>Godot</b>和
+                <b>Unity</b>
+                做过一些游戏，但仍不太精通。<br>
                 目前能熟练使用的一些前沿 <b>语言/技术栈</b>：<br>
                 <BlockLabel>Python/GDScript</BlockLabel>
                 <BlockLabel>Type/JavaScript</BlockLabel>
@@ -37,7 +41,7 @@
             </ProjectCard>
             <ProjectCard website="https://github.com/Rundll86//fs-context" image="fsc.jpg" title="FS-Context"
                 tech-stack="TS" category="开发框架">
-                易用的开发上下文，使用TS的类型提示和全新的脚手架开发Scratch拓展。
+                一个开发上下文，使用TS类型提示和全新的脚手架开发某软件的通用拓展。
             </ProjectCard>
             <ProjectCard website="https://github.com/Rundll86/ModLoaderNew" image="mln.jpg" title="ModLoaderNew"
                 tech-stack="Python" category="游戏">
