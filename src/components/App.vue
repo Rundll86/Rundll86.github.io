@@ -55,7 +55,8 @@
             <LinkA href="https://lanwywritexu.github.io/">Cyberexplorer</LinkA><br>
             <LinkA href="https://furryaria.top/">Aria</LinkA><br>
             <LinkA href="https://daiqitao.github.io/">DAIQITAO</LinkA><br>
-            <LinkA href="https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/">TangDo158</LinkA>
+            <LinkA href="https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/">TangDo158</LinkA><br>
+            <LinkA>Page powered by Vue3+Webpack</LinkA>
         </div>
     </FullscreenSize>
 </template>
