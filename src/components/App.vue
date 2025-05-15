@@ -1,7 +1,7 @@
 <template>
     <BackgroundImage :disable="false" :blur="bluring" />
     <FullscreenSize class="container-app">
-        <div class="main" @mouseover="bluring = true" @mouseleave="bluring = false">
+        <div class="main" :class="{ bluring }" @mouseover="bluring = true" @mouseleave="bluring = false">
             <Avatar /><br>
             <NameLabel>FallingShrimp</NameLabel><br>
             <BlockLabel>完美主义</BlockLabel>
@@ -91,9 +91,15 @@ function copy(data: string) {
     position: absolute;
 }
 
+.bluring {
+    opacity: 1;
+}
+
 .main {
     padding: 50px 0;
     display: inline-block;
+    backdrop-filter: blur(5px);
+    opacity: 0.2;
 }
 
 .link-2 {
