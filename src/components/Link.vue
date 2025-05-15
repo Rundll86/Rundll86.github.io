@@ -4,26 +4,27 @@
     </a>
 </template>
 <script setup lang="ts">
-defineProps({ href: String });
+defineProps({ href: String, unimportant: Boolean });
 </script>
 <style scoped>
 a {
+    --color: white;
     transition: none;
 }
 
 a:link,
 a:visited {
-    color: white;
+    color: var(--color);
     text-decoration: none;
 }
 
 a:hover {
-    color: white;
+    color: var(--color);
     text-decoration: underline;
 }
 
 a:active {
-    color: rgb(200, 200, 200);
+    opacity: 0.8;
     text-decoration: underline;
 }
 </style>

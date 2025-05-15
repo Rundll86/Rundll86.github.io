@@ -14,7 +14,8 @@
                 我是<b>FallingShrimp</b>，来自SolariiX的 <i>全栈/桌面应用开发</i> 爱好者。<br>
                 有梦想，但仍在学习的路上，尚无法实现。<br>
                 用
-                <b>Godot</b>和
+                <b>Godot</b>
+                和
                 <b>Unity</b>
                 做过一些游戏，但仍不太精通。<br>
                 福瑞控，但是LGBT，不玩圈子。<br>
@@ -56,7 +57,7 @@
             <LinkA href="https://furryaria.top/">Aria</LinkA><br>
             <LinkA href="https://daiqitao.github.io/">DAIQITAO</LinkA><br>
             <LinkA href="https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/">TangDo158</LinkA><br>
-            <LinkA>Page powered by Vue3+Webpack</LinkA>
+            <LinkA>Vue3+Webpack</LinkA>
         </div>
     </FullscreenSize>
 </template>
@@ -91,15 +92,13 @@ function copy(data: string) {
     position: absolute;
 }
 
-.bluring {
+.main.bluring {
     opacity: 1;
 }
 
 .main {
     padding: 50px 0;
     display: inline-block;
-    backdrop-filter: blur(5px);
-    opacity: 0.2;
 }
 
 .link-2 {
