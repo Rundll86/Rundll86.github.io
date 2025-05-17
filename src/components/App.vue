@@ -29,26 +29,15 @@
             </Description>
             <Description title="展望">
                 福瑞控，但是LGBT。<br>
-                <div class="text-left">
-                    <LinkA href="https://e621.net/posts?tags=von_lycaon">
-                        <template #prompt>
-                            跳转的页面可能会引起你的不适，请谨慎斟酌
-                        </template>
-                        推：冯·莱卡恩（《绝区零》）
-                    </LinkA><br>
-                    <LinkA href="https://e621.net/posts?tags=death_%28puss_in_boots%29">
-                        <template #prompt>
-                            跳转的页面可能会引起你的不适，请谨慎斟酌
-                        </template>
-                        推：The Death（《穿靴子的猫》）
-                    </LinkA><br>
-                    <LinkA href="oc.jpg">
-                        <template #prompt>
-                            <img src="oc.jpg" class="oc-preview">
-                        </template>
-                        自设/OC：希利普医生
-                    </LinkA>
-                </div><br>
+                推：<br>
+                <SearchE621 target="Von Lycaon">冯·莱卡恩</SearchE621><br>
+                <SearchE621 target="Death (Puss in Boots)">The Death</SearchE621><br>
+                <LinkA href="oc.jpg">
+                    <template #prompt>
+                        <img src="oc.jpg" class="oc-preview">
+                    </template>
+                    自设/OC：希利普医生
+                </LinkA><br>
                 大尾巴白狼疑似命中注定。
             </Description>
             <Description title="联系方式">
@@ -97,6 +86,7 @@ import LinkA from "./Link.vue";
 import HorizontalLine from "./HorizontalLine.vue";
 import ProjectCard from "./ProjectCard.vue";
 import BigTitle from "./BigTitle.vue";
+import SearchE621 from "./SearchE621.vue";
 const bluring = ref(false);
 function copy(data: string) {
     try {
