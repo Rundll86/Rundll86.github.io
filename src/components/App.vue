@@ -29,8 +29,8 @@
             </Description>
             <Description title="展望">
                 福瑞控，但是LGBT。<br>
-                推：<br>
-                <SearchE621 target="Von Lycaon">冯·莱卡恩</SearchE621><br>
+                推：
+                <SearchE621 target="Von Lycaon">冯·莱卡恩</SearchE621>
                 <SearchE621 target="Death (Puss in Boots)">The Death</SearchE621><br>
                 <LinkA href="oc.jpg">
                     <template #prompt>
@@ -68,7 +68,9 @@
             <LinkA href="https://furryaria.top/">Aria</LinkA><br>
             <LinkA href="https://daiqitao.github.io/">DAIQITAO</LinkA><br>
             <LinkA href="https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/">TangDo158</LinkA><br>
-            <LinkA>Vue3+Webpack</LinkA>
+            <LinkA href="https://vuejs.org">Vue</LinkA>
+            +
+            <LinkA href="https://webpackjs.com">Webpack</LinkA>
         </div>
     </FullscreenSize>
 </template>
