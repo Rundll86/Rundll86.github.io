@@ -5,7 +5,9 @@
             <Avatar /><br>
             <NameLabel>FallingShrimp</NameLabel><br>
             <BlockLabel>完美主义</BlockLabel>
-            <BlockLabel>Web/桌面/游戏</BlockLabel>
+            <BlockLabel>Web</BlockLabel>
+            <BlockLabel>桌面</BlockLabel>
+            <BlockLabel>游戏</BlockLabel>
             <BlockLabel>福瑞控</BlockLabel>
             <BlockLabel>SolariiX</BlockLabel><br>
             <Catcher>好看的皮囊千篇一律，有趣的灵魂万里挑一</Catcher>
