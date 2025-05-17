@@ -68,6 +68,7 @@
             <LinkA href="https://furryaria.top/">Aria</LinkA><br>
             <LinkA href="https://daiqitao.github.io/">DAIQITAO</LinkA><br>
             <LinkA href="https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/">TangDo158</LinkA><br>
+            <LinkA href="https://lljl00982.pages.dev/">lljl00982</LinkA><br>
             <LinkA href="https://vuejs.org">Vue</LinkA>
             +
             <LinkA href="https://webpackjs.com">Webpack</LinkA>
@@ -89,6 +90,7 @@ import HorizontalLine from "./HorizontalLine.vue";
 import ProjectCard from "./ProjectCard.vue";
 import BigTitle from "./BigTitle.vue";
 import SearchE621 from "./SearchE621.vue";
+import Link from "./Link.vue";
 const bluring = ref(false);
 function copy(data: string) {
     try {
