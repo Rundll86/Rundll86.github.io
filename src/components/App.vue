@@ -5,20 +5,17 @@
             <Avatar /><br>
             <NameLabel>FallingShrimp</NameLabel><br>
             <BlockLabel>完美主义</BlockLabel>
-            <BlockLabel>Web/游戏开发</BlockLabel>
+            <BlockLabel>Web/桌面/游戏</BlockLabel>
             <BlockLabel>福瑞控</BlockLabel>
             <BlockLabel>SolariiX</BlockLabel><br>
             <Catcher>好看的皮囊千篇一律，有趣的灵魂万里挑一</Catcher>
-            <Description>
+            <Description title="关于我">
                 你好！<br>
-                我是<b>FallingShrimp</b>，来自SolariiX的 <i>全栈/桌面应用开发</i> 爱好者。<br>
-                有梦想，但仍在学习的路上，尚无法实现。<br>
-                用
-                <b>Godot</b>
-                和
-                <b>Unity</b>
-                做过一些游戏，但仍不太精通。<br>
-                福瑞控，但是LGBT，不玩圈子。<br>
+                我是<b>陨落基围虾</b>，来自SolariiX的 <i>全栈/桌面</i> 开发爱好者。<br>
+                有梦想，但仍在学习的路上，尚无法实现。
+            </Description>
+            <Description title="技能">
+                用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，但仍不太精通。<br>
                 目前能熟练使用的一些前沿 <b>语言/技术栈</b>：<br>
                 <BlockLabel>Python/GDScript</BlockLabel>
                 <BlockLabel>Type/JavaScript</BlockLabel>
@@ -28,8 +25,31 @@
                 <BlockLabel>Electron</BlockLabel>
                 <BlockLabel>Flask</BlockLabel>
             </Description>
-            <Description>
-                联系方式：<br>
+            <Description title="展望">
+                福瑞控，但是LGBT。<br>
+                <div class="text-left">
+                    <LinkA href="https://e621.net/posts?tags=von_lycaon">
+                        <template #prompt>
+                            跳转的页面可能会引起你的不适，请谨慎斟酌
+                        </template>
+                        推：冯·莱卡恩（《绝区零》）
+                    </LinkA><br>
+                    <LinkA href="https://e621.net/posts?tags=death_%28puss_in_boots%29">
+                        <template #prompt>
+                            跳转的页面可能会引起你的不适，请谨慎斟酌
+                        </template>
+                        推：The Death（《穿靴子的猫》）
+                    </LinkA><br>
+                    <LinkA href="oc.jpg">
+                        <template #prompt>
+                            <img src="oc.jpg" class="oc-preview">
+                        </template>
+                        自设/OC：希利普医生
+                    </LinkA>
+                </div><br>
+                大尾巴白狼疑似命中注定。
+            </Description>
+            <Description title="联系方式">
                 邮箱：<LinkA href="mailto:3161880837@qq.com">3161880837@qq.com</LinkA><br>
                 QQ：<LinkA @click="copy('3161880837')">3161880837</LinkA><br>
                 <LinkA href="https://space.bilibili.com/649063815">哔哩哔哩</LinkA>
@@ -83,6 +103,10 @@ function copy(data: string) {
         alert("复制失败。");
     }
 };
+window.mouse = ref([0, 0]);
+window.addEventListener("mousemove", (e) => {
+    window.mouse.value = [e.clientX, e.clientY];
+});
 </script>
 <style scoped>
 .container-app {
@@ -103,5 +127,16 @@ function copy(data: string) {
 
 .link-2 {
     margin-left: 5px;
+}
+
+.oc-preview {
+    width: 200px;
+    display: block;
+}
+
+.text-left {
+    text-align: left;
+    width: fit-content;
+    display: inline-block;
 }
 </style>

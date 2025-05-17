@@ -14,7 +14,8 @@ img {
 }
 
 img.blur {
-    filter: blur(5px);
+    filter: blur(3px);
+    transform: scale(1.02);
 }
 
 .placeholder {
