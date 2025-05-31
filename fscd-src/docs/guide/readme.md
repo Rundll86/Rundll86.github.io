@@ -151,7 +151,7 @@ export default class MyExtension extends Extension {
 ```ts
 export default class MyExtension extends Extension {
     collaborators: Collaborator[] = [
-        new Collaborator("FallingShrimp", "https://f-shrimp.solariix.com") //名称+链接
+        new Collaborator("FallingShrimp", "https://fshrimp.fun") //名称+链接
     ];
 }
 ```
