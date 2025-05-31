@@ -63,7 +63,7 @@ const config: LoaderConfig = {
 export default config;
 ```
 
-# 基本代码结构
+## 基本代码结构
 
 拓展的主要代码入口点位于`extension.ts`
 
@@ -73,14 +73,18 @@ export default config;
 
 ### 创建翻译器
 
-翻译器需要配置基本语言及其翻译库，并使用`Translator.create`方法进行创建。不要直接new，会失去类型检查。
+翻译器需要配置基本语言及其翻译库，并使用`Translator.create`方法进行创建。不要直接new，会失去类型检查。翻译器实例的`useLegacyMode`方法将让这个翻译器自动使用runtime自带的翻译机制。记得传入一个拓展实例来让编译器能获取到runtime。
+
 ```ts
 let translator = Translator.create("zh-cn", {
     name: "我的拓展",
     des: "这是我的第一个拓展"
 });
+// translator.useLegacyMode(MyExtension.onlyInstance);
 ```
+
 储存其他语言的翻译库时，使用`translator.store`方法，将会自动提示需要的键。
+
 ```ts
 translator.store("en", {
     name: "My Extension",
@@ -91,6 +95,7 @@ translator.store("en", {
 ## 指定目标拓展
 
 将拓展的类原型作为一个**默认导出**，框架会自动加载。
+
 ```ts
 export default class MyExtension extends Extension { }
 ```
@@ -101,6 +106,7 @@ export default class MyExtension extends Extension { }
 
 覆盖`Extension`基类的字段即可。  
 拓展的元数据本质上是字符串，因此可以使用`translator.load`方法进行翻译。
+
 ```ts
 export default class MyExtension extends Extension {
     id = "myextension";
@@ -114,6 +120,7 @@ export default class MyExtension extends Extension {
 
 覆盖`Extension`基类的`color字段`即可，类型为`ColorDefine`接口。  
 可直接覆写`color`中的`theme`字段，框架可根据主题色自动推断**三个分别变深的颜色**。
+
 ```ts
 export default class MyExtension extends Extension {
     color: ColorDefine = {
@@ -121,8 +128,10 @@ export default class MyExtension extends Extension {
     };
 }
 ```
+
 也可以**禁用**框架的自动推断功能，自定义设置三个主题颜色，字段`block`、`inputer`、`menu`分别对应**积木颜色**、**输入框颜色**、**菜单颜色**。  
 记得要将字段`autoDeriveColors`设为`false`。
+
 ```ts
 export default class MyExtension extends Extension {
     autoDeriveColors = false;
@@ -138,6 +147,7 @@ export default class MyExtension extends Extension {
 
 此功能可能不太必要，若想要匿名发布拓展**可跳过此章节**。  
 反之可以覆盖`Extension`基类的`collaborators`字段，类型为`Collaborator[]`。
+
 ```ts
 export default class MyExtension extends Extension {
     collaborators: Collaborator[] = [
@@ -145,6 +155,7 @@ export default class MyExtension extends Extension {
     ];
 }
 ```
+
 ### 定义积木【A计划】
 
 `BlockType`命名空间中的所有方法（`BlockType.Plain`除外）都是装饰器工厂都可用于定义积木，例如其中`Command`装饰器可用于定义**无返回值**的`方形`积木，`Reporter`装饰器可用于定义`有返回值`的`圆形`积木，其他类型如`帽子`积木和`布尔`积木等同理。
@@ -152,19 +163,23 @@ export default class MyExtension extends Extension {
 `Plain`装饰器需要两个参数，第一个参数为积木类型，积木类型为`command`或`reporter`等，后一个参数传入积木上要显示的文字，其中，积木文字上可以使用一种实验性的字符串定义结构，框架能自动解析出参数名称、类型、默认值等。
 
 所有可用的装饰器接受的积木文字均可以使用美元符号`$`和分号`;`配对或一对方括号`[]`来定义参数框，填入参数名称，后接冒号`:`为参数的类型，可选择与上文`Block.create`方法中等价的类型，再后接等于号`=`为默认值，默认值必须为字符串，框架会自动将其转换为对应的类型。
+
 ```ts
 @BlockType.Command("alert [sth:string=hello] with suffix $suffix:menu=suffixes;")
 alertTest(args: { sth: string, suffix: string }) {
     alert(args.sth + " " + args.suffix);
 }
 ```
+
 这种方式下的写法和下文的「重载」功能相同，在本应传入文字的地方传入一个字符串数据即可。
 
 `BlockMode`命名空间下的方法可以用于声明积木的一些非必要的配置。但是用于声明积木类型（也就是`BlockType`命名空间）的装饰器必须紧挨积木的实现，也就是非必要配置项的装饰器必须在积木类型配置之上。
+
 - **UseMonitor** 对能返回的积木使用监视器，只能用在`Reporter`或`Boolean`上。
 - **ThreadRestartable** 设置事件积木的回调如果有正在运行的实例，那么允许打断它重启新的实例，只能用在`Hat`或`Event`上。
 - **ActiveEdge** 强制每一帧舞台更新时都会自动执行这个事件积木的实现，如果返回了**真**则开始执行其下回调，请注意性能问题。如果不使用这个功能则需要手动写一个原生事件侦听器并在积木可执行的时机使用`runtime.startHats`来启动。只能用在`Hat`上。
 - **Filt** 指定积木是用在角色上还是舞台上。
+
 ```ts
 @BlockMode.Filt("sprite")
 @BlockMode.UseMonitor
@@ -189,6 +204,7 @@ alertTest(args: { sth: string, suffix: string }) {
 ### 定义积木【B计划】
 
 使用`Block`类的静态方法`create`创建积木，参数依次为积木**名称**、**参数**、**执行的方法**。  
+
 ```ts
 Block.create(
     "弹窗 $sth ，使用后缀 _suffix",
@@ -211,13 +227,15 @@ Block.create(
     }
 )
 ```
+
 积木参数的定义基于`ArgumentDefine`接口，其中`name`字段为**参数框名称**，`value`字段为**参数框默认值**。  
 以下是对应字段的需求和默认值：
-|字段|是否必填|默认值|类型|
-|-|-|-|-|
-|name|是|无|字符串|
-|value|否|空字符串|任意|
-|inputType|否|`string`|`keyof InputTypeCast`|
+
+| 字段      | 是否必填 | 默认值   | 类型                  |
+|-----------|----------|----------|-----------------------|
+| name      | 是       | 无       | 字符串                |
+| value     | 否       | 空字符串 | 任意                  |
+| inputType | 否       | `string` | `keyof InputTypeCast` |
 
 #### 重载
 
@@ -226,6 +244,7 @@ Block.create(
 ### 定义菜单
 
 可以直接将积木的`inputType`改为`menu`，然后在`value`字段传入一个`Menu`类的实例，框架能够自动识别。
+
 ```ts
 {
     arguments: [
@@ -236,7 +255,7 @@ Block.create(
         },
         {
             name: "_suffix",
-            value: new Menu("suffixes", [
+            value: new Menu([
                 { name: "已打印", value: "printed" },
                 { name: "已输出", value: "output" },
                 { name: "已显示", value: "displayed" }
@@ -246,11 +265,13 @@ Block.create(
     ]
 }
 ```
+
 也可以在拓展数据中覆写`Extension`基类的`menus`字段，作为一个`Menu[]`。
+
 ```ts
 export default class MyExtension extends Extension {
     menus = [
-        new Menu("suffixes", [
+        new Menu([
             { name: "已打印", value: "printed" },
             { name: "已输出", value: "output" },
             { name: "已显示", value: "displayed" }
@@ -258,6 +279,7 @@ export default class MyExtension extends Extension {
     ];
 }
 ```
+
 菜单的定义基于`Menu`类，其中`name`字段为**菜单名称**，`items`字段为**菜单项**。菜单默认允许了`acceptReporters`，不需要手动声明。
 
 ### 更灵活的菜单项写法
@@ -268,8 +290,9 @@ export default class MyExtension extends Extension {
 
 方式B（如下文`sauces`菜单）：将项目列表放入一个字符串，使用英文逗号`,`分隔，项类型同上，不过在这种写法下无法使用声明对象的方式来指定`name`字段和`value`字段。
 ::: details TS
+
 ```ts
-new Menu("vegetables", [
+vegetables = new Menu([
     "土豆=potato",
     "胡萝卜=carrot",
     "Unnamed vegitable",
@@ -281,12 +304,14 @@ new Menu("vegetables", [
 ])
 new Menu("sauces", "番茄酱=ketchup,蛋黄酱=mayonnaise,mushroom,辣椒酱=hot sauce")
 ```
+
 :::
 
 这两段代码等价于：
 ::: details TS
+
 ```ts
-new Menu("vegetables", [
+vegetables = new Menu([
     { name: "土豆", value: "potato" },
     { name: "胡萝卜", value: "carrot" },
     { name: "Unnamed vegitable", value: "Unnamed vegitable" },
@@ -296,19 +321,21 @@ new Menu("vegetables", [
     }
     { name: "Cabbage白菜", value: "Cabbage白菜" }
 ])
-new Menu("sauces", [
+sauces = new Menu([
     { name: "番茄酱", value: "ketchup" },
     { name: "蛋黄酱", value: "mayonnaise" },
     { name: "mushroom", value: "mushroom" },
     { name: "辣椒酱", value: "hot sauce" }
 ])
 ```
+
 :::
 
 不过这种写法需要堆砌很多`{ name: "xxx", value: "xxx" }`，因此框架省去了此轮子写法。
 
 关于菜单`sauces`，将会被框架生成为TW格式：
 ::: details JSON
+
 ```json
 {
     "acceptReporters": true,
@@ -332,10 +359,12 @@ new Menu("sauces", [
     ]
 }
 ```
+
 :::
 
 菜单`vegetables`同理：
 ::: details JSON
+
 ```json
 {
     "acceptReporters": true,
@@ -363,6 +392,7 @@ new Menu("sauces", [
     ]
 }
 ```
+
 :::
 
 ## 实验中⚠
@@ -375,6 +405,7 @@ new Menu("sauces", [
 如果输入的内容不符合设定的格式，或loader运行过程中报错，那么参数的对应字段将会得到`null`，你可以通过设置loader的可选字段`defaultValue`属性来设置默认值。
 
 下面是一个例子，自动加载json字符串：
+
 ```ts
 loaders: Record<string, InputLoader> = {
     json: {
@@ -399,10 +430,13 @@ blocks: Block<MyExtension>[] = [
     })
 ];
 ```
+
 你也可以从`@framework`别名中导入一些已预定义的loader，如`json`、`html`、`vector2`、`vector3`等。只需按照简写写法同上文的格式添加到`loaders`字段中。
+
 ```ts
 import { html, json, vector2, vector3 } from "@framework/built-ins/loaders";
 ```
+
 ```ts
 loaders: Record<string, InputLoader> = {
     html,
@@ -411,14 +445,51 @@ loaders: Record<string, InputLoader> = {
     vector3
 };
 ```
+
 用法同上，无需多言。
 
 ### 动态调用Loader和积木方法
 
 在积木的实现中，可以使用this.call为前缀的方法来动态调用参数loader和已实现的积木方法（出于安全性考虑，只能调用本拓展的内容），不过这个方法下请小心会发生未预料的递归爆栈。用法无需多言。
+
 ```ts
 this.callLoader("json" /* 加载器的字段名 */, `{"apple":"苹果"}`) //{ apple: "苹果" }
 this.callBlock("add" /* 积木的opcode */, { a: 114, b: 514 }) //628
+```
+
+### 内联菜单/响应式菜单和动态回读
+
+#### 响应式菜单
+
+响应式，即数据更新后自动更新界面。显然原版动态菜单不需要手动设置值，直接让函数返回一个即可。所以FSC进行了一个包装。直接修改菜单的值即可刷新，重新赋值拓展实例的字段/设置菜单实例的items值/往items里增减内容都能自动刷新编辑器内容。  
+使用`MenuMode`下的`Reactive`装饰器来指定一个参数是否是响应式。
+
+```ts
+@MenuMode.Reactive(true)
+appleNames = new Menu("苹果,智慧果,超凡子,Apple,林檎");
+```
+
+#### 内联状态菜单
+
+在定义积木参数时直接给定一个菜单和其选项列表。用于不需要复用且仅仅只是为了区分一些模式的菜单参数。将参数类型设为`menu(option,option,option,...)`即可，不需要设置键值对，框架会自动处理值并在输入字段返回用户选择的菜单项的索引。
+
+```ts
+@BlockType.Reporter("苹果的索引值[appleNames:menu(智慧果,超凡子,林檎)]")
+appleValues({ appleNames }: { appleNames: number }) {
+    return appleNames;
+}
+```
+
+#### 动态回读
+
+使用`MenuMode.Readback`装饰器给菜单加动态回读。只有响应式菜单的动态回读才有效，每个响应式菜单都有一个默认的回读也就是返回这个菜单的所有选项，使用这个装饰器可以修改一下选项内容或者仅仅只是从其他数据里返回内容。  
+回读函数可以接收两个参数，第一个参数是一个菜单实例，可能会被修改所以并不会直接返回字段初始化时设置的菜单实例，第二个参数是当前拓展实例。
+
+```ts
+/* 每次回读时对菜单项进行随机排序 */
+MenuMode.Readback((menu) => menu.generated.sort(() => Random.float(-1, 1)))
+MenuMode.Reactive(true)
+appleNames = new Menu("苹果,智慧果,超凡子,Apple,林檎");
 ```
 
 ### 使用类似Rest的积木动态参数
@@ -433,6 +504,7 @@ this.callBlock("add" /* 积木的opcode */, { a: 114, b: 514 }) //628
 类型：字符串或其数组或一个返回字符串的函数  
 作用：动态参数的默认值  
 写法：
+
 - 当填字符串时，所有动态参数都使用这个默认值
 - 当填字符串数组时，动态参数在数组项足够时按顺序分配默认值，数量超出数组长度了就把数组最后一项末尾加超出的数字
 - 当填函数时，接收当前正在生成的参数框的序数，可以按照序数来随便计算并且返回默认值
@@ -441,6 +513,7 @@ this.callBlock("add" /* 积木的opcode */, { a: 114, b: 514 }) //628
 类型：字符串或一个返回字符串的函数  
 作用：每个框中间间隔的内容  
 写法：
+
 - 当填字符串时，直接用
 - 当填函数时，接收当前正在生成的参数框的序数，可以按照序数来随便计算并且返回间隔符
 
@@ -448,6 +521,7 @@ this.callBlock("add" /* 积木的opcode */, { a: 114, b: 514 }) //628
 类型：同上  
 作用：第一个参数框之前的文本  
 写法：
+
 - 当填字符串时，直接用
 - 当填函数时，接收当前已生成的参数框的数量，可以按照数量来随便计算并且返回
 
@@ -455,6 +529,7 @@ this.callBlock("add" /* 积木的opcode */, { a: 114, b: 514 }) //628
 类型：同上  
 作用：最后一个参数框之后的文本  
 写法：
+
 - 当填字符串时，直接用
 - 当填函数时，接收当前已生成的参数框的数量，可以按照数量来随便计算并且返回
 
@@ -462,6 +537,7 @@ this.callBlock("add" /* 积木的opcode */, { a: 114, b: 514 }) //628
 类型：整数或其数组  
 作用：每次点击添加参数框时，添加的框数量  
 写法：
+
 - 当填整数时，直接用
 - 当填数组时，每次一点添加框就按照数组顺序来获得对应数量，但是能添加的框数量不能超过数组长度
 
@@ -491,6 +567,7 @@ arg = {
 ```
 
 动态框模块出处与致谢：
+
 ```ts
 /**
  * @description 使拓展积木支持动态参数，基于Blockly注入
