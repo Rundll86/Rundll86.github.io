@@ -1,9 +1,12 @@
 {
-  "devDependencies": {
-    "vuepress": "^1.9.10"
-  },
-  "scripts": {
-    "dev": "vuepress dev docs",
-    "dist": "vuepress build docs"
-  }
+    "name": "fs-context-docs",
+    "version": "1.0.0",
+    "private": true,
+    "devDependencies": {
+        "vuepress": "^1.9.10"
+    },
+    "scripts": {
+        "dev": "vuepress dev docs",
+        "build": "vuepress build docs"
+    }
 }

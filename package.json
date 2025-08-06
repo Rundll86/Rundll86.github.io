@@ -1,4 +1,21 @@
 {
+    "name": "fshrimp-fun",
+    "version": "1.0.0",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "build": "run-s build:*",
+        "build:self": "webpack --mode production",
+        "build:children": "yarn workspaces run build",
+        "dev": "webpack serve --mode development",
+        "lint": "eslint ."
+    },
+    "workspaces": [
+        "fscd-src"
+    ],
+    "dependencies": {
+        "vue": "^3.5.13"
+    },
     "devDependencies": {
         "@eslint/js": "^9.28.0",
         "copy-webpack-plugin": "^13.0.0",
@@ -7,6 +24,7 @@
         "eslint-plugin-vue": "^10.1.0",
         "globals": "^16.2.0",
         "html-webpack-plugin": "^5.6.3",
+        "npm-run-all": "^4.1.5",
         "ts-loader": "^9.5.2",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.33.1",
@@ -17,17 +35,5 @@
         "webpack-cli": "^6.0.1",
         "webpack-dev-server": "^5.2.1",
         "webpackbar": "^7.0.0"
-    },
-    "name": "rundll86-github-io",
-    "version": "1.0.0",
-    "main": "index.js",
-    "license": "MIT",
-    "dependencies": {
-        "vue": "^3.5.13"
-    },
-    "scripts": {
-        "build": "webpack --mode production",
-        "dev": "webpack serve --mode development",
-        "lint": "eslint ."
     }
 }
