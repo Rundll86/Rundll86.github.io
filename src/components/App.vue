@@ -76,7 +76,7 @@
     </FullscreenSize>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import AvatarImage from "./AvatarImage.vue";
 import BackgroundImage from "./BackgroundImage.vue";
 import FullscreenSize from "./FullscreenSize.vue";
@@ -91,6 +91,29 @@ import ProjectCard from "./ProjectCard.vue";
 import BigTitle from "./BigTitle.vue";
 import SearchE621 from "./SearchE621.vue";
 const bluring = ref(false);
+onMounted(() => {
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "FallingShrimp",
+        "url": "https://rundll86.github.io/",
+        "image": "https://rundll86.github.io/avatar.png",
+        "sameAs": [
+            "https://space.bilibili.com/649063815",
+            "https://github.com/Rundll86"
+        ],
+        "jobTitle": "全栈/桌面开发爱好者",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "SolariiX"
+        },
+        "description": "FallingShrimp的个人网站，展示技术项目、技能和兴趣爱好。全栈/桌面开发爱好者，专注Web技术、游戏开发和福瑞文化。"
+    };
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+});
 function copy(data: string) {
     try {
         window.navigator.clipboard.writeText(data);

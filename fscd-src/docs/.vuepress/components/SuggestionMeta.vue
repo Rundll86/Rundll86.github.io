@@ -3,7 +3,7 @@
         提议者：
         <Collaborator :user="send" />
         处理者：
-        <Collaborator v-for="user in results" :user="user" />
+        <Collaborator :key="user" v-for="user in results" :user="user" />
         提议主题：
         <span class="topic">{{ topic }}</span><br>
         提议类型：
@@ -14,7 +14,7 @@
     </div>
 </template>
 <script setup>
-import Label from './Label.vue';
+import Label from "./Label.vue";
 </script>
 <script>
 export default {
@@ -24,7 +24,7 @@ export default {
             type: String,
             default: "fs"
         },
-        result:{
+        result: {
             type: String,
             default: "fs"
         },
@@ -43,8 +43,8 @@ export default {
     },
     data() {
         return {
-            files: this.file.split(',').filter(Boolean).map(file => file.trim()),
-            results:this.result.split(',').filter(Boolean).map(result => result.trim())
+            files: this.file.split(",").filter(Boolean).map(file => file.trim()),
+            results: this.result.split(",").filter(Boolean).map(result => result.trim())
         }
     }
 }

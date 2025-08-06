@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: <https://rundll86.github.io/sitemap.xml>

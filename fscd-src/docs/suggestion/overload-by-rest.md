@@ -8,9 +8,11 @@
 </SuggestionMeta>
 
 如题，在积木声明时添加一个重载字段，写若干个重载签名然后按照实现签名的格式把参数扔给方法
+
 ```ts
 import { BlockTypes } from "@framework/structs";
 ```
+
 ```ts
 export default class MyExtension extends Extension {
     blocks = [
@@ -36,5 +38,5 @@ export default class MyExtension extends Extension {
     ];
 }
 ```
+
 <SuggestionResult completed />
-<ScratchBlock>重载：1 | [a:number]+[b:number]</ScratchBlock>

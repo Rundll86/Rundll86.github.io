@@ -4,17 +4,17 @@
         <img class="avatar" :src="avatar" :alt="name + '的头像'" />
         <span class="name">{{ name }}</span>
         <span class="hover-bar">
-            <Label v-for="i in label">{{ i }}</Label>
+            <Label :key="i" v-for="i in label">{{ i }}</Label>
         </span>
     </div>
 </template>
 <script setup>
-import Label from './Label.vue';
+import Label from "./Label.vue";
 import infos from "../assets/collaboratorInfo";
 </script>
 <script>
 export default {
-    name: 'Collaborator',
+    name: "Collaborator",
     props: {
         user: {
             type: String,
@@ -36,10 +36,10 @@ export default {
         }
     },
     mounted() {
-        this.$refs.root.addEventListener('mouseenter', () => {
+        this.$refs.root.addEventListener("mouseenter", () => {
             this.hovering = true;
         });
-        this.$refs.root.addEventListener('mouseleave', () => {
+        this.$refs.root.addEventListener("mouseleave", () => {
             this.hovering = false;
         });
     }

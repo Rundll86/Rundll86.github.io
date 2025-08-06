@@ -25,7 +25,7 @@ img.blur {
 }
 </style>
 <script setup lang="ts">
-import FullscreenSize from './FullscreenSize.vue';
+import FullscreenSize from "./FullscreenSize.vue";
 defineProps({
     disable: Boolean,
     blur: Boolean

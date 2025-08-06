@@ -10,7 +10,7 @@ import Label from "./Label.vue";
 </script>
 <script>
 export default {
-    name: 'SuggestionResult',
+    name: "SuggestionResult",
     props: {
         completed: {
             type: Boolean,

@@ -8,8 +8,8 @@
     </a>
 </template>
 <script setup lang="ts">
-import { ref, useSlots } from 'vue';
-import SuspensionPrompt from './SuspensionPrompt.vue';
+import { ref, useSlots } from "vue";
+import SuspensionPrompt from "./SuspensionPrompt.vue";
 defineProps({ href: String, unimportant: Boolean });
 const mouseIn = ref(false);
 </script>

@@ -7,10 +7,10 @@
     </LinkA>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue';
-import LinkA from './OutLink.vue';
+import { computed } from "vue";
+import LinkA from "./OutLink.vue";
 const { target } = defineProps({ target: String });
-const url = computed(() => encodeURIComponent(target?.toLowerCase().replaceAll(' ', '_') ?? ""));
+const url = computed(() => encodeURIComponent(target?.toLowerCase().replaceAll(" ", "_") ?? ""));
 </script>
 <style scoped>
 .link {

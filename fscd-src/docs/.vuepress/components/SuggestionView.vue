@@ -8,12 +8,12 @@
     </div>
 </template>
 <script setup>
-import Label from './Label.vue';
+import Label from "./Label.vue";
 import infos from "../assets/collaboratorInfo";
 </script>
 <script>
 export default {
-    name: 'SuggestionView',
+    name: "SuggestionView",
     props: {
         sender: {
             type: String,
