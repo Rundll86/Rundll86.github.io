@@ -32,6 +32,18 @@ root
 - webpack.config.js #Webpack配置
 ```
 
+## 目录结构说明
+
+- `src/extension/`: 扩展代码目录
+  - `blocks/`: 积木代码目录
+  - `menus/`: 菜单代码目录
+  - `extension.ts`: 扩展入口文件
+- `src/fs-context/`: 框架代码目录
+- `package.json`: 项目配置文件
+- `tsconfig.json`: TypeScript 配置文件
+- `eslint.config.mjs`: ESLint 配置文件
+- `webpack.config.js`: Webpack 配置文件
+
 ## 快速上手
 
 ::: details 只需三步
@@ -68,6 +80,12 @@ yarn build
 :::
 
 对于新的拓展API文档，访问[概念和API](./guide)
+
+## 文档目录
+
+- [快速开始](./guide/readme.md)
+- [API 指南](./guide/api.md)
+- [高级用法](./guide/advanced.md)
 
 ## 欢迎贡献
 
