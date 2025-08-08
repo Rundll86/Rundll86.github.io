@@ -65,6 +65,7 @@
             <OutLink href="https://solariix.com/">SolariiX</OutLink><br>
             <OutLink href="https://github.com/FurryR/">熊谷 凌/FurryR</OutLink><br>
             <OutLink href="https://lanwywritexu.github.io/">Cyberexplorer</OutLink><br>
+            <OutLink href="https://yangyiit.top/">阳毅</OutLink><br>
             <OutLink href="https://furryaria.top/">Aria</OutLink><br>
             <OutLink href="https://daiqitao.github.io/">DAIQITAO</OutLink><br>
             <OutLink href="https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/">TangDo158</OutLink><br>
