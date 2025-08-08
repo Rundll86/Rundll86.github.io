@@ -4,10 +4,15 @@
     "private": true,
     "license": "MIT",
     "scripts": {
-        "build": "webpack --mode production",
+        "build": "run-s build:*",
+        "build:self": "webpack --mode production",
+        "build:children": "yarn workspaces run build",
         "dev": "webpack serve --mode development",
         "lint": "eslint ."
     },
+    "workspaces": [
+        "fscd-src"
+    ],
     "dependencies": {
         "vue": "^3.5.13"
     },
