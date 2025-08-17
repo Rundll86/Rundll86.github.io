@@ -2,15 +2,7 @@
     <BackgroundImage :disable="false" :blur="bluring" />
     <FullscreenSize class="container-app">
         <div class="main" :class="{ bluring }" @mouseover="bluring = true" @mouseleave="bluring = false">
-            <AvatarImage /><br>
-            <NameLabel>FallingShrimp</NameLabel><br>
-            <BlockLabel>完美主义</BlockLabel>
-            <BlockLabel>Web</BlockLabel>
-            <BlockLabel>桌面</BlockLabel>
-            <BlockLabel>游戏</BlockLabel>
-            <BlockLabel>福瑞控</BlockLabel>
-            <BlockLabel>SolariiX</BlockLabel><br>
-            <CatcherText>好看的皮囊千篇一律，有趣的灵魂万里挑一</CatcherText>
+            <SelfInformation />
             <DescriptionParagraph title="关于我">
                 你好！<br>
                 我是<b>陨落基围虾</b>，来自SolariiX的 <i>全栈/桌面</i> 开发爱好者。<br>
@@ -52,8 +44,7 @@
                 tech-stack="Vue" category="工具">
                 基于界面的AVG游戏剧本设计器，让不会写代码的文案师也能组织剧本。
             </ProjectCard>
-            <ProjectCard website="https://github.com/Rundll86//fs-context" image="fsc.jpg" title="FS-Context"
-                tech-stack="TS" category="开发框架">
+            <ProjectCard website="fs-context" image="fsc.jpg" title="FS-Context" tech-stack="TS" category="开发框架">
                 一个开发上下文，使用TS类型提示和全新的脚手架开发某软件的通用拓展。
             </ProjectCard>
             <ProjectCard website="https://github.com/Rundll86/ModLoaderNew" image="mln.jpg" title="ModLoaderNew"
@@ -91,6 +82,7 @@ import HorizontalLine from "./HorizontalLine.vue";
 import ProjectCard from "./ProjectCard.vue";
 import BigTitle from "./BigTitle.vue";
 import SearchE621 from "./SearchE621.vue";
+import SelfInformation from "./SelfInformation.vue";
 const bluring = ref(false);
 onMounted(() => {
     const structuredData = {

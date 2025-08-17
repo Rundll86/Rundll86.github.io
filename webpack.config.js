@@ -69,6 +69,7 @@ module.exports = {
         setupExitSignals: false,
         client: {
             logging: "none"
-        }
+        },
+        static: ["dist", "public"]
     }
 };
