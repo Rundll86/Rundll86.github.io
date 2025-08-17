@@ -69,12 +69,9 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import AvatarImage from "./AvatarImage.vue";
 import BackgroundImage from "./BackgroundImage.vue";
 import FullscreenSize from "./FullscreenSize.vue";
-import NameLabel from "./NameLabel.vue";
 import BlockLabel from "./BlockLabel.vue";
-import CatcherText from "./CatcherText.vue";
 import DescriptionParagraph from "./DescriptionParapragh.vue";
 import VerticalLine from "./VerticalLine.vue";
 import OutLink from "./OutLink.vue";
@@ -88,7 +85,7 @@ onMounted(() => {
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "FallingShrimp",
+        "name": "陨落基围虾",
         "url": "https://rundll86.github.io/",
         "image": "https://rundll86.github.io/avatar.png",
         "sameAs": [
