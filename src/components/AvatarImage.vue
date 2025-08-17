@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <img src="avatars/shrimp.png" class="img">
-        <img src="avatars/lycaon.png" class="front img">
+        <img src="avatars/lycaon.jpg" class="front img">
     </div>
 </template>
 <style scoped>
