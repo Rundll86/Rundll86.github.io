@@ -165,7 +165,7 @@ const projects: ProjectData[] = [
         description: "基于界面的AVG游戏剧本设计器，让不会写代码的文案师也能组织剧本。"
     },
     {
-        website: "fs-context",
+        website: "/fs-context",
         image: "fsc.jpg",
         title: "FS-Context",
         techStack: "TS",
