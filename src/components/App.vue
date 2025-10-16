@@ -40,27 +40,17 @@
             </DescriptionParagraph>
             <HorizontalLine />
             <BigTitle>development</BigTitle><br>
-            <ProjectCard website="https://github.com/Rundll86/script-editor-2" image="se2.jpg" title="ScriptEditor"
-                tech-stack="Vue" category="工具">
-                基于界面的AVG游戏剧本设计器，让不会写代码的文案师也能组织剧本。
-            </ProjectCard>
-            <ProjectCard website="fs-context" image="fsc.jpg" title="FS-Context" tech-stack="TS" category="开发框架">
-                一个开发上下文，使用TS类型提示和全新的脚手架开发某软件的通用拓展。
-            </ProjectCard>
-            <ProjectCard website="https://github.com/Rundll86/ModLoaderNew" image="mln.jpg" title="ModLoaderNew"
-                tech-stack="Python" category="游戏">
-                将自定义模型注入原神客户端，基于GIMI。封装更多工具，可能违法。
-            </ProjectCard>
+            <template v-for="project in projects" :key="project.title">
+                <ProjectCard :website="project.website" :image="project.image" :title="project.title"
+                    :tech-stack="project.techStack" :category="project.category">
+                    {{ project.description }}
+                </ProjectCard>
+            </template>
             <HorizontalLine />
             <BigTitle>友情链接</BigTitle><br>
-            <OutLink href="https://solariix.com/">SolariiX</OutLink><br>
-            <OutLink href="https://github.com/FurryR/">熊谷 凌/FurryR</OutLink><br>
-            <OutLink href="https://lanwywritexu.github.io/">Cyberexplorer</OutLink><br>
-            <OutLink href="https://yangyiit.top/">阳毅</OutLink><br>
-            <OutLink href="https://furryaria.top/">Aria</OutLink><br>
-            <OutLink href="https://daiqitao.github.io/">DAIQITAO</OutLink><br>
-            <OutLink href="https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/">TangDo158</OutLink><br>
-            <OutLink href="https://lljl00982.pages.dev/">lljl00982</OutLink><br>
+            <template v-for="friend in friends" :key="friend.name">
+                <OutLink :href="friend.url">{{ friend.name }}</OutLink><br>
+            </template>
             <OutLink href="https://vuejs.org">Vue</OutLink>
             +
             <OutLink href="https://webpackjs.com">Webpack</OutLink>
@@ -115,6 +105,82 @@ window.mouse = ref([0, 0]);
 window.addEventListener("mousemove", (e) => {
     window.mouse.value = [e.clientX, e.clientY];
 });
+interface FriendLink {
+    name: string;
+    url: string;
+}
+interface ProjectData {
+    website: string;
+    image: string;
+    title: string;
+    techStack: string;
+    category: string;
+    description: string;
+}
+const friends: FriendLink[] = [
+    {
+        name: "SolariiX",
+        url: "https://solariix.com/"
+    },
+    {
+        name: "FurryR",
+        url: "https://github.com/FurryR/"
+    },
+    {
+        name: "Cyberexplorer",
+        url: "https://lanwywritexu.github.io/"
+    },
+    {
+        name: "阳毅",
+        url: "https://yangyiit.top/"
+    },
+    {
+        name: "Aria",
+        url: "https://furryaria.top/"
+    },
+    {
+        name: "DAIQITAO",
+        url: "https://daiqitao.github.io/"
+    },
+    {
+        name: "TangDo158",
+        url: "https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/"
+    },
+    {
+        name: "lljl00982",
+        url: "https://lljl00982.pages.dev/"
+    },
+    {
+        name: "主核Kernyr",
+        url: "https://www.hujiarong.site/"
+    }
+];
+const projects: ProjectData[] = [
+    {
+        website: "https://github.com/Rundll86/script-editor-2",
+        image: "se2.jpg",
+        title: "ScriptEditor",
+        techStack: "Vue",
+        category: "工具",
+        description: "基于界面的AVG游戏剧本设计器，让不会写代码的文案师也能组织剧本。"
+    },
+    {
+        website: "fs-context",
+        image: "fsc.jpg",
+        title: "FS-Context",
+        techStack: "TS",
+        category: "开发框架",
+        description: "一个开发上下文，使用TS类型提示和全新的脚手架开发某软件的通用拓展。"
+    },
+    {
+        website: "https://github.com/Rundll86/ModLoaderNew",
+        image: "mln.jpg",
+        title: "ModLoaderNew",
+        techStack: "Python",
+        category: "游戏",
+        description: "将自定义模型注入原神客户端，基于GIMI。封装更多工具，可能违法。"
+    }
+];
 </script>
 <style scoped>
 .container-app {
