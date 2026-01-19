@@ -5,7 +5,7 @@
 </template>
 <style scoped>
 span {
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     text-transform: uppercase;
     margin: 15px;

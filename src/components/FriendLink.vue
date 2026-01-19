@@ -1,24 +1,22 @@
 <script setup lang="ts">
+import { PeopleDescriptor } from "src/structs";
 import { computed } from "vue";
 
-const props = defineProps({
-    name: String,
-    avatar: String,
-    website: String,
-    description: String,
-});
-const avatarLink = computed(() => props.avatar || props.name);
+const props = defineProps<{
+    people: PeopleDescriptor;
+}>();
+const avatarLink = computed(() => props.people.avatar || props.people.name);
 
 function openWebsite() {
-    if (props.website) window.open(props.website);
+    if (props.people.website) window.open(props.people.website);
 }
 </script>
 <template>
     <div class="friend-link" @click="openWebsite">
         <img v-if="avatarLink" :src="`friends/${avatarLink}.jpg`" class="avatar">
         <div class="info">
-            <span class="name">{{ name }}</span>
-            <span class="description">{{ description }}</span>
+            <span class="name">{{ people.name }}</span>
+            <span class="description">{{ people.description }}</span>
         </div>
     </div>
 </template>

@@ -50,9 +50,21 @@
             </template>
             <HorizontalLine />
             <BigTitle>友情链接</BigTitle><br>
+            <span>相关工作室</span>
             <div class="friend-links">
-                <FriendLink v-for="friend in friends" :name="friend.name" :avatar="friend.avatar"
-                    :description="friend.description" :website="friend.website" :key="friend.name" />
+                <FriendLink v-for="people in studios" :people="people" />
+            </div>
+            <span>高山流水，知音之交</span>
+            <div class="friend-links">
+                <FriendLink v-for="people in friends" :people="people" />
+            </div>
+            <span>三人行，必有我师焉</span>
+            <div class="friend-links">
+                <FriendLink v-for="people in teachers" :people="people" />
+            </div>
+            <span>友情链接</span>
+            <div class="friend-links">
+                <FriendLink v-for="people in justConnections" :people="people" />
             </div>
         </div>
     </FullscreenSize>
@@ -71,6 +83,7 @@ import SearchE621 from "./SearchE621.vue";
 import SelfInformation from "./SelfInformation.vue";
 import BlockLabel from "./BlockLabel.vue";
 import FriendLink from "./FriendLink.vue";
+import { PeopleDescriptor, ProjectData } from "src/structs";
 const bluring = ref(false);
 onMounted(() => {
     const structuredData = {
@@ -106,21 +119,8 @@ window.mouse = ref([0, 0]);
 window.addEventListener("mousemove", (e) => {
     window.mouse.value = [e.clientX, e.clientY];
 });
-interface FriendLinkData {
-    name: string;
-    website: string;
-    avatar?: string;
-    description: string;
-}
-interface ProjectData {
-    website: string;
-    image: string;
-    title: string;
-    techStack: string;
-    category: string;
-    description: string;
-}
-const friends: FriendLinkData[] = [
+
+const studios: PeopleDescriptor[] = [
     {
         name: "SolariiX",
         website: "https://solariix.com/",
@@ -132,6 +132,27 @@ const friends: FriendLinkData[] = [
         website: "https://yearn.studio",
         avatar: "阳毅"
     },
+];
+const teachers: PeopleDescriptor[] = [
+    {
+        name: "熊谷 凌",
+        website: "https://github.com/FurryR/",
+        description: "什么都写的全栈大佬，正在编写自己的博客，不谈对象。",
+        avatar: "FurryR"
+    },
+];
+const justConnections: PeopleDescriptor[] = [
+    {
+        name: "Cyberexplorer",
+        website: "https://lanwywritexu.github.io/",
+        description: "不要看着我以为我很傻，其实我一点也不聪明。"
+    },
+    {
+        name: "lljl00982",
+        website: "https://lljl00982.pages.dev/",
+    },
+];
+const friends: PeopleDescriptor[] = [
     {
         name: "阳毅",
         website: "https://yangyiit.top/",
@@ -147,22 +168,6 @@ const friends: FriendLinkData[] = [
         website: "https://www.hujiarong.site/",
         description: "永远相信自己可以“不自量力”的改变世界。"
     },
-    {
-        name: "熊谷 凌",
-        website: "https://github.com/FurryR/",
-        description: "什么都写的全栈大佬，正在编写自己的博客，不谈对象。",
-        avatar: "FurryR"
-    },
-    {
-        name: "Cyberexplorer",
-        website: "https://lanwywritexu.github.io/",
-        description: "不要看着我以为我很傻，其实我一点也不聪明。"
-    },
-    {
-        name: "lljl00982",
-        website: "https://lljl00982.pages.dev/",
-        description: ""
-    }
 ];
 const projects: ProjectData[] = [
     {
