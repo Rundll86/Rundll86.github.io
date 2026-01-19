@@ -52,7 +52,7 @@
             <BigTitle>友情链接</BigTitle><br>
             <div class="friend-links">
                 <FriendLink v-for="friend in friends" :name="friend.name" :avatar="friend.avatar"
-                    :description="friend.description" :website="friend.website" />
+                    :description="friend.description" :website="friend.website" :key="friend.name" />
             </div>
         </div>
     </FullscreenSize>
@@ -106,7 +106,7 @@ window.mouse = ref([0, 0]);
 window.addEventListener("mousemove", (e) => {
     window.mouse.value = [e.clientX, e.clientY];
 });
-interface FriendLink {
+interface FriendLinkData {
     name: string;
     website: string;
     avatar?: string;
@@ -120,7 +120,7 @@ interface ProjectData {
     category: string;
     description: string;
 }
-const friends: FriendLink[] = [
+const friends: FriendLinkData[] = [
     {
         name: "SolariiX",
         website: "https://solariix.com/",
