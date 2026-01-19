@@ -50,12 +50,10 @@
             </template>
             <HorizontalLine />
             <BigTitle>友情链接</BigTitle><br>
-            <template v-for="friend in friends" :key="friend.name">
-                <OutLink :href="friend.url">{{ friend.name }}</OutLink><br>
-            </template>
-            <OutLink href="https://vuejs.org">Vue</OutLink>
-            +
-            <OutLink href="https://webpackjs.com">Webpack</OutLink>
+            <div class="friend-links">
+                <FriendLink v-for="friend in friends" :name="friend.name" :avatar="friend.avatar"
+                    :description="friend.description" :website="friend.website" />
+            </div>
         </div>
     </FullscreenSize>
 </template>
@@ -72,6 +70,7 @@ import BigTitle from "./BigTitle.vue";
 import SearchE621 from "./SearchE621.vue";
 import SelfInformation from "./SelfInformation.vue";
 import BlockLabel from "./BlockLabel.vue";
+import FriendLink from "./FriendLink.vue";
 const bluring = ref(false);
 onMounted(() => {
     const structuredData = {
@@ -109,7 +108,9 @@ window.addEventListener("mousemove", (e) => {
 });
 interface FriendLink {
     name: string;
-    url: string;
+    website: string;
+    avatar?: string;
+    description: string;
 }
 interface ProjectData {
     website: string;
@@ -122,39 +123,45 @@ interface ProjectData {
 const friends: FriendLink[] = [
     {
         name: "SolariiX",
-        url: "https://solariix.com/"
+        website: "https://solariix.com/",
+        description: "一家成立于2022年的独立游戏工作室。"
     },
     {
-        name: "FurryR",
-        url: "https://github.com/FurryR/"
-    },
-    {
-        name: "Cyberexplorer",
-        url: "https://lanwywritexu.github.io/"
+        name: "Yearnstudio",
+        description: "一家云端技术工作室，由一群热爱技术、追求创新的开发者、设计师和创作者组成。",
+        website: "https://yearn.studio",
+        avatar: "阳毅"
     },
     {
         name: "阳毅",
-        url: "https://yangyiit.top/"
-    },
-    {
-        name: "Aria",
-        url: "https://furryaria.top/"
-    },
-    {
-        name: "DAIQITAO",
-        url: "https://daiqitao.github.io/"
+        website: "https://yangyiit.top/",
+        description: "保持热爱, 奔赴山海。"
     },
     {
         name: "TangDo158",
-        url: "https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/"
-    },
-    {
-        name: "lljl00982",
-        url: "https://lljl00982.pages.dev/"
+        website: "https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/",
+        description: "也许是情绪不够稳定（存疑）。"
     },
     {
         name: "主核Kernyr",
-        url: "https://www.hujiarong.site/"
+        website: "https://www.hujiarong.site/",
+        description: "永远相信自己可以“不自量力”的改变世界。"
+    },
+    {
+        name: "熊谷 凌",
+        website: "https://github.com/FurryR/",
+        description: "什么都写的全栈大佬，正在编写自己的博客，不谈对象。",
+        avatar: "FurryR"
+    },
+    {
+        name: "Cyberexplorer",
+        website: "https://lanwywritexu.github.io/",
+        description: "不要看着我以为我很傻，其实我一点也不聪明。"
+    },
+    {
+        name: "lljl00982",
+        website: "https://lljl00982.pages.dev/",
+        description: ""
     }
 ];
 const projects: ProjectData[] = [
@@ -194,6 +201,10 @@ const projects: ProjectData[] = [
 
 .main.bluring {
     opacity: 1;
+}
+
+.friend-links {
+    max-width: 50vw;
 }
 
 .main {
