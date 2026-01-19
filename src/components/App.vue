@@ -12,12 +12,13 @@
                 用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，但仍不太精通。<br>
                 目前能熟练使用的一些前沿 <b>语言/技术栈</b>：<br>
                 <BlockLabel>Python/GDScript</BlockLabel>
-                <BlockLabel>Type/JavaScript</BlockLabel>
-                <BlockLabel>C#/Java</BlockLabel>
+                <BlockLabel>(Type/Java)Script</BlockLabel>
+                <BlockLabel>C#</BlockLabel>
                 <VerticalLine />
-                <BlockLabel>Webpack</BlockLabel>
+                <BlockLabel>Vue - Webpack</BlockLabel>
                 <BlockLabel>Electron</BlockLabel>
-                <BlockLabel>Flask</BlockLabel>
+                <BlockLabel>Flask/httpx</BlockLabel>
+                <BlockLabel>TMod - NET</BlockLabel>
             </DescriptionParagraph>
             <DescriptionParagraph title="展望">
                 福瑞控，但是LGBT。<br>
@@ -27,6 +28,7 @@
                 <OutLink href="oc.jpg">
                     <template #prompt>
                         <img src="oc.jpg" class="oc-preview">
+                        <img src="avatars/shrimp-background.jpg" class="oc-preview">
                     </template>
                     自设/OC：希利普医生
                 </OutLink><br>
@@ -61,7 +63,6 @@
 import { ref, onMounted } from "vue";
 import BackgroundImage from "./BackgroundImage.vue";
 import FullscreenSize from "./FullscreenSize.vue";
-import BlockLabel from "./BlockLabel.vue";
 import DescriptionParagraph from "./DescriptionParapragh.vue";
 import VerticalLine from "./VerticalLine.vue";
 import OutLink from "./OutLink.vue";
@@ -70,6 +71,7 @@ import ProjectCard from "./ProjectCard.vue";
 import BigTitle from "./BigTitle.vue";
 import SearchE621 from "./SearchE621.vue";
 import SelfInformation from "./SelfInformation.vue";
+import BlockLabel from "./BlockLabel.vue";
 const bluring = ref(false);
 onMounted(() => {
     const structuredData = {
@@ -206,6 +208,7 @@ const projects: ProjectData[] = [
 .oc-preview {
     width: 200px;
     display: block;
+    margin: 5px;
 }
 
 .text-left {
