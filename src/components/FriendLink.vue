@@ -42,6 +42,7 @@ function openWebsite() {
     width: var(--s);
     height: var(--s);
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .info {

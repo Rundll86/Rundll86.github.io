@@ -3,12 +3,7 @@
         <AvatarImage />
         <NameLabel>陨落基围虾</NameLabel>
         <div>
-            <BlockLabel>完美主义</BlockLabel>
-            <BlockLabel>Web</BlockLabel>
-            <BlockLabel>桌面</BlockLabel>
-            <BlockLabel>游戏</BlockLabel>
-            <BlockLabel>福瑞控</BlockLabel>
-            <BlockLabel>SolariiX</BlockLabel>
+            <BlockLabel v-for="label in labels" :key="label">{{ label }}</BlockLabel>
         </div>
         <CatcherText>好看的皮囊千篇一律，有趣的灵魂万里挑一</CatcherText>
     </div>
@@ -18,6 +13,14 @@ import AvatarImage from "./AvatarImage.vue";
 import NameLabel from "./NameLabel.vue";
 import BlockLabel from "./BlockLabel.vue";
 import CatcherText from "./CatcherText.vue";
+
+const labels: string[] = [
+    "完美主义",
+    "桌面/Web全栈/游戏开发",
+    "福瑞控",
+    "SolariiX",
+    "Roguelike重度爱好者"
+]
 </script>
 <style scoped>
 .info {

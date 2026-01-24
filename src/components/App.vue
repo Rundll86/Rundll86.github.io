@@ -11,20 +11,19 @@
             <DescriptionParagraph title="技能">
                 用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，但仍不太精通。<br>
                 目前能熟练使用的一些前沿 <b>语言/技术栈</b>：<br>
-                <BlockLabel>Python/GDScript</BlockLabel>
-                <BlockLabel>(Type/Java)Script</BlockLabel>
-                <BlockLabel>C#</BlockLabel>
+                语言<BlockLabel v-for="language in languages" :key="language">{{ language }}</BlockLabel>
                 <VerticalLine />
-                <BlockLabel>Vue - Webpack</BlockLabel>
-                <BlockLabel>Electron</BlockLabel>
-                <BlockLabel>Flask/httpx</BlockLabel>
-                <BlockLabel>TMod - NET</BlockLabel>
+                技术栈<BlockLabel v-for="framework in frameworks" :key="framework">{{ framework }}</BlockLabel>
+                <br>
+                正在学习：
+                <BlockLabel v-for="learning in learnings" :key="learning">{{ learning }}</BlockLabel>
             </DescriptionParagraph>
             <DescriptionParagraph title="展望">
-                福瑞控，但是LGBT。<br>
-                推：
-                <SearchE621 target="Von Lycaon">冯·莱卡恩</SearchE621>
-                <SearchE621 target="Death (Puss in Boots)">The Death</SearchE621><br>
+                福瑞控，LGBT。<br>
+                推：<br>
+                <FriendLink :people="specialFriends.lycaon" />
+                <FriendLink :people="specialFriends.theDeath" />
+                <br>
                 <OutLink href="oc.jpg">
                     <template #prompt>
                         <img src="oc.jpg" class="oc-preview">
@@ -79,7 +78,6 @@ import OutLink from "./OutLink.vue";
 import HorizontalLine from "./HorizontalLine.vue";
 import ProjectCard from "./ProjectCard.vue";
 import BigTitle from "./BigTitle.vue";
-import SearchE621 from "./SearchE621.vue";
 import SelfInformation from "./SelfInformation.vue";
 import BlockLabel from "./BlockLabel.vue";
 import FriendLink from "./FriendLink.vue";
@@ -120,6 +118,23 @@ window.addEventListener("mousemove", (e) => {
     window.mouse.value = [e.clientX, e.clientY];
 });
 
+const languages: string[] = [
+    "Python/GDScript",
+    "(Type/Java)Script",
+    "C#/Rust",
+]
+const frameworks: string[] = [
+    "Vue - Webpack",
+    "Electron&packager",
+    "Flask/httpx",
+    "TMod - NET",
+]
+const learnings: string[] = [
+    "React - Vite",
+    "tauri",
+    "Hono.js",
+    "2D骨骼动画",
+]
 const studios: PeopleDescriptor[] = [
     {
         name: "SolariiX",
@@ -152,6 +167,20 @@ const justConnections: PeopleDescriptor[] = [
         website: "https://lljl00982.pages.dev/",
     },
 ];
+const specialFriends = {
+    lycaon: {
+        name: "冯·莱卡恩",
+        website: "https://e621.net/posts?tags=von_lycaon",
+        description: "哎呀主播你怎么这么帅🥰看得我春水都要泛滥了🥰",
+        avatar: "lycaon"
+    },
+    theDeath: {
+        name: "The Death",
+        website: "https://e621.net/posts?tags=death_(puss_in_boots)",
+        description: "哎呀主播你怎么这么帅🥰看得我春水都要泛滥了🥰",
+        avatar: "death"
+    }
+}
 const friends: PeopleDescriptor[] = [
     {
         name: "阳毅",
