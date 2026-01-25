@@ -162,10 +162,6 @@ const justConnections: PeopleDescriptor[] = [
         website: "https://lanwywritexu.github.io/",
         description: "不要看着我以为我很傻，其实我一点也不聪明。"
     },
-    {
-        name: "lljl00982",
-        website: "https://lljl00982.pages.dev/",
-    },
 ];
 const specialFriends = {
     lycaon: {
