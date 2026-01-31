@@ -36,6 +36,7 @@ function openWebsite() {
     border-color: white;
     transform: scale(110%) translateY(-5px);
     backdrop-filter: blur(20px);
+    cursor: pointer;
 }
 
 .avatar {
