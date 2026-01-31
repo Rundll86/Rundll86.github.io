@@ -51,16 +51,24 @@ function openWebsite() {
     flex-direction: column;
     justify-content: center;
     text-align: left;
+    overflow: hidden;
 }
 
 .name {
-    color: white;
     font-weight: bold;
     font-size: 18px;
+    text-wrap-mode: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .description {
-    color: rgb(225, 225, 225);
+    color: rgb(25, 25, 25);
     font-size: 14px;
+    text-wrap-mode: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 </style>
