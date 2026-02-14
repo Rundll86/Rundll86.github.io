@@ -13,7 +13,9 @@ function openWebsite() {
 </script>
 <template>
     <div class="friend-link" @click="openWebsite">
-        <img v-if="avatarLink" :src="`friends/${avatarLink}.jpg`" class="avatar">
+        <div class="avatar-wrapper">
+            <img v-if="avatarLink" :src="`friends/${avatarLink}.jpg`" class="avatar">
+        </div>
         <div class="info">
             <span class="name">{{ people.name }}</span>
             <span class="description">{{ people.description }}</span>
@@ -22,10 +24,10 @@ function openWebsite() {
 </template>
 <style scoped>
 .friend-link {
-    --s: 75px;
     display: inline-flex;
+    align-items: center;
     border: transparent 2px solid;
-    border-radius: var(--s);
+    border-radius: 100vw;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.1);
     margin: 20px;
@@ -39,9 +41,16 @@ function openWebsite() {
     cursor: pointer;
 }
 
+.avatar-wrapper {
+    --s: 75px;
+    width: 75px;
+    height: 75px;
+    aspect-ratio: 1;
+}
+
 .avatar {
-    width: var(--s);
-    height: var(--s);
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -65,11 +74,7 @@ function openWebsite() {
 }
 
 .description {
-    color: rgb(25, 25, 25);
+    color: white;
     font-size: 14px;
-    text-wrap-mode: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 </style>

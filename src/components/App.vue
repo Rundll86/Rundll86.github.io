@@ -1,5 +1,5 @@
 <template>
-    <BackgroundImage :disable="false" :blur="bluring" />
+    <!-- <BackgroundImage :disable="false" :blur="bluring" /> -->
     <FullscreenSize class="container-app">
         <div class="main" :class="{ bluring }" @mouseover="bluring = true" @mouseleave="bluring = false">
             <SelfInformation />
@@ -11,9 +11,13 @@
             <DescriptionParagraph title="技能">
                 用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，但仍不太精通。<br>
                 目前能熟练使用的一些前沿 <b>语言/技术栈</b>：<br>
-                语言<BlockLabel v-for="language in languages" :key="language">{{ language }}</BlockLabel>
+                <span>
+                    语言<BlockLabel v-for="language in languages" :key="language">{{ language }}</BlockLabel>
+                </span>
                 <VerticalLine />
-                技术栈<BlockLabel v-for="framework in frameworks" :key="framework">{{ framework }}</BlockLabel>
+                <span>
+                    技术栈<BlockLabel v-for="framework in frameworks" :key="framework">{{ framework }}</BlockLabel>
+                </span>
                 <br>
                 正在学习：
                 <BlockLabel v-for="learning in learnings" :key="learning">{{ learning }}</BlockLabel>
@@ -227,14 +231,15 @@ const projects: ProjectData[] = [
     width: 100%;
     height: auto;
     position: absolute;
+    background-image: url("./assets/background.jpg");
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-x: 50%;
 }
 
 .main.bluring {
     opacity: 1;
-}
-
-.friend-links {
-    max-width: 50vw;
 }
 
 .main {
