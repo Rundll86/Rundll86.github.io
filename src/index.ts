@@ -7,7 +7,7 @@ app.mixin({
     data() {
         return {
             window
-        }
+        };
     }
 });
 app.mount("#app");

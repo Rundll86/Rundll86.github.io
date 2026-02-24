@@ -8,7 +8,7 @@ export default {
     fs: {
         avatar: "https://avatars.githubusercontent.com/u/108387605",
         name: "FallingShrimp",
-        url: "https://rundll86.github.io",
+        url: "https://fshrimp.top",
         label: ["开发", "文档"]
     },
     ce: {

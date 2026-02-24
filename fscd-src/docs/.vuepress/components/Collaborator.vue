@@ -33,7 +33,7 @@ export default {
             name: infos[this.user].name || infos.fs.name,
             label: infos[this.user].label || infos.fs.label,
             url: infos[this.user].url || infos.fs.url
-        }
+        };
     },
     mounted() {
         this.$refs.root.addEventListener("mouseenter", () => {

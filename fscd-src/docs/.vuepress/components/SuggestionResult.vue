@@ -20,13 +20,13 @@ export default {
     methods: {
         getState() {
             if (this.completed) {
-                return "已完成"
+                return "已完成";
             } else {
-                return "处理中"
+                return "处理中";
             }
         }
     }
-}
+};
 </script>
 <style scoped>
 hr {

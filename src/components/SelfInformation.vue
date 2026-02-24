@@ -20,7 +20,7 @@ const labels: string[] = [
     "福瑞控",
     "SolariiX",
     "Roguelike重度爱好者"
-]
+];
 </script>
 <style scoped>
 .info {

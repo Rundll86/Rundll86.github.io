@@ -3,6 +3,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import pluginVue from "eslint-plugin-vue";
 import { defineConfig } from "eslint/config";
+
 export default defineConfig([
     { files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"], plugins: { js }, extends: ["js/recommended"] },
     { files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"], languageOptions: { globals: globals.browser } },
@@ -21,6 +22,7 @@ export default defineConfig([
         rules: {
             quotes: ["error", "double"],
             indent: ["error", 4],
+            semi: ["error", "always"],
             "vue/multi-word-component-names": "off"
         }
     }

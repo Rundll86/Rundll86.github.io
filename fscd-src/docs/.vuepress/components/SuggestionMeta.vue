@@ -45,9 +45,9 @@ export default {
         return {
             files: this.file.split(",").filter(Boolean).map(file => file.trim()),
             results: this.result.split(",").filter(Boolean).map(result => result.trim())
-        }
+        };
     }
-}
+};
 </script>
 <style scoped>
 .topic {

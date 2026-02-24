@@ -55,26 +55,25 @@
             <BigTitle>友情链接</BigTitle><br>
             <span>相关工作室</span>
             <div class="friend-links">
-                <FriendLink v-for="people in studios" :people="people" />
+                <FriendLink v-for="people in studios" :people="people" :key="people.name" />
             </div>
             <span>高山流水，知音之交</span>
             <div class="friend-links">
-                <FriendLink v-for="people in friends" :people="people" />
+                <FriendLink v-for="people in friends" :people="people" :key="people.name" />
             </div>
             <span>三人行，必有我师焉</span>
             <div class="friend-links">
-                <FriendLink v-for="people in teachers" :people="people" />
+                <FriendLink v-for="people in teachers" :people="people" :key="people.name" />
             </div>
             <span>友情链接</span>
             <div class="friend-links">
-                <FriendLink v-for="people in justConnections" :people="people" />
+                <FriendLink v-for="people in justConnections" :people="people" :key="people.name" />
             </div>
         </div>
     </FullscreenSize>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import BackgroundImage from "./BackgroundImage.vue";
 import FullscreenSize from "./FullscreenSize.vue";
 import DescriptionParagraph from "./DescriptionParapragh.vue";
 import VerticalLine from "./VerticalLine.vue";
@@ -92,8 +91,8 @@ onMounted(() => {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "陨落基围虾",
-        "url": "https://rundll86.github.io/",
-        "image": "https://rundll86.github.io/avatar.png",
+        "url": "https://fshrimp.top/",
+        "image": "https://fshrimp.top/avatar.png",
         "sameAs": [
             "https://space.bilibili.com/649063815",
             "https://github.com/Rundll86"
@@ -126,19 +125,19 @@ const languages: string[] = [
     "Python/GDScript",
     "(Type/Java)Script",
     "C#/Rust",
-]
+];
 const frameworks: string[] = [
     "Vue - Webpack",
     "Electron&packager",
     "Flask/httpx",
     "TMod - NET",
-]
+];
 const learnings: string[] = [
     "React - Vite",
     "tauri",
     "Hono.js",
     "2D骨骼动画",
-]
+];
 const studios: PeopleDescriptor[] = [
     {
         name: "SolariiX",
@@ -180,7 +179,7 @@ const specialFriends = {
         description: "哎呀主播你怎么这么帅🥰看得我春水都要泛滥了🥰",
         avatar: "death"
     }
-}
+};
 const friends: PeopleDescriptor[] = [
     {
         name: "阳毅",
