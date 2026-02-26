@@ -8,9 +8,9 @@
                 &nbsp;
             </div>
             <div class="cuts">
-                <div class="cut" style="--count: 1;--pad-left:14px">Stack</div>
+                <div class="cut" style="--count: 1;--pad-left:14px">技术栈</div>
                 <div class="cut gaper" style="--count: 2">{{ techStack }}</div>
-                <div class="cut" style="--count: 3">Classify</div>
+                <div class="cut" style="--count: 3">分类</div>
                 <div class="cut gaper" style="--count: 4">{{ category }}</div>
             </div>
         </div>

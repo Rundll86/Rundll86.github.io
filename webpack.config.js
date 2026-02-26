@@ -3,6 +3,7 @@ const { VueLoaderPlugin } = require("vue-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackBar = require("webpackbar");
 const CopyPlugin = require("copy-webpack-plugin");
+
 /**
  * @type {import('webpack').Configuration}
  */
@@ -32,6 +33,14 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ["vue-style-loader", "css-loader"]
+            },
+            {
+                test: /\.(jpg|jpeg|png|gif)$/i,
+                type: "asset/resource",
+                generator: {
+                    filename: "[name].[hash][ext]",
+                    publicPath: ""
+                }
             }
         ]
     },

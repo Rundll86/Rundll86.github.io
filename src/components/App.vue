@@ -1,7 +1,6 @@
 <template>
-    <!-- <BackgroundImage :disable="false" :blur="bluring" /> -->
     <FullscreenSize class="container-app">
-        <div class="main" :class="{ bluring }" @mouseover="bluring = true" @mouseleave="bluring = false">
+        <div class="main">
             <SelfInformation />
             <DescriptionParagraph title="关于我">
                 你好！<br>
@@ -85,7 +84,7 @@ import SelfInformation from "./SelfInformation.vue";
 import BlockLabel from "./BlockLabel.vue";
 import FriendLink from "./FriendLink.vue";
 import { PeopleDescriptor, ProjectData } from "src/structs";
-const bluring = ref(false);
+
 onMounted(() => {
     const structuredData = {
         "@context": "https://schema.org",
@@ -102,13 +101,14 @@ onMounted(() => {
             "@type": "Organization",
             "name": "SolariiX"
         },
-        "description": "FallingShrimp的个人网站，展示技术项目、技能和兴趣爱好。全栈/桌面开发爱好者，专注Web技术、游戏开发和福瑞文化。"
+        "description": "FallingShrimp的个人网站，展示技术项目、技能和兴趣爱好。全栈/桌面开发爱好者，专注Web技术、游戏开发。"
     };
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.textContent = JSON.stringify(structuredData);
     document.head.appendChild(script);
 });
+
 function copy(data: string) {
     try {
         window.navigator.clipboard.writeText(data);
@@ -204,15 +204,15 @@ const projects: ProjectData[] = [
         title: "ScriptEditor",
         techStack: "Vue",
         category: "工具",
-        description: "基于界面的AVG游戏剧本设计器，让不会写代码的文案师也能组织剧本。"
+        description: "基于GUI的游戏剧本设计器，让不会写代码的文案师也能组织游戏剧本。"
     },
     {
         website: "/fs-context",
         image: "fsc.jpg",
         title: "FS-Context",
-        techStack: "TS",
-        category: "开发框架",
-        description: "一个开发上下文，使用TS类型提示和全新的脚手架开发某软件的通用拓展。"
+        techStack: "TypeScript",
+        category: "框架",
+        description: "类型安全且灵活易用的框架模板，用于开发某软件的通用拓展程序。"
     },
     {
         website: "https://github.com/Rundll86/ModLoaderNew",
@@ -221,6 +221,14 @@ const projects: ProjectData[] = [
         techStack: "Python",
         category: "游戏",
         description: "将自定义模型注入原神客户端，基于GIMI。封装更多工具，可能违法。"
+    },
+    {
+        website: "https://github.com/Rundll86/nine",
+        image: "nine.jpg",
+        title: "Nine-9",
+        techStack: "Vanilla",
+        category: "框架",
+        description: "一个轻量、超高性能、类型安全的 Vanilla DOM 响应式 UI 框架。"
     }
 ];
 </script>

@@ -1,7 +1,6 @@
 <template>
     <FullscreenSize>
-        <img v-if="!disable" src="background.jpg" :class="{ blur }">
-        <div v-else class="placeholder"></div>
+        <img v-if="!disable" src="./assets/background.jpg" :class="{ blur }">
     </FullscreenSize>
 </template>
 <style scoped>
@@ -9,7 +8,6 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
     filter: blur(0);
 }
 

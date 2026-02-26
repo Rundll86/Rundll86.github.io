@@ -14,8 +14,7 @@ export default defineConfig([
         ignores: [
             "**/node_modules/**",
             "**/dist/**",
-            "**/fs-context/**",
-            "webpack.config.js"
+            "**/fs-context/**"
         ]
     },
     {
@@ -24,6 +23,15 @@ export default defineConfig([
             indent: ["error", 4],
             semi: ["error", "always"],
             "vue/multi-word-component-names": "off"
+        }
+    },
+    {
+        files: ["webpack.config.js"],
+        languageOptions: {
+            globals: globals.node
+        },
+        rules: {
+            "@typescript-eslint/no-require-imports": "off"
         }
     }
 ]);
