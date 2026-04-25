@@ -1,9 +1,9 @@
-// import "./common.css";
+import "./common.css";
 import * as Vue from "vue";
-// import App from "./components/App.vue";
-import Fallen from "./components/Fallen.vue";
+import App from "./components/App.vue";
+// import Fallen from "./components/Fallen.vue";
 
-const app = Vue.createApp(Fallen);
+const app = Vue.createApp(App);
 app.mixin({
     data() {
         return {
