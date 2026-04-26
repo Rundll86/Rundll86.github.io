@@ -73,7 +73,7 @@
             <div class="friend-links">
                 <FriendLink v-for="people in teachers" :people="people" :key="people.name" />
             </div>
-            <span>友情链接</span>
+            <span>蛋糕是个谎言</span>
             <div class="friend-links">
                 <FriendLink v-for="people in justConnections" :people="people" :key="people.name" />
             </div>
