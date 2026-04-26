@@ -16,7 +16,7 @@ import CatcherText from "./CatcherText.vue";
 
 const labels: string[] = [
     "完美主义",
-    "桌面/Web全栈/游戏开发",
+    "Web App 全栈 / 游戏开发",
     "福瑞控",
     "SolariiX",
     "Roguelike重度爱好者"

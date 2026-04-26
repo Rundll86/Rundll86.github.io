@@ -4,11 +4,13 @@
             <SelfInformation />
             <DescriptionParagraph title="关于我">
                 你好！<br>
-                我是<b>陨落基围虾</b>，来自SolariiX的 <i>全栈/桌面</i> 开发爱好者。<br>
+                我是 <b>FallingShrimp</b>，来自SolariiX的 <b>全栈/游戏</b> 开发爱好者。<br>
                 有梦想，但仍在学习的路上，尚无法实现。
             </DescriptionParagraph>
             <DescriptionParagraph title="技能">
-                用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，但不太精通。<br>
+                我讨厌 <b>vibe-coding</b>。<br>
+                我用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，现不太精通。<br>
+                我热爱设计 <b>类型安全</b> / <b>高度IntelliSense</b> 的开发框架。<br>
                 <AlignBox>
                     <span>
                         语言
@@ -21,9 +23,13 @@
                         <WhiteSpace :width="10" />
                         <BlockLabel v-for="framework in frameworks" :key="framework">{{ framework }}</BlockLabel>
                     </span>
-                </AlignBox><br>
-                正在学习：
-                <BlockLabel v-for="learning in learnings" :key="learning">{{ learning }}</BlockLabel>
+                    <br>
+                    <span>
+                        正在学习
+                        <WhiteSpace :width="10" />
+                        <BlockLabel v-for="learning in learnings" :key="learning">{{ learning }}</BlockLabel>
+                    </span>
+                </AlignBox>
             </DescriptionParagraph>
             <DescriptionParagraph title="XP">
                 福瑞控，LGBT。<br>
@@ -131,17 +137,17 @@ const languages: string[] = [
     "GDScript / Python"
 ];
 const frameworks: string[] = [
-    "Vue (Webpack/tsup)",
+    "Vue / Nine9 (Webpack/tsup)",
     "Hono.js / Flask",
     "Tauri",
     "Unity / Godot.NET",
-    "TModLoader"
+    "TModLoader",
 ];
 const learnings: string[] = [
-    "React - Vite",
-    "tauri",
-    "Hono.js",
+    "片段着色器",
     "2D骨骼动画",
+    "FSM Animator",
+    "Tauri"
 ];
 const studios: PeopleDescriptor[] = [
     {
