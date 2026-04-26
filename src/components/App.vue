@@ -77,6 +77,12 @@
             <div class="friend-links">
                 <FriendLink v-for="people in justConnections" :people="people" :key="people.name" />
             </div>
+            <span>本网站的别名</span><br>
+            <AlignBox>
+                <template v-for="alias in aliases">
+                    <OutLink :href="`https://${alias}`">{{ alias }}</OutLink><br>
+                </template>
+            </AlignBox>
         </div>
     </FullscreenSize>
 </template>
@@ -131,6 +137,13 @@ window.addEventListener("mousemove", (e) => {
     window.mouse.value = [e.clientX, e.clientY];
 });
 
+const aliases = [
+    "fshrimp.top",
+    "von-lycaon.我爱你",
+    "1145141919810.website",
+    "91vip.website",
+    "917891789178.xyz"
+]
 const languages: string[] = [
     "TypeScript / JavaScript",
     "Rust / C#",
