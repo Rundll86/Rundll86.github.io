@@ -106,12 +106,12 @@ onMounted(() => {
             "https://space.bilibili.com/649063815",
             "https://github.com/Rundll86"
         ],
-        "jobTitle": "全栈/桌面开发爱好者",
+        "jobTitle": "全栈/游戏开发爱好者",
         "worksFor": {
             "@type": "Organization",
             "name": "SolariiX"
         },
-        "description": "FallingShrimp的个人网站，展示技术项目、技能和兴趣爱好。全栈/桌面开发爱好者，专注Web技术、游戏开发。"
+        "description": "FallingShrimp的个人网站，展示技术项目、技能和兴趣爱好。全栈/游戏开发爱好者。"
     };
     const script = document.createElement("script");
     script.type = "application/ld+json";
