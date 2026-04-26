@@ -8,25 +8,25 @@
                 有梦想，但仍在学习的路上，尚无法实现。
             </DescriptionParagraph>
             <DescriptionParagraph title="技能">
-                用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，但仍不太精通。<br>
-                目前能熟练使用的一些前沿 <b>语言/技术栈</b>：<br>
-                <span>
-                    语言<BlockLabel v-for="language in languages" :key="language">{{ language }}</BlockLabel>
-                </span>
-                <VerticalLine />
-                <span>
-                    技术栈<BlockLabel v-for="framework in frameworks" :key="framework">{{ framework }}</BlockLabel>
-                </span>
-                <br>
+                用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，但不太精通。<br>
+                <AlignBox>
+                    <span>
+                        语言
+                        <WhiteSpace :width="10" />
+                        <BlockLabel v-for="language in languages" :key="language">{{ language }}</BlockLabel>
+                    </span>
+                    <br>
+                    <span>
+                        技术栈
+                        <WhiteSpace :width="10" />
+                        <BlockLabel v-for="framework in frameworks" :key="framework">{{ framework }}</BlockLabel>
+                    </span>
+                </AlignBox><br>
                 正在学习：
                 <BlockLabel v-for="learning in learnings" :key="learning">{{ learning }}</BlockLabel>
             </DescriptionParagraph>
-            <DescriptionParagraph title="展望">
+            <DescriptionParagraph title="XP">
                 福瑞控，LGBT。<br>
-                推：<br>
-                <FriendLink :people="specialFriends.lycaon" />
-                <FriendLink :people="specialFriends.theDeath" />
-                <br>
                 <OutLink href="oc.jpg">
                     <template #prompt>
                         <img src="oc.jpg" class="oc-preview">
@@ -34,7 +34,10 @@
                     </template>
                     自设/OC：希利普医生
                 </OutLink><br>
-                大尾巴白狼疑似命中注定。
+                大尾巴白狼疑似命中注定。<br>
+                推荐观看：<br>
+                <FriendLink :people="specialFriends.lycaon" />
+                <FriendLink :people="specialFriends.theDeath" />
             </DescriptionParagraph>
             <DescriptionParagraph title="联系方式">
                 邮箱：<OutLink href="mailto:3161880837@qq.com">3161880837@qq.com</OutLink><br>
@@ -75,7 +78,6 @@
 import { ref, onMounted } from "vue";
 import FullscreenSize from "./FullscreenSize.vue";
 import DescriptionParagraph from "./DescriptionParapragh.vue";
-import VerticalLine from "./VerticalLine.vue";
 import OutLink from "./OutLink.vue";
 import HorizontalLine from "./HorizontalLine.vue";
 import ProjectCard from "./ProjectCard.vue";
@@ -84,6 +86,8 @@ import SelfInformation from "./SelfInformation.vue";
 import BlockLabel from "./BlockLabel.vue";
 import FriendLink from "./FriendLink.vue";
 import { PeopleDescriptor, ProjectData } from "src/structs";
+import AlignBox from "./AlignBox.vue";
+import WhiteSpace from "./WhiteSpace.vue";
 
 onMounted(() => {
     const structuredData = {
@@ -122,15 +126,16 @@ window.addEventListener("mousemove", (e) => {
 });
 
 const languages: string[] = [
-    "Python/GDScript",
-    "(Type/Java)Script",
-    "C#/Rust",
+    "TypeScript / JavaScript",
+    "Rust / C#",
+    "GDScript / Python"
 ];
 const frameworks: string[] = [
-    "Vue - Webpack",
-    "Electron&packager",
-    "Flask/httpx",
-    "TMod - NET",
+    "Vue (Webpack/tsup)",
+    "Hono.js / Flask",
+    "Tauri",
+    "Unity / Godot.NET",
+    "TModLoader"
 ];
 const learnings: string[] = [
     "React - Vite",
