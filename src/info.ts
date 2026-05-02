@@ -54,6 +54,11 @@ export const cakeIsLie: PeopleDescriptor[] = [
         website: "https://lanwywritexu.github.io/",
         description: "不要看着我以为我很傻，其实我一点也不聪明。"
     },
+    {
+        name: "小王子",
+        website: "tech.zeechow.eu.cc",
+        description: "蛋糕是个谎言"
+    }
 ];
 export const specialFriends: Record<"lycaon" | "death", PeopleDescriptor> = {
     lycaon: {
