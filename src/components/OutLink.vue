@@ -1,7 +1,6 @@
 <template>
-    <a target="_blank" :href="href" @mouseover="mouseIn = true" @mouseleave="mouseIn = false">
-        <SuspensionPrompt v-if="useSlots().prompt" :x="window.mouse.value[0]" :y="window.mouse.value[1]"
-            :show="mouseIn">
+    <a target="_blank" :href="href" @mouseover="mouseIn = true" @mouseout="mouseIn = false">
+        <SuspensionPrompt v-if="useSlots().prompt" :x="mouse[0]" :y="mouse[1]" :show="mouseIn">
             <slot name="prompt"></slot>
         </SuspensionPrompt>
         <slot></slot>
@@ -10,7 +9,11 @@
 <script setup lang="ts">
 import { ref, useSlots } from "vue";
 import SuspensionPrompt from "./SuspensionPrompt.vue";
+import { useMouse } from "@/composers/useMouse";
+
 defineProps({ href: String, unimportant: Boolean });
+
+const mouse = useMouse();
 const mouseIn = ref(false);
 </script>
 <style scoped>

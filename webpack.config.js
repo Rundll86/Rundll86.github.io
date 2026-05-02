@@ -3,6 +3,7 @@ const { VueLoaderPlugin } = require("vue-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackBar = require("webpackbar");
 const CopyPlugin = require("copy-webpack-plugin");
+const TSCONFIG = require("./tsconfig.json");
 
 /**
  * @type {import('webpack').Configuration}
@@ -46,9 +47,9 @@ module.exports = {
     },
     resolve: {
         extensions: [".ts", ".js"],
-        alias: {
-            "@": path.resolve(__dirname, "src")
-        }
+        alias: Object.fromEntries(Object.entries(TSCONFIG.compilerOptions.paths).map(
+            ([key, value]) => [path.dirname(key), path.resolve(path.dirname(value[0]))]
+        ))
     },
     plugins: [
         new VueLoaderPlugin(),

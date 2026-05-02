@@ -1,19 +1,18 @@
 {
     "compilerOptions": {
         "target": "esnext",
-        "module": "commonjs",
+        "module": "esnext",
         "strict": true,
         "esModuleInterop": true,
         "moduleResolution": "node",
         "baseUrl": ".",
-        "types": [
-            "webpack",
-            "node",
-            "vue"
-        ]
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ]
+        }
     },
     "include": [
-        "src/**/*",
-        "./webpack.config.js"
+        "src/**/*"
     ]
 }

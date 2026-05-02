@@ -13,14 +13,7 @@ import AvatarImage from "./AvatarImage.vue";
 import NameLabel from "./NameLabel.vue";
 import BlockLabel from "./BlockLabel.vue";
 import CatcherText from "./CatcherText.vue";
-
-const labels: string[] = [
-    "完美主义",
-    "Web 全栈 / 游戏开发",
-    "福瑞控 / Gay(Bottom)",
-    "SolariiX",
-    "Rogue / 类银 / 类魂 重度爱好者"
-];
+import { labels } from "@/info";
 </script>
 <style scoped>
 .info {

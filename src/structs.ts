@@ -3,6 +3,7 @@ export interface PeopleDescriptor {
     website?: string;
     avatar?: string;
     description?: string;
+    dangerous?: true;
 }
 export interface ProjectData {
     website: string;

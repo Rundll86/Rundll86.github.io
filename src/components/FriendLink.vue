@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { openWebsite } from "@/utils";
 import { PeopleDescriptor } from "src/structs";
 import { computed } from "vue";
 
@@ -6,13 +7,9 @@ const props = defineProps<{
     people: PeopleDescriptor;
 }>();
 const avatarLink = computed(() => props.people.avatar || props.people.name);
-
-function openWebsite() {
-    if (props.people.website) window.open(props.people.website);
-}
 </script>
 <template>
-    <div class="friend-link" @click="openWebsite">
+    <div class="friend-link" @click="openWebsite(people.website)">
         <div class="avatar-wrapper">
             <img v-if="avatarLink" :src="`friends/${avatarLink}.jpg`" class="avatar">
         </div>
