@@ -12,7 +12,7 @@ img {
 }
 
 img.blur {
-    filter: blur(3px);
+    filter: blur(5px);
     transform: scale(1.02);
 }
 

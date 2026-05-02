@@ -1,6 +1,7 @@
 <template>
+    <BackgroundImage :blur="bluring" />
     <FullscreenSize class="container-app">
-        <div class="main">
+        <div class="main" @mouseover="bluring = true" @mouseout="bluring = false">
             <SelfInformation />
             <DescriptionParagraph title="关于我">
                 你好！<br>
@@ -100,6 +101,9 @@ import FriendLink from "./FriendLink.vue";
 import { PeopleDescriptor, ProjectData } from "src/structs";
 import AlignBox from "./AlignBox.vue";
 import WhiteSpace from "./WhiteSpace.vue";
+import BackgroundImage from "./BackgroundImage.vue";
+
+const bluring = ref(false);
 
 onMounted(() => {
     const structuredData = {
@@ -262,15 +266,6 @@ const projects: ProjectData[] = [
     width: 100%;
     height: auto;
     position: absolute;
-    background-image: url("./assets/background.jpg");
-    background-repeat: repeat-y;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position-x: 50%;
-}
-
-.main.bluring {
-    opacity: 1;
 }
 
 .main {
