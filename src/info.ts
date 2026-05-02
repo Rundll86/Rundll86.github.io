@@ -85,7 +85,7 @@ export const friends: PeopleDescriptor[] = [
     },
     {
         name: "TangDo158",
-        website: "https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/",
+        website: "https://github.com/TangDo158",
         description: "也许是情绪不够稳定（存疑）。"
     },
     {
