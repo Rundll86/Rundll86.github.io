@@ -3,7 +3,7 @@ import { PeopleDescriptor, ProjectData } from "./structs";
 export const labels: string[] = [
     "完美主义",
     "Web 全栈 / 游戏开发",
-    "福瑞控 / Gay(Bottom)",
+    "变态兽人控 / Gay(Bottom)",
     "SolariiX",
     "Rogue / 类银 / 类魂 重度爱好者"
 ];
