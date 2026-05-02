@@ -7,13 +7,14 @@ export const labels: string[] = [
     "SolariiX",
     "Rogue / 类银 / 类魂 重度爱好者"
 ];
-export const aliases = [
-    "fshrimp.top",
-    "von-lycaon.我爱你",
-    "1145141919810.website",
-    "91vip.website",
-    "917891789178.xyz"
-]
+export const email = "3161880837@qq.com";
+export const qq = 3161880837;
+export const otherContactWay: [string, string][] = [
+    ["哔哩哔哩", "https://space.bilibili.com/649063815"],
+    ["Github", "https://github.com/Rundll86"],
+    ["X/Twitter", "https://x.com/fallingshrimp"]
+];
+
 export const languages: string[] = [
     "TypeScript / JavaScript",
     "Rust / C#",
@@ -53,7 +54,7 @@ export const teachers: PeopleDescriptor[] = [
         avatar: "FurryR"
     },
 ];
-export const justConnections: PeopleDescriptor[] = [
+export const cakeIsLie: PeopleDescriptor[] = [
     {
         name: "Cyberexplorer",
         website: "https://lanwywritexu.github.io/",
@@ -126,4 +127,12 @@ export const projects: ProjectData[] = [
         category: "框架",
         description: "一个轻量、超高性能、类型安全的 Vanilla DOM 响应式 UI 框架。"
     }
+];
+
+export const aliases = [
+    "fshrimp.top",
+    "von-lycaon.我爱你",
+    "1145141919810.website",
+    "91vip.website",
+    "917891789178.xyz"
 ];

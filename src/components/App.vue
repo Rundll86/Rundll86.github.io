@@ -50,8 +50,7 @@
                 邮箱：<OutLink href="mailto:3161880837@qq.com">3161880837@qq.com</OutLink><br>
                 QQ：<OutLink @click="copy('3161880837')">3161880837</OutLink><br>
                 <div class="links">
-                    <OutLink href="https://space.bilibili.com/649063815">哔哩哔哩</OutLink>
-                    <OutLink class="link-2" href="https://github.com/Rundll86">Github</OutLink>
+                    <OutLink v-for="link in otherContactWay" :href="link[1]">{{ link[0] }}</OutLink>
                 </div>
             </DescriptionParagraph>
             <HorizontalLine />
@@ -78,7 +77,7 @@
             </div>
             <span>蛋糕是个谎言</span>
             <div class="friend-links">
-                <FriendLink v-for="people in justConnections" :people="people" :key="people.name" />
+                <FriendLink v-for="people in cakeIsLie" :people="people" :key="people.name" />
             </div>
             <span>本网站的别名</span><br>
             <AlignBox>
@@ -103,7 +102,7 @@ import FriendLink from "./FriendLink.vue";
 import AlignBox from "./AlignBox.vue";
 import WhiteSpace from "./WhiteSpace.vue";
 import BackgroundImage from "./BackgroundImage.vue";
-import { aliases, frameworks, friends, justConnections, languages, learnings, projects, specialFriends, studios, teachers } from "@/info";
+import { aliases, frameworks, friends, cakeIsLie, languages, learnings, otherContactWay, projects, specialFriends, studios, teachers } from "@/info";
 import { copy } from "@/utils";
 
 const bluring = ref(false);
