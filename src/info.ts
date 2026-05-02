@@ -112,12 +112,12 @@ export const projects: ProjectData[] = [
         description: "类型安全且灵活易用的框架模板，用于开发某软件的通用拓展程序。"
     },
     {
-        website: "https://github.com/Rundll86/ModLoaderNew",
-        image: "mln.jpg",
-        title: "ModLoaderNew",
+        website: "https://github.com/Rundll86/NDDrone-SDK",
+        image: "nds.jpg",
+        title: "NDDrone-SDK",
         techStack: "Python",
-        category: "游戏",
-        description: "将自定义模型注入原神客户端，基于GIMI。封装更多工具，可能违法。"
+        category: "软件",
+        description: "基于SSVEP BCI接口技术实现的 脑机接口-无人机飞控 桥接技术。"
     },
     {
         website: "https://github.com/Rundll86/nine",

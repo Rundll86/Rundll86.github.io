@@ -1,5 +1,5 @@
 <template>
-    <div class="project" @click="website ? window.open(website, '_blank') : null">
+    <div class="project" @click="openWebsite(website)">
         <img class="avatar" :src="image">
         <div class="description">
             <span class="title">{{ title }}</span><br>
@@ -17,6 +17,8 @@
     </div>
 </template>
 <script setup lang="ts">
+import { openWebsite } from '@/utils';
+
 defineProps({
     title: String,
     image: String,
