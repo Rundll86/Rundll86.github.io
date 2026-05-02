@@ -33,7 +33,7 @@
                 </AlignBox>
             </DescriptionParagraph>
             <DescriptionParagraph title="XP">
-                福瑞控，LGBT。<br>
+                福瑞控，Just a bottom.<br>
                 <OutLink href="oc.jpg">
                     <template #prompt>
                         <img src="oc.jpg" class="oc-preview">
