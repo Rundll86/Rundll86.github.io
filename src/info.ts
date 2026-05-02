@@ -39,12 +39,6 @@ export const studios: PeopleDescriptor[] = [
         website: "https://solariix.com/",
         description: "一家成立于2022年的独立游戏工作室。"
     },
-    {
-        name: "Yearnstudio",
-        description: "一家云端技术工作室，由一群热爱技术、追求创新的开发者、设计师和创作者组成。",
-        website: "https://yearn.studio",
-        avatar: "阳毅"
-    },
 ];
 export const teachers: PeopleDescriptor[] = [
     {
@@ -87,11 +81,6 @@ export const friends: PeopleDescriptor[] = [
         name: "TangDo158",
         website: "https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/",
         description: "也许是情绪不够稳定（存疑）。"
-    },
-    {
-        name: "主核Kernyr",
-        website: "https://www.hujiarong.site/",
-        description: "永远相信自己可以“不自量力”的改变世界。"
     },
 ];
 export const projects: ProjectData[] = [
