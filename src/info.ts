@@ -55,9 +55,10 @@ export const cakeIsLie: PeopleDescriptor[] = [
         description: "不要看着我以为我很傻，其实我一点也不聪明。"
     },
     {
-        name: "小王子",
+        name: "子昭的技术博客",
         website: "https://tech.zeechow.eu.cc",
-        description: "蛋糕是个谎言"
+        description: "",
+        avatar: "1"
     }
 ];
 export const specialFriends: Record<"lycaon" | "death", PeopleDescriptor> = {
@@ -87,6 +88,12 @@ export const friends: PeopleDescriptor[] = [
         website: "https://www.ccw.site/student/6107cafb76415b2f27e0d4d4/",
         description: "也许是情绪不够稳定（存疑）。"
     },
+    {
+        name: "翟十光的博客",
+        website: "https://zhaishis.com",
+        description: "春江花朝秋月夜，往往取酒还独倾",
+        avatar: "ssg"
+    }
 ];
 export const projects: ProjectData[] = [
     {
