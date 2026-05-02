@@ -56,7 +56,7 @@ export const cakeIsLie: PeopleDescriptor[] = [
     },
     {
         name: "小王子",
-        website: "tech.zeechow.eu.cc",
+        website: "https://tech.zeechow.eu.cc",
         description: "蛋糕是个谎言"
     }
 ];
