@@ -9,21 +9,7 @@
 yarn install
 ```
 
-## 启动开发服务器
-
-框架提供了两种调试拓展的方法。
-
-### 使用界面调试
-
-对于积木作用域和整体vm需求较小的拓展，可在WaterBox界面中调试。
-
-```bash
-yarn project dev ui
-```
-
-### 使用编辑器调试
-
-对于功能较复杂的拓展，可载入编辑器进行调试。
+## 使用编辑器调试
 
 ```bash
 yarn project dev extension
