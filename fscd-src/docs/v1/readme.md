@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-**FS-Context**是 ~~一个名叫**陨落基围虾**的Furry觉得做拓展简直就是种折磨于是闲着没事研究的~~ 一个易用的**TypeScript**上下文，用于开发通用于`TurboWarp/GandiIDE`等ScratchMod的积木拓展。提供了一些拓展开发中较常用的工具/脚手架。
+**FS-Context**是 ~~一个名叫**陨落基围虾**的变态兽人控觉得做拓展简直就是种折磨于是闲着没事研究的~~ 一个易用的**TypeScript**上下文，用于开发通用于`TurboWarp/GandiIDE`等ScratchMod的积木拓展。提供了一些拓展开发中较常用的工具/脚手架。
 
 本项目仅仅由于个人兴趣而完成，开发目的仅为探索，也许代码也有优化空间，欢迎各位大佬提出建议。
 
@@ -54,19 +54,19 @@ yarn install
 yarn project init
 ```
 
-2. 启动开发服务器
+1. 启动开发服务器
 
 ```bash
 yarn project dev ui
 ```
 
-3. 进行ESLint检查并自动修复
+1. 进行ESLint检查并自动修复
 
 ```bash
 yarn project lint -f
 ```
 
-4. 编译生产环境代码
+1. 编译生产环境代码
 
 ```bash
 yarn project build extension
