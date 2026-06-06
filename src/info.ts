@@ -30,7 +30,7 @@ export const frameworks: string[] = [
 export const learnings: string[] = [
 	"片段着色器",
 	"2D骨骼动画",
-	"FSM Animator",
+	"Animation Blend Tree",
 	"Tauri"
 ];
 export const studios: PeopleDescriptor[] = [
