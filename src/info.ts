@@ -110,7 +110,7 @@ export const projects: ProjectData[] = [
 		title: "Nine-9",
 		techStack: "Vanilla",
 		category: "框架",
-		description: "一个轻量、超高性能、类型安全的 Vanilla DOM 响应式 UI 框架。"
+		description: "一个轻量、高性能、类型安全、纯运行时的响应式 UserScript 框架。"
 	},
 	{
 		website: "https://github.com/Rundll86/BeastBeat-proxy",
@@ -118,7 +118,7 @@ export const projects: ProjectData[] = [
 		title: "Patreon-Proxy",
 		techStack: "Python",
 		category: "工具",
-		description: "将Patreon OAuth2流量代理，实现可绕过部分游戏的Patreon登录验证。"
+		description: "代理来自Patreon OAuth2 API的流量，实现绕过部分游戏的Patreon登录验证。"
 	},
 	{
 		website: "https://github.com/Rundll86/script-editor-2",
