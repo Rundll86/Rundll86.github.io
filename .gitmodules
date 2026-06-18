@@ -1,0 +1,3 @@
+[submodule "claude-thunder"]
+	path = claude-thunder
+	url = https://github.com/Rundll86/claude-thunder
