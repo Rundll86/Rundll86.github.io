@@ -9,7 +9,8 @@
 				有梦想，但仍在学习的路上，尚无法实现。
 			</DescriptionParagraph>
 			<DescriptionParagraph title="技能">
-				我讨厌 <b>vibe-coding</b>。<br>
+				我讨厌 <b>vibe-coding </b>
+				<OutLink href="/claude-thunder">......吗？</OutLink><br>
 				我用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，尚未发布，详见
 				<OutLink href="https://github.com/Rundll86?tab=repositories">Github</OutLink>。<br>
 				我热爱设计 <b>类型安全</b> / <b>高度IntelliSense</b> 的开发框架。<br>
