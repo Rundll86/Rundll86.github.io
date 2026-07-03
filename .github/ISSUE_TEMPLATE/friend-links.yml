@@ -37,10 +37,10 @@ body:
       label: 位置板块
       description: 你想放到什么板块上？
       options:
+        - 蛋糕是个谎言（路人）
         - XP（多半不会同意的...）
         - 相关工作室（团队友链）
         - 高山流水，知音之交（朋友才行）
         - 三人行，必有我师焉（师傅）
-        - 蛋糕是个谎言（路人）
     validations:
       required: true
