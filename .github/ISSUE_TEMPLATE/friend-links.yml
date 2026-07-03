@@ -7,30 +7,40 @@ body:
     id: name
     attributes:
       label: 名字
-      description: 你的用户名
+      description: 你的用户名。
     validations:
       required: true
-
   - type: input
     id: website
     attributes:
       label: 链接
-      description: 你的网站URL（完整）
+      description: 你的网站URL（完整）。
     validations:
       required: true
-
-  - type: input
-    id: description
-    attributes:
-      label: 描述
-      description: 要么描述你的站点用途，要么写一句你的格言
-    validations:
-      required: false
-
   - type: textarea
     id: image
     attributes:
       label: 头像
-      description: 1:1头像图片，或者指向一个URL
+      description: 1:1头像图片，或者指向一个URL。
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: 描述
+      description: 要么描述你的站点用途，要么写一句你的格言。
+    validations:
+      required: false
+  - type: dropdown
+    id: layout
+    attributes:
+      label: 位置板块
+      description: 你想放到什么板块上？
+      options:
+        - XP（多半不会同意的...）
+        - 相关工作室（团队友链）
+        - 高山流水，知音之交（朋友才行）
+        - 三人行，必有我师焉（师傅）
+        - 蛋糕是个谎言（路人）
     validations:
       required: true
