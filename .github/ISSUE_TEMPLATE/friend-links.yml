@@ -1,0 +1,36 @@
+name: "添加友链"
+description: 添加友链
+title: "【申请友链】你的用户名"
+labels: ["friend-links"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: 名字
+      description: 你的用户名
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: 链接
+      description: 你的网站URL（完整）
+    validations:
+      required: true
+
+  - type: input
+    id: description
+    attributes:
+      label: 描述
+      description: 要么描述你的站点用途，要么写一句你的格言
+    validations:
+      required: false
+
+  - type: textarea
+    id: image
+    attributes:
+      label: 头像
+      description: 1:1头像图片，或者指向一个URL
+    validations:
+      required: true
