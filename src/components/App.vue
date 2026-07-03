@@ -12,7 +12,8 @@
 				我讨厌 <b>vibe-coding </b>
 				<OutLink href="/claude-thunder">......吗？</OutLink><br>
 				我用 <b>Godot</b> 和 <b>Unity</b> 做过一些游戏，尚未发布，详见
-				<OutLink href="https://github.com/Rundll86?tab=repositories">Github</OutLink>。<br>
+				<OutLink href="https://github.com/Rundll86?tab=repositories&q=topic%3Agame&type=public">Github</OutLink>
+				。<br>
 				我热爱设计 <b>类型安全</b> / <b>高度IntelliSense</b> 的开发框架。<br>
 				<AlignBox>
 					<span>
