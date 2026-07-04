@@ -59,6 +59,10 @@ export const cakeIsLie: PeopleDescriptor[] = [
 		website: "https://tech.zeechow.eu.cc",
 		description: "",
 		avatar: "1"
+	},
+	{
+		name: "Lonely",
+		website: "https://v0id.ink",
 	}
 ];
 export const specialFriends: Record<"lycaon" | "death", PeopleDescriptor> = {
