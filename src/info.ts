@@ -63,6 +63,12 @@ export const cakeIsLie: PeopleDescriptor[] = [
 	{
 		name: "Lonely",
 		website: "https://v0id.ink",
+	},
+	{
+		name: "lanying's blog",
+		website: "https://blog.yufurry.cn/",
+		avatar: "lanying",
+		description: "一只青苹果小狼~"
 	}
 ];
 export const specialFriends: Record<"lycaon" | "death", PeopleDescriptor> = {
