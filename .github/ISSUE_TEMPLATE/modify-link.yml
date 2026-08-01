@@ -1,0 +1,42 @@
+name: "修改友链"
+description: 修改已有友链的信息
+title: "【修改友链】{name}"
+labels: ["modify-link"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: 友链名称
+      description: 要修改的友链的 name 字段（必填，用于定位）。
+      placeholder: "例如：阳毅"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: field
+    attributes:
+      label: 要修改的字段
+      description: 选择你要修改的 PeopleDescriptor 字段。
+      options:
+        - name
+        - website
+        - avatar
+        - description
+    validations:
+      required: true
+
+  - type: input
+    id: value
+    attributes:
+      label: 新值
+      description: 该字段要改成的值。留空表示删除此字段（website/description/avatar 可删，name 不可删）。
+      placeholder: "例如：https://example.com/"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        提交后 GitHub Actions 会自动读取此 Issue，修改 `src/info.json` 并提交变更。
+        如需同时修改多个字段，请分别提交多个 Issue。
