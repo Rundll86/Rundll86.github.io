@@ -17,7 +17,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { openWebsite } from '@/utils';
+import { openWebsite } from "@/utils";
 
 defineProps({
     title: String,

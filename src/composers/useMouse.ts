@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-let mouse = ref([0, 0]);
+const mouse = ref([0, 0]);
 window.addEventListener("mousemove", (e) => {
     mouse.value = [e.clientX, e.clientY];
 });
