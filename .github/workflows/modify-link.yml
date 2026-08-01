@@ -1,0 +1,128 @@
+name: Modify Link from Issue
+
+on:
+  issues:
+    types: [opened, edited]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'Issue number to process (optional, for manual re-run)'
+        required: false
+        type: string
+
+jobs:
+  modify-link:
+    if: contains(github.event.issue.labels.*.name, 'modify-link') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: read
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch issue body (manual dispatch)
+        if: github.event_name == 'workflow_dispatch' && inputs.issue_number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ISSUE_BODY=$(gh issue view "${{ inputs.issue_number }}" --json body -q '.body')
+          echo "ISSUE_BODY<<EOF" >> "$GITHUB_ENV"
+          echo "$ISSUE_BODY" >> "$GITHUB_ENV"
+          echo "EOF" >> "$GITHUB_ENV"
+          echo "ISSUE_NUMBER=${{ inputs.issue_number }}" >> "$GITHUB_ENV"
+
+      - name: Parse issue and update info.json
+        env:
+          ISSUE_BODY: ${{ github.event_name == 'issues' && github.event.issue.body || env.ISSUE_BODY }}
+          ISSUE_NUMBER: ${{ github.event_name == 'issues' && github.event.issue.number || env.ISSUE_NUMBER || 'manual' }}
+        run: |
+          node -e '
+          const fs = require("fs");
+          const body = process.env.ISSUE_BODY || "";
+          const lines = body.split("\n");
+          const sections = {};
+          let current = null;
+          for (const line of lines) {
+            const m = line.match(/^###\\s+(.+)/);
+            if (m) {
+              current = m[1].trim();
+              sections[current] = "";
+            } else if (current) {
+              sections[current] += line + "\n";
+            }
+          }
+          const name = (sections["友链名称"] || "").trim();
+          const field = (sections["要修改的字段"] || "").trim();
+          let value = (sections["新值"] || "").trim();
+          
+          if (!name || !field) {
+            console.log("Missing name or field, skip.");
+            process.exit(0);
+          }
+          
+          const data = JSON.parse(fs.readFileSync("src/info.json", "utf-8"));
+          let modified = false;
+          
+          function patchEntry(entry) {
+            if (entry && entry.name === name) {
+              if (field === "name") {
+                if (value) entry.name = value;
+              } else if (value === "" || value === undefined) {
+                delete entry[field];
+              } else {
+                entry[field] = value;
+              }
+              return true;
+            }
+            return false;
+          }
+          
+          for (const arr of ["studios", "teachers", "cakeIsLie", "friends"]) {
+            if (data[arr]) {
+              for (const entry of data[arr]) {
+                if (patchEntry(entry)) { modified = true; break; }
+              }
+            }
+            if (modified) break;
+          }
+          
+          if (!modified && data.specialFriends) {
+            for (const key of Object.keys(data.specialFriends)) {
+              if (patchEntry(data.specialFriends[key])) {
+                modified = true;
+                break;
+              }
+            }
+          }
+          
+          if (!modified) {
+            console.log("Name not found: " + name);
+            process.exit(1);
+          }
+          
+          fs.writeFileSync("src/info.json", JSON.stringify(data, null, 2) + "\n");
+          console.log("Updated " + field + " for " + name);
+          '
+
+      - name: Commit and push
+        env:
+          ISSUE_NUMBER: ${{ github.event_name == 'issues' && github.event.issue.number || env.ISSUE_NUMBER || 'manual' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/info.json
+          git diff --cached --quiet || (git commit -m "chore: update link from issue #${ISSUE_NUMBER}" && git push)
+
+      - name: Close issue
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue close "${{ github.event.issue.number }}" --comment "已自动更新并推送，感谢提交。"
