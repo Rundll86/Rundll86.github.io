@@ -15,7 +15,7 @@ export default defineConfig({
             closeBundle() {
                 const submodules: Record<string, string> = {
                     "claude-thunder": "claude-thunder",
-                    "fscd-src": "fs-context"
+                    "fs-context-docs": "fs-context"
                 };
                 for (const submodule of Object.keys(submodules)) {
                     execSync("pnpm build", { cwd: path.join(rootDir, `submodules/${submodule}`), stdio: "inherit" });
