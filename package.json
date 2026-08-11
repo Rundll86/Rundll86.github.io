@@ -5,7 +5,10 @@
     "type": "module",
     "license": "MIT",
     "scripts": {
-        "build": "vite build",
+        "build": "run-s build:site build:claude-thunder build:fscd-src",
+        "build:site": "vite build",
+        "build:claude-thunder": "pnpm --dir submodules/claude-thunder build",
+        "build:fscd-src": "pnpm --dir submodules/fscd-src build",
         "dev": "vite",
         "lint": "run-p lint:*",
         "lint:style": "oxlint .",
