@@ -42,8 +42,8 @@
                 只是一个变态兽人控罢了，bottom。<br>
                 <OutLink href="oc.jpg">
                     <template #prompt>
-                        <img src="oc.jpg" class="oc-preview">
-                        <img src="avatars/shrimp-background.jpg" class="oc-preview">
+                        <img src="/oc.jpg" class="oc-preview">
+                        <img src="/avatars/shrimp-background.jpg" class="oc-preview">
                     </template>
                     自设/OC：希利普医生
                 </OutLink><br>

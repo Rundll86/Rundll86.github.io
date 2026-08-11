@@ -26,12 +26,9 @@ export default defineConfig([
         }
     },
     {
-        files: ["webpack.config.js"],
+        files: ["vite.config.ts"],
         languageOptions: {
             globals: globals.node
-        },
-        rules: {
-            "@typescript-eslint/no-require-imports": "off"
         }
     }
 ]);

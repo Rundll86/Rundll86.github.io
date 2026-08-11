@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { openWebsite } from "@/utils";
-import { PeopleDescriptor } from "src/structs";
+import { PeopleDescriptor } from "@/structs";
 import { computed } from "vue";
 
 const props = defineProps<{
