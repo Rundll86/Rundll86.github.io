@@ -1,0 +1,18 @@
+{
+    "plugins": [
+        "typescript",
+        "vue"
+    ],
+    "categories": {
+        "correctness": "error"
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "ignorePatterns": [
+        "dist",
+        "node_modules",
+        "fs-context"
+    ]
+}
