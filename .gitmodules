@@ -1,3 +1,6 @@
 [submodule "submodules/claude-thunder"]
 	path = submodules/claude-thunder
 	url = https://github.com/Rundll86/claude-thunder
+[submodule "submodules/fs-context-docs"]
+	path = submodules/fs-context-docs
+	url = https://github.com/Rundll86/fs-context-docs.git
