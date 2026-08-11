@@ -5,7 +5,7 @@ export default defineConfig({
         sidebarDepth: 5
     },
     base: "/fs-context/",
-    dest: "../../dist/fs-context",
+    dest: "./dist",
     locales: {
         "/": {
             lang: "zh-CN",
